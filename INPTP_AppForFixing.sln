@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "INPTP_AppForFixing", "INPTP_AppForFixing\INPTP_AppForFixing.csproj", "{34676E1F-F101-4E4A-A600-B29CE1912666}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "INPTP_AppForFixingTests", "INPTP_AppForFixingTests\INPTP_AppForFixingTests.csproj", "{8CF2C936-F34B-4003-B24C-66E6DB435B71}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "INPTP_AppForFixingTests", "INPTP_AppForFixingTests\INPTP_AppForFixingTests.csproj", "{30D97CD3-FCA6-4F98-B14D-F0CF833FEB34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{34676E1F-F101-4E4A-A600-B29CE1912666}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34676E1F-F101-4E4A-A600-B29CE1912666}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34676E1F-F101-4E4A-A600-B29CE1912666}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8CF2C936-F34B-4003-B24C-66E6DB435B71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8CF2C936-F34B-4003-B24C-66E6DB435B71}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8CF2C936-F34B-4003-B24C-66E6DB435B71}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8CF2C936-F34B-4003-B24C-66E6DB435B71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30D97CD3-FCA6-4F98-B14D-F0CF833FEB34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30D97CD3-FCA6-4F98-B14D-F0CF833FEB34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30D97CD3-FCA6-4F98-B14D-F0CF833FEB34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30D97CD3-FCA6-4F98-B14D-F0CF833FEB34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,2 +1,10 @@
 language: csharp
 solution: INPTP_AppForFixing.sln
+
+install:
+  - sudo apt-get install nunit-console
+  - nuget restore ./INPTP_AppForFixing.sln
+
+script:
+  - xbuild ./INPTP_AppForFixing.sln
+  - nunit-console ./INPTP_AppForFixingTests/bin/Debug/INPTP_AppForFixingTests.dll
