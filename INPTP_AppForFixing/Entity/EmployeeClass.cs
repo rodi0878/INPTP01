@@ -23,7 +23,7 @@ namespace INPTP_AppForFixing
         // this methods gets age of employee
         public int GetAge()
         {
-            int x = 0;
+            int x = 1;
             DateTime endDate = DateTime.Now;
             TimeSpan timeSpan = endDate - birth_date;
             if (timeSpan.TotalDays > 365)
