@@ -21,12 +21,8 @@ namespace INPTP_AppForFixing
         // this methods gets age of employee
         public int GetAge()
         {
-            int x = 0;
-            DateTime endDate = DateTime.Now;
-            TimeSpan timeSpan = endDate - birth_date;
-            if (timeSpan.TotalDays > 365)
-                x = (int)Math.Round((timeSpan.TotalDays / 365), MidpointRounding.ToEven);
-            return x;
+           TimeSpan timeSpan = DateTime.Now - birth_date;
+           return timeSpan.TotalDays > 365 ? (int)Math.Round(timeSpan.TotalDays / 365, MidpointRounding.ToEven) : 0; 
         }
 
         public virtual int YearlySalary()
