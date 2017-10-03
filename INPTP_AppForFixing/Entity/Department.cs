@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace INPTP_AppForFixing
@@ -14,10 +15,7 @@ namespace INPTP_AppForFixing
         {
             get
             {
-                string dptCode = "DPT-";
-                dptCode += Name.Replace(" ", "-").Replace(":","-").Replace(",","-").Replace(".","-").Replace("--","-").ToUpper();
-
-                return dptCode;
+                return "DPT-" + Regex.Replace(Name, " :,.--", "-");
             }
         }
 
