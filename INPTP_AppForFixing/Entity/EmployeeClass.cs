@@ -18,7 +18,10 @@ namespace INPTP_AppForFixing
         // current tax rate is 21 %
         public static double taxrate = 0.21;
 
-        // this methods gets age of employee
+        /// <summary>
+        /// This method gets age of employee
+        /// </summary>
+        /// <returns>Age of employee</returns>
         public int GetAge()
         {
             int x = 0;
