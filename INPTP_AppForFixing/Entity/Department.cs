@@ -22,7 +22,7 @@ namespace INPTP_AppForFixing
         {
             get
             {
-                return "DPT-" + Regex.Replace(Name, " :,.--", "-");
+                return "DPT-" + Regex.Replace(Name, "[ :,.]|[-]{2}", "-").ToUpper();
             }
         }
 
