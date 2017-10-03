@@ -16,11 +16,11 @@ namespace INPTP_AppForFixing.Tests
         {
             Boss boss = new Boss(new Department())
             {
-                salary = 1000
+                monthlySalaryCZK = 1000
             };
-            boss.InsertEmpl(new EmployeeClass());
+            boss.InsertEmpl(new Employee());
 
-            Assert.AreEqual(12000, boss.YearlySalary());
+            Assert.AreEqual(12000, boss.CalcYearlySalaryCZK());
         }
 
         [Test()]
@@ -28,21 +28,21 @@ namespace INPTP_AppForFixing.Tests
         {
             Boss boss = new Boss(new Department())
             {
-                salary = 1000
+                monthlySalaryCZK = 1000
             };
             boss.SetSalaryBonus(100);
-            boss.InsertEmpl(new EmployeeClass());
+            boss.InsertEmpl(new Employee());
 
-            Assert.AreEqual(12000 + 1200, boss.YearlySalary());
+            Assert.AreEqual(12000 + 1200, boss.CalcYearlySalaryCZK());
         }
 
 
         [Test()]
         public void BossCanHaveSubemployeesTest()
         {
-            EmployeeClass empl;
+            Employee empl;
             Boss boss = new Boss(new Department());
-            boss.InsertEmpl(empl = new EmployeeClass());
+            boss.InsertEmpl(empl = new Employee());
 
             Assert.IsTrue(boss.HasEmployee(empl));
         }
@@ -51,9 +51,9 @@ namespace INPTP_AppForFixing.Tests
         public void BossIsAbleToCountSubemployeesTest()
         {
             Boss boss = new Boss(new Department());
-            boss.InsertEmpl(new EmployeeClass());
-            boss.InsertEmpl(new EmployeeClass());
-            boss.InsertEmpl(new EmployeeClass());
+            boss.InsertEmpl(new Employee());
+            boss.InsertEmpl(new Employee());
+            boss.InsertEmpl(new Employee());
 
             Assert.AreEqual(3, boss.EmployeeCount);
         }
@@ -70,7 +70,7 @@ namespace INPTP_AppForFixing.Tests
         public void BossIsAbleToKickSubemployeeTest()
         {
             Boss boss = new Boss(new Department());
-            EmployeeClass empl = new EmployeeClass();
+            Employee empl = new Employee();
 
             boss.InsertEmpl(empl);
             Assert.AreEqual(1, boss.EmployeeCount);
@@ -84,7 +84,7 @@ namespace INPTP_AppForFixing.Tests
         public void BossIsAbleToIgnoreForeignEmployeesTest()
         {
             Boss boss = new Boss(new Department());
-            EmployeeClass empl = new EmployeeClass();
+            Employee empl = new Employee();
 
             Assert.AreEqual(0, boss.EmployeeCount);
             Assert.IsFalse(boss.HasEmployee(empl));

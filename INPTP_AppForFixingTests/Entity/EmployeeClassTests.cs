@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 namespace INPTP_AppForFixing.Tests
 {
     [TestFixture()]
-    public class EmployeeClassTests
+    public class EmployeeTests
     {
         [Test()]
         public void NewbornEmployeeShouldHaveAgeOf0()
         {
-            EmployeeClass emp = new EmployeeClass()
+            Employee emp = new Employee()
             {
-                birth_date = DateTime.Now
+                ourBirthDate = DateTime.Now
             };
 
             Assert.AreEqual(0, emp.GetAge());
@@ -27,9 +27,9 @@ namespace INPTP_AppForFixing.Tests
         {
             DateTime birthDate = DateTime.Now.AddYears(-1).AddSeconds(-5);
 
-            EmployeeClass emp = new EmployeeClass()
+            Employee emp = new Employee()
             {
-                birth_date = birthDate
+                ourBirthDate = birthDate
             };
 
             Assert.AreEqual(1, emp.GetAge());
@@ -40,9 +40,9 @@ namespace INPTP_AppForFixing.Tests
         {
             DateTime birthDate = DateTime.Now.AddYears(-10).AddSeconds(-5);
 
-            EmployeeClass emp = new EmployeeClass()
+            Employee emp = new Employee()
             {
-                birth_date = birthDate
+                ourBirthDate = birthDate
             };
 
             Assert.AreEqual(10, emp.GetAge());
@@ -51,13 +51,13 @@ namespace INPTP_AppForFixing.Tests
         [Test()]
         public void YearlySalaryTestOnIntegerValue()
         {
-            EmployeeClass emp = new EmployeeClass()
+            Employee emp = new Employee()
             {
-                salary = 1000
+                monthlySalaryCZK = 1000
             };
             double yearlySalary = 1000 * 12;
 
-            Assert.AreEqual(yearlySalary, emp.YearlySalary());
+            Assert.AreEqual(yearlySalary, emp.CalcYearlySalaryCZK());
         }
 
         // TODO: fix this test! :/
@@ -76,16 +76,16 @@ namespace INPTP_AppForFixing.Tests
         [Test()]
         public void CleanYearIncomeShouldBeCorrect()
         {
-            EmployeeClass emp = new EmployeeClass()
+            Employee emp = new Employee()
             {
-                salary = 123.345
+                monthlySalaryCZK = 123.345
             };
 
             // TODO: fix me!
             double taxRate = 0.21;
             double cyi = 123.345 * (1 - taxRate);
 
-            Assert.AreEqual(cyi, emp.CYI());
+            Assert.AreEqual(cyi, emp.CalcYearlyIncome());
         }
     }
 }

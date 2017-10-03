@@ -47,7 +47,7 @@
   <ItemGroup>
     <Compile Include="Entity\Boss.cs" />
     <Compile Include="Entity\Department.cs" />
-    <Compile Include="Entity\EmployeeClass.cs" />
+    <Compile Include="Entity\Employee.cs" />
     <Compile Include="MaiiForm.cs">
       <SubType>Form</SubType>
     </Compile>
