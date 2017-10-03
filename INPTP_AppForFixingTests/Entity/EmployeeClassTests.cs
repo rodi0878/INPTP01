@@ -80,10 +80,8 @@ namespace INPTP_AppForFixing.Tests
             {
                 monthlySalaryCZK = 123.345
             };
-
-            // TODO: fix me!
             double taxRate = 0.21;
-            double cyi = 123.345 * (1 - taxRate);
+            double cyi = (123.345 * 12) * (1 - taxRate);
 
             Assert.AreEqual(cyi, emp.CalcYearlyIncome());
         }
