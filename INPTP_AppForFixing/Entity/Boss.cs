@@ -56,7 +56,7 @@ namespace INPTP_AppForFixing
 
         public override double CYI()
         {
-            return base.CYI() + (EmployeeCount*perEmplSalaryBonus * (1-taxrate));
+            return base.CYI() + (EmployeeCount*perEmplSalaryBonus * (1-Taxrate));
         }
     }
 }
