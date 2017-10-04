@@ -14,6 +14,11 @@ namespace INPTP_AppForFixing
         public double monthlySalaryCZK;       
         public static double taxRate = 0.21;
 
+        /// <summary>
+        /// This method gets age of employee
+        /// </summary>
+        /// <returns>Age of employee</returns>
+
         public int GetAge()
         {
             int x = 0;
