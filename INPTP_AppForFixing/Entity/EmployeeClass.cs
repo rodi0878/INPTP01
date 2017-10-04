@@ -10,8 +10,9 @@ namespace INPTP_AppForFixing
     {
         public int id;
         public string firstName,last_name,job;
+       
         // our birth date
-        public DateTime birth_date;
+        public DateTime BirthDate { get; set; }
         // monthly salary in CZK
         public double salary;
 
@@ -21,8 +22,12 @@ namespace INPTP_AppForFixing
         // this methods gets age of employee
         public int GetAge()
         {
-           TimeSpan timeSpan = DateTime.Now - birth_date;
-           return timeSpan.TotalDays > 365 ? (int)Math.Round(timeSpan.TotalDays / 365, MidpointRounding.ToEven) : 0; 
+           TimeSpan timeSpan = DateTime.Now - BirthDate;
+
+            if (timeSpan.TotalDays > 365)
+                return (int)Math.Round(timeSpan.TotalDays / 365, MidpointRounding.ToEven);
+                
+           return 0; 
         }
 
         public virtual int YearlySalary()
