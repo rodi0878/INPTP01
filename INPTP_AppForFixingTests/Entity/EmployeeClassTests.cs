@@ -60,18 +60,17 @@ namespace INPTP_AppForFixing.Tests
             Assert.AreEqual(yearlySalary, emp.CalcYearlySalaryCZK());
         }
 
-        // TODO: fix this test! :/
-        /*[Test()]
+        [Test()]
         public void YearlySalaryTestOnDoubleValue()
         {
-            EmployeeClass emp = new EmployeeClass()
-            {
-                salary = 123.345
+            Employee emp = new Employee();
+            { 
+                emp.monthlySalaryCZK = 123.345;
             };
             double yearlySalary = 123.345 * 12;
 
-            Assert.AreEqual(yearlySalary, emp.YearlySalary());
-        }*/
+            Assert.AreEqual(yearlySalary, emp.CalcYearlySalaryCZK());
+        }
 
         [Test()]
         public void CleanYearIncomeShouldBeCorrect()
