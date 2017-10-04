@@ -22,7 +22,8 @@ namespace INPTP_AppForFixing
         {
             get
             {
-                return "DPT-" + Regex.Replace(Name, "[ :,.]|[-]{2}", "-").ToUpper();
+                string dptCode = "DPT-" + Regex.Replace(Name, "[ :,.]", "-").ToUpper();
+                return Regex.Replace(dptCode, "[-]{2}", "-").ToUpper();
             }
         }
 
