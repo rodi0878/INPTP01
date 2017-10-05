@@ -30,12 +30,26 @@ namespace INPTP_AppForFixing.Tests
             {
                 MonthlySalaryCZK = 1000
             };
-            boss.SetSalaryBonus(100);
+            boss.PerEmplSalaryBonus = 100;
             boss.InsertEmpl(new Employee());
 
             Assert.AreEqual(12000 + 1200, boss.CalcYearlySalaryCZK());
         }
 
+        [Test()]
+        public void BossWithTwoSubEmplYearlyIncomeBonusTest()
+        {
+            Boss boss = new Boss(new Department())
+            {
+                MonthlySalaryCZK = 1000
+            };
+            boss.PerEmplSalaryBonus = 100;
+            boss.InsertEmpl(new Employee());
+            boss.InsertEmpl(new Employee());
+
+            Assert.AreEqual((12000 * (1 - Boss.taxRate)) + (2 * 1200 * (1 - Boss.taxRate)),
+                boss.CalcYearlyIncome());
+        }
 
         [Test()]
         public void BossCanHaveSubemployeesTest()

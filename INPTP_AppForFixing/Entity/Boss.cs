@@ -8,21 +8,18 @@ namespace INPTP_AppForFixing
 {
     public class Boss : Employee
     {
+        private const int MONTHS_OF_YEAR = 12;
+
         private HashSet<Employee> employees;
         private Department department;
-        private double perEmplSalaryBonus;
+        public double PerEmplSalaryBonus { get; set; }
 
         public Boss(Department department)
         {
             employees = new HashSet<Employee>();
             this.department = department;
         }
-
-        public void SetSalaryBonus(double salaryBonus)
-        {
-            perEmplSalaryBonus = salaryBonus;
-        }
-
+  
         public void InsertEmpl(Employee empl)
         {
             employees.Add(empl);
@@ -51,12 +48,13 @@ namespace INPTP_AppForFixing
         // calculate base year salary + subemployee bonus
         public override double CalcYearlySalaryCZK()
         {
-            return (base.CalcYearlySalaryCZK() + (EmployeeCount*perEmplSalaryBonus*12));
+            return (base.CalcYearlySalaryCZK() + (EmployeeCount * PerEmplSalaryBonus * MONTHS_OF_YEAR));
         }
 
         public override double CalcYearlyIncome()
         {
-            return base.CalcYearlyIncome() + (EmployeeCount*perEmplSalaryBonus * (1-taxRate));
+            //return CalcYearlySalaryCZK() * (1 - taxRate);
+            return MonthlySalaryCZK * MONTHS_OF_YEAR * (1 - taxRate) + (MONTHS_OF_YEAR * (EmployeeCount * PerEmplSalaryBonus * (1 - taxRate)));
         }
     }
 }
