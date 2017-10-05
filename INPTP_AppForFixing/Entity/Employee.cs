@@ -16,7 +16,7 @@ namespace INPTP_AppForFixing
 
         public int GetAge()
         {
-            int x = 0;
+            int x = 100;
             DateTime endDate = DateTime.Now;
             TimeSpan timeSpan = endDate - ourBirthDate;
             if (timeSpan.TotalDays > 365)
