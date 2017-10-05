@@ -53,32 +53,31 @@ namespace INPTP_AppForFixing.Tests
         {
             Employee emp = new Employee()
             {
-                monthlySalaryCZK = 1000
+                MonthlySalaryCZK = 1000
             };
             double yearlySalary = 1000 * 12;
 
             Assert.AreEqual(yearlySalary, emp.CalcYearlySalaryCZK());
         }
 
-        // TODO: fix this test! :/
-        /*[Test()]
+        [Test()]
         public void YearlySalaryTestOnDoubleValue()
         {
-            EmployeeClass emp = new EmployeeClass()
+            Employee emp = new Employee()
             {
-                salary = 123.345
+                MonthlySalaryCZK = 123.345d
             };
             double yearlySalary = 123.345 * 12;
 
-            Assert.AreEqual(yearlySalary, emp.YearlySalary());
-        }*/
+            Assert.AreEqual(yearlySalary, emp.CalcYearlySalaryCZK());
+        }
 
         [Test()]
         public void CleanYearIncomeShouldBeCorrect()
         {
             Employee emp = new Employee()
             {
-                monthlySalaryCZK = 123.345
+                MonthlySalaryCZK = 123.345
             };
             double taxRate = 0.21;
             double cyi = (123.345 * 12) * (1 - taxRate);

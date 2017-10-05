@@ -11,8 +11,8 @@ namespace INPTP_AppForFixing
         public int id;
         public string firstName, lastName, job;
         public DateTime ourBirthDate;
-        public double monthlySalaryCZK;       
         public static double taxRate = 0.21;
+        public double MonthlySalaryCZK { get; set; }
 
         public int GetAge()
         {
@@ -26,7 +26,7 @@ namespace INPTP_AppForFixing
 
         public virtual double CalcYearlySalaryCZK()
         {
-            return monthlySalaryCZK * 12;
+            return MonthlySalaryCZK * 12;
         }
                
         public virtual double CalcYearlyIncome()

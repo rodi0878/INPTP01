@@ -16,7 +16,7 @@ namespace INPTP_AppForFixing.Tests
         {
             Boss boss = new Boss(new Department())
             {
-                monthlySalaryCZK = 1000
+                MonthlySalaryCZK = 1000
             };
             boss.InsertEmpl(new Employee());
 
@@ -28,7 +28,7 @@ namespace INPTP_AppForFixing.Tests
         {
             Boss boss = new Boss(new Department())
             {
-                monthlySalaryCZK = 1000
+                MonthlySalaryCZK = 1000
             };
             boss.SetSalaryBonus(100);
             boss.InsertEmpl(new Employee());
