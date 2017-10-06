@@ -16,12 +16,17 @@ namespace INPTP_AppForFixing
 
         public int GetAge()
         {
-            int x = 0;
             DateTime endDate = DateTime.Now;
             TimeSpan timeSpan = endDate - ourBirthDate;
             if (timeSpan.TotalDays > 365)
-                x = (int)Math.Round((timeSpan.TotalDays / 365), MidpointRounding.ToEven);
-            return x;
+            {
+                return (int)Math.Round((timeSpan.TotalDays / 365), MidpointRounding.ToEven);
+            }
+            else
+            {
+                return 0;
+            }
+                
         }
 
         public virtual double CalcYearlySalaryCZK()
