@@ -14,6 +14,11 @@ namespace INPTP_AppForFixing
         public double monthlySalaryCZK;       
         public static double taxRate = 0.21;
 
+        /// <summary>
+        /// Method to count age of the employee 
+        /// based on attribute ourBirthDate
+        /// </summary>
+        /// <returns>Age of the employee rounded to years</returns>
         public int GetAge()
         {
             int x = 0;
@@ -24,11 +29,22 @@ namespace INPTP_AppForFixing
             return x;
         }
 
+        /// <summary>
+        /// Method to count sum of 12 salaries (one per month) of the employee
+        /// based on attribute monthlySalaryCZK
+        /// </summary>
+        /// <returns>Sum of all the 12 salaries</returns>
         public virtual double CalcYearlySalaryCZK()
         {
             return monthlySalaryCZK * 12;
         }
-               
+            
+        /// <summary>
+        /// Method to count the net income of the employee
+        /// based on attribute taxRate
+        /// calls method CalcYearlySalaryCZK
+        /// </summary>
+        /// <returns>Net income of the employee</returns>
         public virtual double CalcYearlyIncome()
         {
             return CalcYearlySalaryCZK() * (1 - taxRate);
