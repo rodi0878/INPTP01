@@ -56,7 +56,7 @@ namespace INPTP_AppForFixing
 
         public override double CalcYearlyIncome()
         {
-            return base.CalcYearlyIncome() + (EmployeeCount*perEmplSalaryBonus * (1-taxRate));
+            return base.CalcYearlyIncome() + (EmployeeCount*perEmplSalaryBonus * (1-TaxRate));
         }
     }
 }
