@@ -65,7 +65,7 @@ namespace INPTP_AppForFixing.Tests
         {
             Employee emp = new Employee();
             { 
-                emp.monthlySalaryCZK = 123.345;
+                emp.MonthlySalaryCZK = 123.345;
             };
             double yearlySalary = 123.345 * 12;
 
@@ -83,6 +83,28 @@ namespace INPTP_AppForFixing.Tests
             double cyi = (123.345 * 12) * (1 - taxRate);
 
             Assert.AreEqual(cyi, emp.CalcYearlyIncome());
+        }
+
+        [Test()]
+        public void EmployeeHasCorrectFirstName()
+        {
+            Employee emp = new Employee
+            {
+                FirstName = "John"
+            };
+
+            Assert.AreEqual("John", emp.FirstName);
+        }
+
+        [Test()]
+        public void EmployeeHasCorrectLastName()
+        {
+            Employee emp = new Employee
+            {
+                LastName = "Cameron"
+            };
+
+            Assert.AreEqual("Cameron", emp.LastName);
         }
     }
 }

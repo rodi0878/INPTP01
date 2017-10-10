@@ -23,12 +23,12 @@ namespace INPTP_AppForFixing
             perEmplSalaryBonus = salaryBonus;
         }
 
-        public void InsertEmpl(Employee empl)
+        public void InsertEmployee(Employee empl)
         {
             employees.Add(empl);
         }
 
-        public void PurgeEmpl(Employee empl)
+        public void PurgeEmployee(Employee empl)
         {
             employees.Remove(empl);
         }
