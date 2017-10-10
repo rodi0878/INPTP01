@@ -16,7 +16,7 @@ namespace INPTP_AppForFixing
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MaiiForm());
+            Application.Run(new MainForm());
         }
     }
 }
