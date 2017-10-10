@@ -10,15 +10,16 @@ namespace INPTP_AppForFixing
     {
         public int id;
         public string firstName, lastName, job;
-        public DateTime ourBirthDate;
+        public DateTime birthDate;
         public double monthlySalaryCZK;       
         public static double taxRate = 0.21;
+        private readonly int numberOfDays = 365; 
 
         public int Id { get => id; set => id = value; }
         public string FirstName { get => firstName; set => firstName = value; }
         public string LastName { get => lastName; set => lastName = value; }
         public string Job { get => job; set => job = value; }
-        public DateTime OurBirthDate { get => ourBirthDate; set => ourBirthDate = value; }
+        public DateTime OurBirthDate { get => birthDate; set => birthDate = value; }
         public double MonthlySalaryCZK { get => monthlySalaryCZK; set => monthlySalaryCZK = value; }
         public static double TaxRate { get => taxRate; }
 
@@ -36,9 +37,9 @@ namespace INPTP_AppForFixing
         {
             int x = 0;
             DateTime endDate = DateTime.Now;
-            TimeSpan timeSpan = endDate - ourBirthDate;
-            if (timeSpan.TotalDays > 365)
-                x = (int)Math.Round((timeSpan.TotalDays / 365), MidpointRounding.ToEven);
+            TimeSpan timeSpan = endDate - OurBirthDate;
+            if (timeSpan.TotalDays > numberOfDays)
+                x = (int)Math.Round((timeSpan.TotalDays / numberOfDays), MidpointRounding.ToEven);
             return x;
         }
 
