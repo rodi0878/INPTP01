@@ -10,9 +10,10 @@ namespace INPTP_AppForFixing
     {
         public int id;
         public string firstName, lastName, job;
-        public DateTime ourBirthDate;
+        public DateTime birthDate;
         public double monthlySalaryCZK;       
         public static double taxRate = 0.21;
+        private readonly int numberOfDays = 365;
 
         /// <summary>
         /// This method gets age of employee
@@ -21,12 +22,10 @@ namespace INPTP_AppForFixing
 
         public int GetAge()
         {
-            int x = 0;
-            DateTime endDate = DateTime.Now;
-            TimeSpan timeSpan = endDate - ourBirthDate;
-            if (timeSpan.TotalDays > 365)
-                x = (int)Math.Round((timeSpan.TotalDays / 365), MidpointRounding.ToEven);
-            return x;
+            TimeSpan timeSpan = DateTime.Now - birthDate;
+            if (timeSpan.TotalDays > numberOfDays)
+                return (int)Math.Round((timeSpan.TotalDays / numberOfDays), MidpointRounding.ToEven);
+            return 0;
         }
 
         public virtual double CalcYearlySalaryCZK()
@@ -38,5 +37,6 @@ namespace INPTP_AppForFixing
         {
             return CalcYearlySalaryCZK() * (1 - taxRate);
         }
+
     }
 }

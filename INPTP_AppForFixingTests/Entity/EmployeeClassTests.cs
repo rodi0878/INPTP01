@@ -16,7 +16,7 @@ namespace INPTP_AppForFixing.Tests
         {
             Employee emp = new Employee()
             {
-                ourBirthDate = DateTime.Now
+                birthDate = DateTime.Now
             };
 
             Assert.AreEqual(0, emp.GetAge());
@@ -29,7 +29,7 @@ namespace INPTP_AppForFixing.Tests
 
             Employee emp = new Employee()
             {
-                ourBirthDate = birthDate
+                birthDate = birthDate
             };
 
             Assert.AreEqual(1, emp.GetAge());
@@ -42,7 +42,7 @@ namespace INPTP_AppForFixing.Tests
 
             Employee emp = new Employee()
             {
-                ourBirthDate = birthDate
+                birthDate = birthDate
             };
 
             Assert.AreEqual(10, emp.GetAge());
