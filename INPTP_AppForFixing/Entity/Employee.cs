@@ -10,9 +10,10 @@ namespace INPTP_AppForFixing
     {
         public int id;
         public string firstName, lastName, job;
-        private DateTime birthDate;
         public double monthlySalaryCZK;       
         public static double taxRate = 0.21;
+
+        private DateTime birthDate;
         private readonly int numberOfDays = 365; 
 
         public int Id { get => id; set => id = value; }
