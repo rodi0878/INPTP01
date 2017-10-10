@@ -16,7 +16,7 @@ namespace INPTP_AppForFixing.Tests
         {
             EmployeeClass emp = new EmployeeClass()
             {
-                BirthDate = DateTime.Now
+                birth_date = DateTime.Now
             };
 
             Assert.AreEqual(0, emp.GetAge());
@@ -29,7 +29,7 @@ namespace INPTP_AppForFixing.Tests
 
             EmployeeClass emp = new EmployeeClass()
             {
-                BirthDate = birthDate
+                birth_date = birthDate
             };
 
             Assert.AreEqual(1, emp.GetAge());
@@ -42,7 +42,7 @@ namespace INPTP_AppForFixing.Tests
 
             EmployeeClass emp = new EmployeeClass()
             {
-                BirthDate = birthDate
+                birth_date = birthDate
             };
 
             Assert.AreEqual(10, emp.GetAge());
@@ -53,7 +53,7 @@ namespace INPTP_AppForFixing.Tests
         {
             EmployeeClass emp = new EmployeeClass()
             {
-                Salary = 1000
+                salary = 1000
             };
             double yearlySalary = 1000 * 12;
 
@@ -78,7 +78,7 @@ namespace INPTP_AppForFixing.Tests
         {
             EmployeeClass emp = new EmployeeClass()
             {
-                Salary = 123.345
+                salary = 123.345
             };
 
             // TODO: fix me!

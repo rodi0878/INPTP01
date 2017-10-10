@@ -8,62 +8,22 @@ namespace INPTP_AppForFixing
 {
     public class EmployeeClass
     {
-        private int id;
-        private string firstName;
-        private string lastName;
-        private string job;
-
+        public int id;
+        public string firstName,last_name,job;
         // our birth date
-        private DateTime birthDate;
+        public DateTime birth_date;
         // monthly salary in CZK
-        private double salary;
-
-        public int ID
-        {
-            get { return id; }
-        }
-
-        public string FirstName
-        {
-            get { return firstName; }
-        }
-
-        public string LastName
-        {
-            get { return lastName; }
-        }
-
-        public string Job
-        {
-            get { return job; }
-        }
-
-        public DateTime BirthDate
-        {
-            get { return birthDate; }
-            set { birthDate = value; }
-        }
-
-        public double Salary
-        {
-            get { return salary; }
-            set { salary = value; }
-        }
+        public double salary;
 
         // current tax rate is 21 %
-        private static double taxrate = 0.21;
-
-        public static double Taxrate
-        {
-            get { return taxrate; }
-        }
+        public static double taxrate = 0.21;
 
         // this methods gets age of employee
         public int GetAge()
         {
             int x = 0;
             DateTime endDate = DateTime.Now;
-            TimeSpan timeSpan = endDate - BirthDate;
+            TimeSpan timeSpan = endDate - birth_date;
             if (timeSpan.TotalDays > 365)
                 x = (int)Math.Round((timeSpan.TotalDays / 365), MidpointRounding.ToEven);
             return x;
