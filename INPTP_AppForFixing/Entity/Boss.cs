@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace INPTP_AppForFixing
 {
-    public class Boss : EmployeeClass
+    public class Boss : Employee
     {
-        private HashSet<EmployeeClass> employees;
+        private HashSet<Employee> employees;
         private Department department;
         private double perEmplSalaryBonus;
 
         public Boss(Department department)
         {
-            employees = new HashSet<EmployeeClass>();
+            employees = new HashSet<Employee>();
             this.department = department;
         }
 
@@ -23,24 +23,24 @@ namespace INPTP_AppForFixing
             perEmplSalaryBonus = salaryBonus;
         }
 
-        public void InsertEmpl(EmployeeClass empl)
+        public void InsertEmpl(Employee empl)
         {
             employees.Add(empl);
         }
 
-        public void PurgeEmpl(EmployeeClass empl)
+        public void PurgeEmpl(Employee empl)
         {
             employees.Remove(empl);
         }
 
-        public bool HasEmployee(EmployeeClass empl)
+        public bool HasEmployee(Employee empl)
         {
             return employees.Contains(empl);
         }
 
-        public ISet<EmployeeClass> GetEmployees()
+        public ISet<Employee> GetEmployees()
         {
-            return new HashSet<EmployeeClass>(employees);
+            return new HashSet<Employee>(employees);
         }
 
         public int EmployeeCount
@@ -49,14 +49,14 @@ namespace INPTP_AppForFixing
         }
 
         // calculate base year salary + subemployee bonus
-        public override int YearlySalary()
+        public override double CalcYearlySalaryCZK()
         {
-            return (int)(base.YearlySalary() + (EmployeeCount*perEmplSalaryBonus*12));
+            return (base.CalcYearlySalaryCZK() + (EmployeeCount*perEmplSalaryBonus*12));
         }
 
-        public override double CYI()
+        public override double CalcYearlyIncome()
         {
-            return base.CYI() + (EmployeeCount*perEmplSalaryBonus * (1-taxrate));
+            return base.CalcYearlyIncome() + (EmployeeCount*perEmplSalaryBonus * (1-taxRate));
         }
     }
 }
