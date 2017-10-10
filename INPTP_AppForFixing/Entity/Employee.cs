@@ -21,12 +21,13 @@ namespace INPTP_AppForFixing
 
         public int GetAge()
         {
-            int x = 0;
             DateTime endDate = DateTime.Now;
             TimeSpan timeSpan = endDate - ourBirthDate;
-            if (timeSpan.TotalDays > 365)
-                x = (int)Math.Round((timeSpan.TotalDays / 365), MidpointRounding.ToEven);
-            return x;
+            int numberOfDays = GetNumberOFDays;
+            if (timeSpan.TotalDays < numberOfDays)
+                return 0;
+
+            return (int)Math.Round((timeSpan.TotalDays / numberOfDays), MidpointRounding.ToEven);
         }
 
         public virtual double CalcYearlySalaryCZK()
@@ -37,6 +38,14 @@ namespace INPTP_AppForFixing
         public virtual double CalcYearlyIncome()
         {
             return CalcYearlySalaryCZK() * (1 - taxRate);
+        }
+
+        private int GetNumberOFDays()
+        {
+            if (DateTime.IsLeapYear(DateTime.Now.Year))
+                return 366;
+
+            return 365;
         }
     }
 }
