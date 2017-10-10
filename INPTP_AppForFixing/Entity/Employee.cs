@@ -35,12 +35,10 @@ namespace INPTP_AppForFixing
         /// <returns>Age of the employee rounded to years</returns>
         public int GetAge()
         {
-            int x = 0;
-            DateTime endDate = DateTime.Now;
-            TimeSpan timeSpan = endDate - OurBirthDate;
+            TimeSpan timeSpan = DateTime.Now - OurBirthDate;
             if (timeSpan.TotalDays > numberOfDays)
-                x = (int)Math.Round((timeSpan.TotalDays / numberOfDays), MidpointRounding.ToEven);
-            return x;
+              return (int)Math.Round((timeSpan.TotalDays / numberOfDays), MidpointRounding.ToEven);
+            return 0;
         }
 
         /// <summary>
