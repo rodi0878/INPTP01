@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace INPTP_AppForFixing
 {
-    public partial class MaiiForm : Form
+    public partial class MainForm : Form
     {
-        public MaiiForm()
+        public MainForm()
         {
             InitializeComponent();
         }
