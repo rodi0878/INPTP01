@@ -9,7 +9,9 @@ namespace INPTP_AppForFixing
     public class Employee
     {
         private int id;
-        private string firstName, lastName, job;
+        private string firstName;
+        private string lastName;
+        private string job;
         private double monthlySalaryCZK;       
         private static double taxRate = 0.21;
 
