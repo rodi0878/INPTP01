@@ -65,7 +65,7 @@ namespace INPTP_AppForFixing.Tests
         {
             Employee emp = new Employee();
             { 
-                emp.monthlySalaryCZK = 123.345;
+                emp.MonthlySalaryCZK = 123.345;
             };
             double yearlySalary = 123.345 * 12;
 

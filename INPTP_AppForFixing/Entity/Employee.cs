@@ -8,10 +8,10 @@ namespace INPTP_AppForFixing
 {
     public class Employee
     {
-        public int id;
-        public string firstName, lastName, job;
-        public double monthlySalaryCZK;       
-        public static double taxRate = 0.21;
+        private int id;
+        private string firstName, lastName, job;
+        private double monthlySalaryCZK;       
+        private static double taxRate = 0.21;
 
         private DateTime birthDate;
         private readonly int numberOfDays = 365; 
