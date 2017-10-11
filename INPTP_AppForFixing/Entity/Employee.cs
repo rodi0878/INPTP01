@@ -11,16 +11,18 @@ namespace INPTP_AppForFixing
         private int id;
         private string firstName;
         private string lastName;
-        private string job; 
-        private DateTime ourBirthDate;
-        private double monthlySalaryCZK;      
+        private string job;
+        private double monthlySalaryCZK;       
         private static double taxRate = 0.21;
+
+        private DateTime birthDate;
+        private readonly int numberOfDays = 365; 
 
         public int Id { get => id; set => id = value; }
         public string FirstName { get => firstName; set => firstName = value; }
         public string LastName { get => lastName; set => lastName = value; }
         public string Job { get => job; set => job = value; }
-        public DateTime OurBirthDate { get => ourBirthDate; set => ourBirthDate = value; }
+        public DateTime OurBirthDate { get => birthDate; set => birthDate = value; }
         public double MonthlySalaryCZK { get => monthlySalaryCZK; set => monthlySalaryCZK = value; }
         public static double TaxRate { get => taxRate; }
 
@@ -36,17 +38,10 @@ namespace INPTP_AppForFixing
         /// <returns>Age of the employee rounded to years</returns>
         public int GetAge()
         {
-            DateTime endDate = DateTime.Now;
-            TimeSpan timeSpan = endDate - OurBirthDate;
-            if (timeSpan.TotalDays > 365)
-            {
-                return (int)Math.Round((timeSpan.TotalDays / 365), MidpointRounding.ToEven);
-            }
-            else
-            {
-                return 0;
-            }
-                
+            TimeSpan timeSpan = DateTime.Now - OurBirthDate;
+            if (timeSpan.TotalDays > numberOfDays)
+              return (int)Math.Round((timeSpan.TotalDays / numberOfDays), MidpointRounding.ToEven);
+            return 0;
         }
 
         /// <summary>
@@ -69,5 +64,6 @@ namespace INPTP_AppForFixing
         {
             return CalcYearlySalaryCZK() * (1 - TaxRate);
         }
+
     }
 }
