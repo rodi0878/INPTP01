@@ -12,8 +12,8 @@ namespace INPTP_AppForFixing
         public string firstName, lastName, job;
         public double monthlySalaryCZK;       
         public static double taxRate = 0.21;
-        public DateTime birthDate;
 
+        private DateTime birthDate;
         private readonly int numberOfDays = 365; 
 
         public int Id { get => id; set => id = value; }

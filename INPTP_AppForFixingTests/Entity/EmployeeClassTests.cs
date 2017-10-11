@@ -38,11 +38,11 @@ namespace INPTP_AppForFixing.Tests
         [Test()]
         public void TenYearEmployeeShouldHaveAgeOf1()
         {
-            DateTime OurBirthDate = DateTime.Now.AddYears(-10).AddSeconds(-5);
+            DateTime birthDate = DateTime.Now.AddYears(-10).AddSeconds(-5);
 
             Employee emp = new Employee()
             {
-                birthDate = OurBirthDate
+                OurBirthDate = birthDate
             };
 
             Assert.AreEqual(10, emp.GetAge());
