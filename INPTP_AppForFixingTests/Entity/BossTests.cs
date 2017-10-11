@@ -47,7 +47,7 @@ namespace INPTP_AppForFixing.Tests
             boss.InsertEmpl(new Employee());
             boss.InsertEmpl(new Employee());
 
-            Assert.AreEqual((12000 * (1 - Boss.taxRate)) + (2 * 1200 * (1 - Boss.taxRate)),
+            Assert.AreEqual((12000 * (1 - Boss.TaxRate)) + (2 * 1200 * (1 - Boss.TaxRate)),
                 boss.CalcYearlyIncome());
         }
 

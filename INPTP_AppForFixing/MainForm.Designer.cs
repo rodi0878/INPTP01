@@ -1,6 +1,6 @@
 ﻿namespace INPTP_AppForFixing
 {
-    partial class MaiiForm
+    partial class MainForm
     {
         /// <summary>
         /// Vyžaduje se proměnná návrháře.

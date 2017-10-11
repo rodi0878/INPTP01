@@ -53,7 +53,7 @@ namespace INPTP_AppForFixing
 
         public override double CalcYearlyIncome()
         {
-            return MonthlySalaryCZK * MONTHS_OF_YEAR * (1 - taxRate) + (MONTHS_OF_YEAR * (EmployeeCount * PerEmplSalaryBonus * (1 - taxRate)));
+            return MonthlySalaryCZK * MONTHS_OF_YEAR * (1 - Boss.TaxRate) + (MONTHS_OF_YEAR * (EmployeeCount * PerEmplSalaryBonus * (1 - Boss.TaxRate)));
         }
     }
 }
