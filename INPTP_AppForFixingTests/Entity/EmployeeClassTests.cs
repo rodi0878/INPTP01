@@ -63,9 +63,9 @@ namespace INPTP_AppForFixing.Tests
         [Test()]
         public void YearlySalaryTestOnDoubleValue()
         {
-            Employee emp = new Employee();
+            Employee emp = new Employee()
             { 
-                emp.monthlySalaryCZK = 123.345;
+                MonthlySalaryCZK = 123.345
             };
             double yearlySalary = 123.345 * 12;
 
