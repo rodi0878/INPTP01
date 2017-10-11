@@ -11,8 +11,8 @@ namespace INPTP_AppForFixing.Properties {
     internal sealed partial class Settings {
         public delegate void SettingChangingEventhandler(object sender, System.Configuration.SettingChangingEventArgs e);
         public event SettingChangingEventhandler SettingChanging;
-        public delegate void SettingSavingEventhandler(object sender, System.Configuration.SettingChangingEventArgs e);
-        public event SettingChangingEventhandler SettingsSaving;
+        public delegate void SettingSavingEventhandler(object sender, System.ComponentModel.CancelEventArgs e);
+        public event SettingSavingEventhandler SettingsSaving;
         public Settings() {
             // // Pro přidávání obslužných rutin událostí určených pro ukládání a změnu nastavení odkomentujte prosím níže uvedené řádky:
              this.SettingChanging += this.SettingChangingEventHandler;
@@ -21,10 +21,19 @@ namespace INPTP_AppForFixing.Properties {
         
         private void SettingChangingEventHandler(object sender, System.Configuration.SettingChangingEventArgs e) {
             // Kód pro zpracování události SettingChangingEvent přidejte sem.
+            SettingChangingEventhandler handler = SettingChanging;
+            if (handler != null) {
+                handler(sender, e);
+            }
+
         }
         
         private void SettingsSavingEventHandler(object sender, System.ComponentModel.CancelEventArgs e) {
             // Kód pro zpracování události SettingsSaving přidejte sem.
+            SettingSavingEventhandler handler = SettingsSaving;
+            if (handler != null) {
+                handler(sender,e);
+            }
         }
     }
 }
