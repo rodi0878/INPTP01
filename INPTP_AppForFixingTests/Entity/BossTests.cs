@@ -89,5 +89,46 @@ namespace INPTP_AppForFixing.Tests
             Assert.AreEqual(0, boss.EmployeeCount);
             Assert.IsFalse(boss.HasEmployee(empl));
         }
+
+        [Test()]
+        public void BossGetsAllEmployees()
+        {
+            Boss boss = new Boss(new Department());
+            HashSet<Employee> employees = new HashSet<Employee>();
+            Employee empl1 = new Employee();
+            Employee empl2 = new Employee();
+            Employee empl3 = new Employee();
+
+            boss.InsertEmpl(empl1);
+            boss.InsertEmpl(empl2);
+            boss.InsertEmpl(empl3);
+
+            employees.Add(empl1);
+            employees.Add(empl2);
+            employees.Add(empl3);
+
+            Assert.AreEqual(employees, boss.GetEmployees());
+        }
+
+        [Test()]
+        public void BossGetsAllEmployeesAfterKickingEmployee()
+        {
+            Boss boss = new Boss(new Department());
+            HashSet<Employee> employees = new HashSet<Employee>();
+            Employee empl1 = new Employee();
+            Employee empl2 = new Employee();
+            Employee empl3 = new Employee();
+
+            boss.InsertEmpl(empl1);
+            boss.InsertEmpl(empl2);
+            boss.InsertEmpl(empl3);
+
+            boss.PurgeEmpl(empl2);
+
+            employees.Add(empl1);
+            employees.Add(empl3);
+
+            Assert.AreEqual(employees, boss.GetEmployees());
+        }
     }
 }

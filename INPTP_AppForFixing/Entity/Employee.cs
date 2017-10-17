@@ -16,6 +16,7 @@ namespace INPTP_AppForFixing
         private double monthlySalaryCZK;      
         private static double taxRate = 0.21;
 
+
         public int Id { get => id; set => id = value; }
         public string FirstName { get => firstName; set => firstName = value; }
         public string LastName { get => lastName; set => lastName = value; }
