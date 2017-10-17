@@ -26,7 +26,7 @@ namespace INPTP_AppForFixing
 
         public void SetSalaryBonus(double salaryBonus)
         {
-            perEmplSalaryBonus = salaryBonus;
+            PerEmplSalaryBonus = salaryBonus;
         }
 
         public void InsertEmpl(Employee empl)
