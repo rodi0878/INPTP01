@@ -29,25 +29,18 @@ namespace INPTP_AppForFixing
         /// This method gets age of employee
         /// </summary>
         /// <returns>Age of employee</returns>
-
-        /// <summary>
-        /// Method to count age of the employee 
-        /// based on attribute ourBirthDate
-        /// </summary>
-        /// <returns>Age of the employee rounded to years</returns>
         public int GetAge()
         {
-            DateTime endDate = DateTime.Now;
-            TimeSpan timeSpan = endDate - OurBirthDate;
-            if (timeSpan.TotalDays > 365)
+            DateTime today = DateTime.Today;
+            int age = today.Year - OurBirthDate.Year;
+            if (OurBirthDate > today.AddYears(-age))
             {
-                return (int)Math.Round((timeSpan.TotalDays / 365), MidpointRounding.ToEven);
+                return --age;
             }
             else
             {
-                return 0;
+                return age;
             }
-                
         }
 
         /// <summary>
