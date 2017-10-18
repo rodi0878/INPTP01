@@ -31,7 +31,7 @@ namespace INPTP_AppForFixing
         /// <returns>Age of employee</returns>
         public int GetAge()
         {
-            DateTime today = DateTime.Today;
+            DateTime today = DateTime.Now;
             int age = today.Year - OurBirthDate.Year;
             if (OurBirthDate > today.AddYears(-age))
             {
