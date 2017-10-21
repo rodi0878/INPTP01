@@ -24,6 +24,12 @@ namespace INPTP_AppForFixing
             this.department = department;
         }
 
+        public Boss(int id, string firstName, string lastName, string job, DateTime ourBirthDate, double monthlySalaryCZK, Department dep) :
+            base(id, firstName, lastName, job, ourBirthDate, monthlySalaryCZK)
+        {
+            department = dep;
+        }
+
         public void SetSalaryBonus(double salaryBonus)
         {
             PerEmplSalaryBonus = salaryBonus;
@@ -90,6 +96,11 @@ namespace INPTP_AppForFixing
         public override double CalcYearlyIncome()
         {
             return MonthlySalaryCZK * MONTHS_OF_YEAR * (1 - Boss.TaxRate) + (MONTHS_OF_YEAR * (EmployeeCount * PerEmplSalaryBonus * (1 - Boss.TaxRate)));
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + "  ;DEPARTMENT - Name: " + department.Name + " ;CODE: " + department.Code; 
         }
     }
 }

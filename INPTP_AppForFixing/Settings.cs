@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 
 namespace INPTP_AppForFixing.Properties {
     
@@ -8,11 +9,8 @@ namespace INPTP_AppForFixing.Properties {
     //  Událost PropertyChanged se vyvolá po změně hodnoty nastavení.
     //  Událost SettingsLoaded se vyvolá po načtení hodnot nastavení.
     //  Událost SettingsSaving se vyvolá před uložením hodnot nastavení.
-    internal sealed partial class Settings {
-        public delegate void SettingChangingEventhandler(object sender, System.Configuration.SettingChangingEventArgs e);
-        public event SettingChangingEventhandler SettingChanging;
-        public delegate void SettingSavingEventhandler(object sender, System.Configuration.SettingChangingEventArgs e);
-        public event SettingChangingEventhandler SettingsSaving;
+    internal sealed partial class Settings : ApplicationSettingsBase
+    { 
         public Settings() {
             // // Pro přidávání obslužných rutin událostí určených pro ukládání a změnu nastavení odkomentujte prosím níže uvedené řádky:
              this.SettingChanging += this.SettingChangingEventHandler;
@@ -21,6 +19,7 @@ namespace INPTP_AppForFixing.Properties {
         
         private void SettingChangingEventHandler(object sender, System.Configuration.SettingChangingEventArgs e) {
             // Kód pro zpracování události SettingChangingEvent přidejte sem.
+
         }
         
         private void SettingsSavingEventHandler(object sender, System.ComponentModel.CancelEventArgs e) {
