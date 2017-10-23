@@ -12,9 +12,55 @@ namespace INPTP_AppForFixing
 {
     public partial class MainForm : Form
     {
+
+        private HashSet<Boss> bosses;
+
+        public HashSet<Boss> Bosses { get => bosses; set => bosses = value; }
+
         public MainForm()
         {
             InitializeComponent();
+            bosses = new HashSet<Boss>();
+        }
+
+        private void btnAddEmployee_Click(object sender, EventArgs e)
+        {
+            openAddDialog(true, "Create employee");
+        }
+
+        private void btnAddBoss_Click(object sender, EventArgs e)
+        {
+            openAddDialog(false, "Create boss");            
+        }
+
+        private void openAddDialog(bool emp, string text)
+        {
+            EmployeeDialog createWin = new EmployeeDialog(this, emp);
+            createWin.Text = "Create employee";
+            createWin.Show();
+            Enabled = false;
+        }
+
+        public void OnBossesChange() {
+            listBoxOfBosses.Items.Clear();
+            foreach (Boss boss in bosses) {
+                listBoxOfBosses.Items.Add(boss);
+            }
+        }
+
+        private void btnDelBoss_Click(object sender, EventArgs e)
+        {
+            if (listBoxOfBosses.SelectedItem == null) showError("Choose a boss!");
+            else {
+                bosses.Remove((Boss)listBoxOfBosses.SelectedItem);
+                OnBossesChange();
+            }
+        }
+
+        private void showError(string text)
+        {
+            MessageBox.Show(text, "Error",
+                           MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

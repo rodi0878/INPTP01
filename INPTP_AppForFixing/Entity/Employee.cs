@@ -25,6 +25,17 @@ namespace INPTP_AppForFixing
         public double MonthlySalaryCZK { get => monthlySalaryCZK; set => monthlySalaryCZK = value; }
         public static double TaxRate { get => taxRate; }
 
+        public Employee() { }
+
+        public Employee(int id, string firstName, string lastName,string job, DateTime ourBirthDate, double monthlySalaryCZK) {
+            this.id = id;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.job = job;
+            this.ourBirthDate = ourBirthDate;
+            this.monthlySalaryCZK = monthlySalaryCZK;
+        }
+
         /// <summary>
         /// This method gets age of employee
         /// </summary>
@@ -62,6 +73,10 @@ namespace INPTP_AppForFixing
         public virtual double CalcYearlyIncome()
         {
             return CalcYearlySalaryCZK() * (1 - TaxRate);
+        }
+
+        public override string ToString() {
+            return "ID:  " + Id + "; NAME: " + FirstName + " " + LastName + "; JOB:" + Job + "; SALARY: " + MonthlySalaryCZK; 
         }
     }
 }
