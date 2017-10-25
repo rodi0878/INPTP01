@@ -11,10 +11,11 @@ using System.Windows.Forms;
 namespace INPTP_AppForFixing
 {
     public partial class MainForm : Form
-    {
-
+    {       
+        private HashSet<Boss> employee;
         private HashSet<Boss> bosses;
 
+        public HashSet<Boss> Employee { get => employee; }
         public HashSet<Boss> Bosses { get => bosses; set => bosses = value; }
 
         public MainForm()
@@ -33,10 +34,10 @@ namespace INPTP_AppForFixing
             openAddDialog(false, "Create boss");            
         }
 
-        private void openAddDialog(bool emp, string text)
+        private void openAddDialog(bool emp, string text, Boss b = null)
         {
-            EmployeeDialog createWin = new EmployeeDialog(this, emp);
-            createWin.Text = "Create employee";
+            EmployeeDialog createWin = new EmployeeDialog(this, emp, b);
+            createWin.Text = text;
             createWin.Show();
             Enabled = false;
         }
@@ -62,5 +63,15 @@ namespace INPTP_AppForFixing
             MessageBox.Show(text, "Error",
                            MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        private void btnEditBoss_Click(object sender, EventArgs e)
+        {
+            if (listBoxOfBosses.SelectedItem == null) showError("Choose a boss!");
+            else
+            {
+                openAddDialog(false, "Edit boss", listBoxOfBosses.SelectedItem as Boss);                
+                OnBossesChange();
+            }
+        }        
     }
 }
