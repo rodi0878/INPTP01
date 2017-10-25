@@ -8,10 +8,10 @@ namespace INPTP_AppForFixing
 {
     public class Boss : Employee
     {
-
+        private const int MONTHS_OF_YEAR = 12;
         private HashSet<Employee> employees;
         private Department department;
-        private double perEmplSalaryBonus;
+        public double PerEmplSalaryBonus { get; set; }
 
 
         /// <summary>
@@ -24,21 +24,17 @@ namespace INPTP_AppForFixing
             this.department = department;
         }
 
-
-        /// <summary>
-        /// Method which set salary bonus for each employee.
-        /// </summary>
-        /// <param name="salaryBonus">The value of salary bonus for each employee.</param>
-        public void SetSalaryBonus(double salaryBonus)
+        public Boss(int id, string firstName, string lastName, string job, DateTime ourBirthDate, double monthlySalaryCZK, Department dep) :
+            base(id, firstName, lastName, job, ourBirthDate, monthlySalaryCZK)
         {
-            perEmplSalaryBonus = salaryBonus;
+            department = dep;
         }
 
+        public void SetSalaryBonus(double salaryBonus)
+        {
+            PerEmplSalaryBonus = salaryBonus;
+        }
 
-        /// <summary>
-        /// Method on add employee under boss control.
-        /// </summary>
-        /// <param name="empl">Employee which is add under boss control.</param>
         public void InsertEmpl(Employee empl)
         {
             employees.Add(empl);
@@ -90,7 +86,7 @@ namespace INPTP_AppForFixing
         /// <returns>Return value of year department salary.</returns>
         public override double CalcYearlySalaryCZK()
         {
-            return (base.CalcYearlySalaryCZK() + (EmployeeCount*perEmplSalaryBonus*12));
+            return (base.CalcYearlySalaryCZK() + (EmployeeCount * PerEmplSalaryBonus * MONTHS_OF_YEAR));
         }
 
         /// <summary>
@@ -99,7 +95,12 @@ namespace INPTP_AppForFixing
         /// <returns>Return calculate yearly income after tax.</returns>
         public override double CalcYearlyIncome()
         {
-            return base.CalcYearlyIncome() + (EmployeeCount*perEmplSalaryBonus * (1-TaxRate));
+            return MonthlySalaryCZK * MONTHS_OF_YEAR * (1 - Boss.TaxRate) + (MONTHS_OF_YEAR * (EmployeeCount * PerEmplSalaryBonus * (1 - Boss.TaxRate)));
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + "  ;DEPARTMENT - Name: " + department.Name + " ;CODE: " + department.Code; 
         }
     }
 }
