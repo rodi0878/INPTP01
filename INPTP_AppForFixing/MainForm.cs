@@ -25,11 +25,11 @@ namespace INPTP_AppForFixing
             openAddDialog(false, "Create boss");            
         }
 
-        private void openAddDialog(bool emp, string text, Boss bossToEdit = null)
+        private void openAddDialog(bool addEmployee, string text, Boss bossToEdit = null)
         {
-            EmployeeDialog createWin = new EmployeeDialog(this, emp, bossToEdit);
-            createWin.Text = text;
-            createWin.Show();            
+            EmployeeDialog addDialog = new EmployeeDialog(this, addEmployee, bossToEdit);
+            addDialog.Text = text;
+            addDialog.Show();            
         }
 
         public void OnBossesChange() {
@@ -39,7 +39,7 @@ namespace INPTP_AppForFixing
             }
         }
 
-        public void OnEmplChange()
+        public void OnEmployeeChange()
         {
             if (CheckSelectedBoss())
             {
@@ -101,7 +101,7 @@ namespace INPTP_AppForFixing
 
         private void listBoxOfBosses_SelectedIndexChanged(object sender, EventArgs e)
         {
-            OnEmplChange();
+            OnEmployeeChange();
         }
     }
 }

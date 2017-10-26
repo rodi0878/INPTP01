@@ -8,13 +8,13 @@ namespace INPTP_AppForFixing
     {
         private MainForm main;
         private bool employee = false;
-        private Boss bossForEmpl;
+        private Boss bossForEmployee;
 
         public EmployeeDialog(MainForm main, bool employee, Boss selectedBoss = null)
         {
             InitializeComponent();
             Init(main, employee);
-            bossForEmpl = selectedBoss;
+            bossForEmployee = selectedBoss;
             if (selectedBoss != null && employee == false)
             {
                 tBID.Text = selectedBoss.Id.ToString();
@@ -29,22 +29,21 @@ namespace INPTP_AppForFixing
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            if (validFormInput())
+            if (CheckValidInputForm())
             {
                 if (employee)
                 {
-                    Employee temp = new Employee(int.Parse(tBID.Text), tBFirstName.Text, tBLastName.Text, tBJob.Text, dateTimePickerBirthDate.Value, Double.Parse(tBSalary.Text));
-                    bossForEmpl.InsertEmpl(temp);
-                    main.OnEmplChange();
+                    Employee newEmployee = new Employee(int.Parse(tBID.Text), tBFirstName.Text, tBLastName.Text, tBJob.Text, dateTimePickerBirthDate.Value, Double.Parse(tBSalary.Text));
+                    bossForEmployee.InsertEmpl(newEmployee);
+                    main.OnEmployeeChange();
                 }
                 else
                 {
                     Boss newBoss = new Boss(int.Parse(tBID.Text), tBFirstName.Text, tBLastName.Text, tBJob.Text, dateTimePickerBirthDate.Value, Double.Parse(tBSalary.Text), new Department(tBDpName.Text));
 
-                    // Find boss in hashset by boss ID
+                    // Check if boss exist
                     Boss bossToEdit = main.Bosses.FirstOrDefault(x => x.Id == newBoss.Id);
 
-                    // If boss doesnt exist, then create it... Else edit existing boss.
                     if (bossToEdit == null)
                     {
                         main.Bosses.Add(newBoss);
@@ -67,7 +66,7 @@ namespace INPTP_AppForFixing
             }
         }
 
-        private bool validFormInput()
+        private bool CheckValidInputForm()
         {
             int id;
             double salary;
