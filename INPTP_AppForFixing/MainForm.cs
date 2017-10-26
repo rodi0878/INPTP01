@@ -11,11 +11,8 @@ using System.Windows.Forms;
 namespace INPTP_AppForFixing
 {
     public partial class MainForm : Form
-    {       
-        private HashSet<Boss> employee;
-        private HashSet<Boss> bosses;
-
-        public HashSet<Boss> Employee { get => employee; }
+    {  
+        private HashSet<Boss> bosses;      
         public HashSet<Boss> Bosses { get => bosses; set => bosses = value; }
 
         public MainForm()
@@ -34,12 +31,11 @@ namespace INPTP_AppForFixing
             openAddDialog(false, "Create boss");            
         }
 
-        private void openAddDialog(bool emp, string text, Boss b = null)
+        private void openAddDialog(bool emp, string text, Boss bossToEdit = null)
         {
-            EmployeeDialog createWin = new EmployeeDialog(this, emp, b);
+            EmployeeDialog createWin = new EmployeeDialog(this, emp, bossToEdit);
             createWin.Text = text;
-            createWin.Show();
-            Enabled = false;
+            createWin.Show();            
         }
 
         public void OnBossesChange() {

@@ -28,23 +28,26 @@ namespace INPTP_AppForFixing
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            if (testOfValues())
-            {
-                int Id = Int32.Parse(tBID.Text);
-                Boss newB = new Boss(Id, tBFirstName.Text, tBLastName.Text, tBJob.Text, dateTimePickerBirthDate.Value, Double.Parse(tBSalary.Text), new Department(tBDpName.Text));
-                Boss b = main.Bosses.FirstOrDefault(x => x.Id == Id);
-                if (b == null)
+            if (validFormInput())
+            {                
+                Boss newBoss = new Boss(int.Parse(tBID.Text), tBFirstName.Text, tBLastName.Text, tBJob.Text, dateTimePickerBirthDate.Value, Double.Parse(tBSalary.Text), new Department(tBDpName.Text));
+
+                // Find boss in hashset by boss ID
+                Boss bossToEdit = main.Bosses.FirstOrDefault(x => x.Id == newBoss.Id);
+
+                // If boss doesnt exist, then create it... Else edit existing boss.
+                if (bossToEdit == null)
                 {
-                    main.Bosses.Add(newB);
+                    main.Bosses.Add(newBoss);
                 }
                 else
                 {
-                    main.Bosses.RemoveWhere(x => x.Id == newB.Id);
-                    main.Bosses.Add(newB);
-                    b = newB;
+                    bossToEdit = newBoss;
+                    main.Bosses.RemoveWhere(x => x.Id == newBoss.Id);
+                    main.Bosses.Add(bossToEdit);                    
                 }
                 main.OnBossesChange();
-                this.Close();
+                Close();
             }
             else
             {
@@ -53,7 +56,7 @@ namespace INPTP_AppForFixing
             }
         }
 
-        private bool testOfValues()
+        private bool validFormInput()
         {
             int id;
             double salary;
