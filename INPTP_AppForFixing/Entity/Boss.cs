@@ -28,6 +28,7 @@ namespace INPTP_AppForFixing
             base(id, firstName, lastName, job, ourBirthDate, monthlySalaryCZK)
         {
             department = dep;
+            employees = new HashSet<Employee>();
         }
 
         public void SetSalaryBonus(double salaryBonus)
