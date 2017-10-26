@@ -8,45 +8,56 @@ namespace INPTP_AppForFixing
     {
         private MainForm main;
         private bool employee = false;
+        private Boss bossForEmpl;
 
-        public EmployeeDialog(MainForm main, bool employee, Boss boss = null)
+        public EmployeeDialog(MainForm main, bool employee, Boss selectedBoss = null)
         {
             InitializeComponent();
             Init(main, employee);
-
-            if (boss != null)
+            bossForEmpl = selectedBoss;
+            if (selectedBoss != null && employee == false)
             {
-                tBID.Text = boss.Id.ToString();
+                tBID.Text = selectedBoss.Id.ToString();
                 tBID.Enabled = false;
-                tBFirstName.Text = boss.FirstName;
-                tBLastName.Text = boss.LastName;
-                tBJob.Text = boss.Job;
-                tBSalary.Text = boss.MonthlySalaryCZK.ToString();
-                dateTimePickerBirthDate.Value = boss.OurBirthDate;
+                tBFirstName.Text = selectedBoss.FirstName;
+                tBLastName.Text = selectedBoss.LastName;
+                tBJob.Text = selectedBoss.Job;
+                tBSalary.Text = selectedBoss.MonthlySalaryCZK.ToString();
+                dateTimePickerBirthDate.Value = selectedBoss.OurBirthDate;
             }
         }
 
         private void btnOk_Click(object sender, EventArgs e)
         {
             if (validFormInput())
-            {                
-                Boss newBoss = new Boss(int.Parse(tBID.Text), tBFirstName.Text, tBLastName.Text, tBJob.Text, dateTimePickerBirthDate.Value, Double.Parse(tBSalary.Text), new Department(tBDpName.Text));
-
-                // Find boss in hashset by boss ID
-                Boss bossToEdit = main.Bosses.FirstOrDefault(x => x.Id == newBoss.Id);
-
-                // If boss doesnt exist, then create it... Else edit existing boss.
-                if (bossToEdit == null)
+            {
+                if (employee)
                 {
-                    main.Bosses.Add(newBoss);
+                    Employee temp = new Employee(int.Parse(tBID.Text), tBFirstName.Text, tBLastName.Text, tBJob.Text, dateTimePickerBirthDate.Value, Double.Parse(tBSalary.Text));
+                    bossForEmpl.InsertEmpl(temp);
+                    main.OnEmplChange();
                 }
                 else
                 {
-                    bossToEdit = newBoss;
-                    main.Bosses.RemoveWhere(x => x.Id == newBoss.Id);
-                    main.Bosses.Add(bossToEdit);                    
+                    Boss newBoss = new Boss(int.Parse(tBID.Text), tBFirstName.Text, tBLastName.Text, tBJob.Text, dateTimePickerBirthDate.Value, Double.Parse(tBSalary.Text), new Department(tBDpName.Text));
+
+                    // Find boss in hashset by boss ID
+                    Boss bossToEdit = main.Bosses.FirstOrDefault(x => x.Id == newBoss.Id);
+
+                    // If boss doesnt exist, then create it... Else edit existing boss.
+                    if (bossToEdit == null)
+                    {
+                        main.Bosses.Add(newBoss);
+                    }
+                    else
+                    {
+                        bossToEdit = newBoss;
+                        main.Bosses.RemoveWhere(x => x.Id == newBoss.Id);
+                        main.Bosses.Add(bossToEdit);
+                    }
+                    main.OnBossesChange();
                 }
-                main.OnBossesChange();
+
                 Close();
             }
             else

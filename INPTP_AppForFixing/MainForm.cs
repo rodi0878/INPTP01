@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace INPTP_AppForFixing
@@ -45,6 +39,18 @@ namespace INPTP_AppForFixing
             }
         }
 
+        public void OnEmplChange()
+        {
+            if (CheckSelectedBoss())
+            {
+                Boss temp = listBoxOfBosses.SelectedItem as Boss;
+                if (temp.GetEmployees().Count > 0)
+                {
+                    listBoxEmpl.DataSource = new List<Employee>(temp.GetEmployees());
+                }                
+            }            
+        }
+
         private void btnDelBoss_Click(object sender, EventArgs e)
         {
             if (listBoxOfBosses.SelectedItem == null) showError("Choose a boss!");
@@ -60,6 +66,12 @@ namespace INPTP_AppForFixing
                            MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
+        private void showWarning(string text)
+        {
+            MessageBox.Show(text, "Warning",
+                           MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
         private void btnEditBoss_Click(object sender, EventArgs e)
         {
             if (listBoxOfBosses.SelectedItem == null) showError("Choose a boss!");
@@ -68,6 +80,28 @@ namespace INPTP_AppForFixing
                 openAddDialog(false, "Edit boss", listBoxOfBosses.SelectedItem as Boss);                
                 OnBossesChange();
             }
-        }        
+        }
+
+        private void btnEmplAdd_Click(object sender, EventArgs e)
+        {
+            if (CheckSelectedBoss())
+            {
+                openAddDialog(true, "Add employee", listBoxOfBosses.SelectedItem as Boss);                
+            }
+            else
+            {
+                showWarning("First you must select a boss!");
+            }
+        }
+
+        private bool CheckSelectedBoss()
+        {
+            return listBoxOfBosses.SelectedItem == null ? false : true;
+        }
+
+        private void listBoxOfBosses_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            OnEmplChange();
+        }
     }
 }

@@ -36,9 +36,14 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnEditBoss = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnEmplEdit = new System.Windows.Forms.Button();
+            this.btnEmplAdd = new System.Windows.Forms.Button();
+            this.btnEmplDelete = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // listBoxOfBosses
@@ -53,6 +58,7 @@
             this.listBoxOfBosses.Name = "listBoxOfBosses";
             this.listBoxOfBosses.Size = new System.Drawing.Size(440, 404);
             this.listBoxOfBosses.TabIndex = 0;
+            this.listBoxOfBosses.SelectedIndexChanged += new System.EventHandler(this.listBoxOfBosses_SelectedIndexChanged);
             // 
             // btnAddBoss
             // 
@@ -133,11 +139,55 @@
             this.btnEditBoss.UseVisualStyleBackColor = true;
             this.btnEditBoss.Click += new System.EventHandler(this.btnEditBoss_Click);
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.btnEmplEdit);
+            this.groupBox4.Controls.Add(this.btnEmplAdd);
+            this.groupBox4.Controls.Add(this.btnEmplDelete);
+            this.groupBox4.Location = new System.Drawing.Point(476, 475);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(452, 83);
+            this.groupBox4.TabIndex = 8;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Employee control";
+            // 
+            // btnEmplEdit
+            // 
+            this.btnEmplEdit.Location = new System.Drawing.Point(168, 42);
+            this.btnEmplEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEmplEdit.Name = "btnEmplEdit";
+            this.btnEmplEdit.Size = new System.Drawing.Size(135, 34);
+            this.btnEmplEdit.TabIndex = 4;
+            this.btnEmplEdit.Text = "Edit empl";
+            this.btnEmplEdit.UseVisualStyleBackColor = true;
+            // 
+            // btnEmplAdd
+            // 
+            this.btnEmplAdd.Location = new System.Drawing.Point(7, 42);
+            this.btnEmplAdd.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEmplAdd.Name = "btnEmplAdd";
+            this.btnEmplAdd.Size = new System.Drawing.Size(135, 34);
+            this.btnEmplAdd.TabIndex = 2;
+            this.btnEmplAdd.Text = "Add empl";
+            this.btnEmplAdd.UseVisualStyleBackColor = true;
+            this.btnEmplAdd.Click += new System.EventHandler(this.btnEmplAdd_Click);
+            // 
+            // btnEmplDelete
+            // 
+            this.btnEmplDelete.Location = new System.Drawing.Point(323, 42);
+            this.btnEmplDelete.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEmplDelete.Name = "btnEmplDelete";
+            this.btnEmplDelete.Size = new System.Drawing.Size(124, 34);
+            this.btnEmplDelete.TabIndex = 3;
+            this.btnEmplDelete.Text = "Delete empl";
+            this.btnEmplDelete.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(940, 570);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -148,6 +198,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -162,6 +213,10 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnEditBoss;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button btnEmplEdit;
+        private System.Windows.Forms.Button btnEmplAdd;
+        private System.Windows.Forms.Button btnEmplDelete;
     }
 }
 
