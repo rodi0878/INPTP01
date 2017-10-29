@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace INPTP_AppForFixing
@@ -9,22 +8,16 @@ namespace INPTP_AppForFixing
         private MainForm main;
         private bool employee = false;
         private Boss bossForEmployee;
+        private Employee emp;
+        private Action action;
 
-        public EmployeeDialog(MainForm main, bool employee, Boss selectedBoss = null)
+        public EmployeeDialog(MainForm main, bool employee, Action action)
         {
             InitializeComponent();
+            bossForEmployee = main.GetSelectedBoss();
+            emp = main.GetSelectedEmployee();
+            this.action = action;
             Init(main, employee);
-            bossForEmployee = selectedBoss;
-            if (selectedBoss != null && employee == false)
-            {
-                tBID.Text = selectedBoss.Id.ToString();
-                tBID.Enabled = false;
-                tBFirstName.Text = selectedBoss.FirstName;
-                tBLastName.Text = selectedBoss.LastName;
-                tBJob.Text = selectedBoss.Job;
-                tBSalary.Text = selectedBoss.MonthlySalaryCZK.ToString();
-                dateTimePickerBirthDate.Value = selectedBoss.OurBirthDate;
-            }
         }
 
         private void btnOk_Click(object sender, EventArgs e)
@@ -34,25 +27,31 @@ namespace INPTP_AppForFixing
                 if (employee)
                 {
                     Employee newEmployee = new Employee(int.Parse(tBID.Text), tBFirstName.Text, tBLastName.Text, tBJob.Text, dateTimePickerBirthDate.Value, Double.Parse(tBSalary.Text));
-                    bossForEmployee.InsertEmpl(newEmployee);
+
+                    if (action == Action.ADD)
+                    {
+                        bossForEmployee.InsertEmpl(newEmployee);
+                    }
+                    else
+                    {
+                        bossForEmployee.PurgeEmpl(main.GetSelectedEmployee());
+                        bossForEmployee.InsertEmpl(newEmployee);
+                    }
+
                     main.OnEmployeeChange();
                 }
                 else
                 {
                     Boss newBoss = new Boss(int.Parse(tBID.Text), tBFirstName.Text, tBLastName.Text, tBJob.Text, dateTimePickerBirthDate.Value, Double.Parse(tBSalary.Text), new Department(tBDpName.Text));
 
-                    // Check if boss exist
-                    Boss bossToEdit = main.Bosses.FirstOrDefault(x => x.Id == newBoss.Id);
-
-                    if (bossToEdit == null)
+                    if (action == Action.ADD)
                     {
                         main.Bosses.Add(newBoss);
                     }
                     else
                     {
-                        bossToEdit = newBoss;
                         main.Bosses.RemoveWhere(x => x.Id == newBoss.Id);
-                        main.Bosses.Add(bossToEdit);
+                        main.Bosses.Add(newBoss);
                     }
                     main.OnBossesChange();
                 }
@@ -82,10 +81,40 @@ namespace INPTP_AppForFixing
             this.employee = employee;
             if (employee)
             {
+                if (action == Action.ADD)
+                {
+                    tBID.Text = bossForEmployee.GetNextEmployeeId().ToString();
+                }
+                else
+                {
+                    tBID.Text = emp.Id.ToString();
+                    tBFirstName.Text = emp.FirstName;
+                    tBLastName.Text = emp.LastName;
+                    tBJob.Text = emp.Job;
+                    tBSalary.Text = emp.MonthlySalaryCZK.ToString();
+                }
+
                 lbDep.Visible = false;
                 lbDpName.Visible = false;
                 tBDpName.Visible = false;
             }
+            else
+            {
+                if (action == Action.ADD)
+                {
+                    tBID.Text = main.getNextBossId().ToString();
+                }
+                else
+                {
+                    tBID.Text = bossForEmployee.Id.ToString();
+                    tBFirstName.Text = bossForEmployee.FirstName;
+                    tBLastName.Text = bossForEmployee.LastName;
+                    tBJob.Text = bossForEmployee.Job;
+                    tBSalary.Text = bossForEmployee.MonthlySalaryCZK.ToString();
+                    dateTimePickerBirthDate.Value = bossForEmployee.OurBirthDate;
+                }
+            }
+
         }
     }
 }

@@ -1,13 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace INPTP_AppForFixing
 {
+    public enum Action
+    {
+        ADD, EDIT
+    }
+
     public partial class MainForm : Form
-    {  
-        private HashSet<Boss> bosses;      
+    {
+        private HashSet<Boss> bosses;
         public HashSet<Boss> Bosses { get => bosses; set => bosses = value; }
+        private const int FIRST_BOSS_ID = 0;
 
         public MainForm()
         {
@@ -17,24 +24,26 @@ namespace INPTP_AppForFixing
 
         private void btnAddEmployee_Click(object sender, EventArgs e)
         {
-            openAddDialog(true, "Create employee");
+            openAddDialog(true, "Create employee", Action.ADD);
         }
 
         private void btnAddBoss_Click(object sender, EventArgs e)
         {
-            openAddDialog(false, "Create boss");            
+            openAddDialog(false, "Create boss", Action.ADD);
         }
 
-        private void openAddDialog(bool addEmployee, string text, Boss bossToEdit = null)
+        private void openAddDialog(bool addEmployee, string text, Action action)
         {
-            EmployeeDialog addDialog = new EmployeeDialog(this, addEmployee, bossToEdit);
+            EmployeeDialog addDialog = new EmployeeDialog(this, addEmployee, action);
             addDialog.Text = text;
-            addDialog.Show();            
+            addDialog.ShowDialog();
         }
 
-        public void OnBossesChange() {
+        public void OnBossesChange()
+        {
             listBoxOfBosses.Items.Clear();
-            foreach (Boss boss in bosses) {
+            foreach (Boss boss in bosses)
+            {
                 listBoxOfBosses.Items.Add(boss);
             }
         }
@@ -44,18 +53,37 @@ namespace INPTP_AppForFixing
             if (CheckSelectedBoss())
             {
                 Boss temp = listBoxOfBosses.SelectedItem as Boss;
-                if (temp.GetEmployees().Count > 0)
+                if (temp.GetEmployees().Count >= 0)
                 {
                     listBoxEmpl.DataSource = new List<Employee>(temp.GetEmployees());
-                }                
-            }            
+                }
+            }
+        }
+
+        public Boss GetSelectedBoss() => (Boss)listBoxOfBosses.SelectedItem;
+
+        public Employee GetSelectedEmployee() => (Employee)listBoxEmpl.SelectedItem;
+
+
+        public int getNextBossId()
+        {
+            try
+            {
+                return bosses.Max(b => b.Id) + 1;
+            }
+            catch (InvalidOperationException)
+            {
+                return FIRST_BOSS_ID;
+            }
+
         }
 
         private void btnDelBoss_Click(object sender, EventArgs e)
         {
-            if (listBoxOfBosses.SelectedItem == null) showError("Choose a boss!");
-            else {
-                bosses.Remove((Boss)listBoxOfBosses.SelectedItem);
+            if (GetSelectedBoss() == null) showError("Choose a boss!");
+            else
+            {
+                bosses.Remove(GetSelectedBoss());
                 OnBossesChange();
             }
         }
@@ -77,7 +105,7 @@ namespace INPTP_AppForFixing
             if (listBoxOfBosses.SelectedItem == null) showError("Choose a boss!");
             else
             {
-                openAddDialog(false, "Edit boss", listBoxOfBosses.SelectedItem as Boss);                
+                openAddDialog(false, "Edit boss", Action.EDIT);
                 OnBossesChange();
             }
         }
@@ -86,7 +114,7 @@ namespace INPTP_AppForFixing
         {
             if (CheckSelectedBoss())
             {
-                openAddDialog(true, "Add employee", listBoxOfBosses.SelectedItem as Boss);                
+                openAddDialog(true, "Add employee", Action.ADD);
             }
             else
             {
@@ -96,12 +124,44 @@ namespace INPTP_AppForFixing
 
         private bool CheckSelectedBoss()
         {
-            return listBoxOfBosses.SelectedItem == null ? false : true;
+            return GetSelectedBoss() == null ? false : true;
+        }
+
+        private bool CheckSelectedEmp()
+        {
+            return GetSelectedEmployee() == null ? false : true;
         }
 
         private void listBoxOfBosses_SelectedIndexChanged(object sender, EventArgs e)
         {
             OnEmployeeChange();
+        }
+
+        private void btnEmplDelete_Click(object sender, EventArgs e)
+        {
+            Boss boss = GetSelectedBoss();
+            Employee emp = GetSelectedEmployee();
+            if (CheckSelectedBoss() && CheckSelectedEmp())
+            {
+                boss.PurgeEmpl(emp);
+                OnEmployeeChange();
+            }
+            else
+            {
+                showWarning("First you must select a boss and the employee which is about to be deleted!");
+            }
+        }
+
+        private void btnEmplEdit_Click(object sender, EventArgs e)
+        {
+            if (CheckSelectedBoss() && CheckSelectedEmp())
+            {
+                openAddDialog(true, "Edit employee", Action.EDIT);
+            }
+            else
+            {
+                showWarning("First you must select a boss and the employee which is about to be altered!");
+            }
         }
     }
 }
