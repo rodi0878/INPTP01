@@ -72,7 +72,20 @@ namespace INPTP_AppForFixing
             double salary;
 
             if (Int32.TryParse(tBID.Text, out id) && Double.TryParse(tBSalary.Text, out salary) && tBID.Text.Length > 0 &&
-                tBFirstName.Text.Length > 0 && tBJob.Text.Length > 0 && tBLastName.Text.Length > 0) return true;
+                tBFirstName.Text.Length > 0 && tBJob.Text.Length > 0 && tBLastName.Text.Length > 0)
+            {
+                foreach (var Boss in main.Bosses)
+                {
+                    foreach (var Employee in Boss.GetEmployees())
+                    {
+                        if (Employee.Id == id)
+                            return false;
+                    }
+                    if (Boss.Id == id)
+                        return false;
+                }
+                return true;
+            }
             return false;
         }
 
