@@ -33,9 +33,18 @@ namespace INPTP_AppForFixing
             {
                 if (employee)
                 {
-                    Employee newEmployee = new Employee(int.Parse(tBID.Text), tBFirstName.Text, tBLastName.Text, tBJob.Text, dateTimePickerBirthDate.Value, Double.Parse(tBSalary.Text));
-                    bossForEmployee.InsertEmpl(newEmployee);
-                    main.OnEmployeeChange();
+                    if (isIdUniqui())
+                    {
+                        Employee newEmployee = new Employee(int.Parse(tBID.Text), tBFirstName.Text, tBLastName.Text, tBJob.Text, dateTimePickerBirthDate.Value, Double.Parse(tBSalary.Text));
+                        bossForEmployee.InsertEmpl(newEmployee);
+                        main.OnEmployeeChange();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Id is not unique.", "Error",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                 }
                 else
                 {
@@ -46,8 +55,17 @@ namespace INPTP_AppForFixing
 
                     if (bossToEdit == null)
                     {
-                        main.Bosses.Add(newBoss);
-                    }
+                        if (isIdUniqui())
+                        {
+                            main.Bosses.Add(newBoss);
+                        }
+                        else
+                        { 
+                            MessageBox.Show("Id is not unique.", "Error",
+                                             MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                }
                     else
                     {
                         bossToEdit = newBoss;
@@ -71,9 +89,30 @@ namespace INPTP_AppForFixing
             int id;
             double salary;
 
-            if (Int32.TryParse(tBID.Text, out id) && Double.TryParse(tBSalary.Text, out salary) && tBID.Text.Length > 0 &&
-                tBFirstName.Text.Length > 0 && tBJob.Text.Length > 0 && tBLastName.Text.Length > 0) return true;
-            return false;
+            return Int32.TryParse(tBID.Text, out id) && 
+                Double.TryParse(tBSalary.Text, out salary) && 
+                tBID.Text.Length > 0 &&
+                tBFirstName.Text.Length > 0 && 
+                tBJob.Text.Length > 0 && 
+                tBLastName.Text.Length > 0;
+           
+        }
+
+        private bool isIdUniqui()
+        {
+            int id = Int32.Parse(tBID.Text);
+
+            foreach (var Boss in main.Bosses)
+            {
+                foreach (var Employee in Boss.GetEmployees())
+                {
+                    if (Employee.Id == id)
+                        return false;
+                }
+                if (Boss.Id == id)
+                    return false;
+            }
+            return true;
         }
 
         private void Init(MainForm main, bool employee)
