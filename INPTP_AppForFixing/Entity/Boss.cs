@@ -9,7 +9,6 @@ namespace INPTP_AppForFixing
         private const int MONTHS_OF_YEAR = 12;
         private HashSet<Employee> employees;
         private Department department;
-        private const int FIRST_EMP_ID = 0;
         public double PerEmplSalaryBonus { get; set; }
 
 
@@ -48,23 +47,6 @@ namespace INPTP_AppForFixing
         {
             employees.Remove(empl);
         }
-
-        /// <summary>
-        /// Method return next id for new employee.
-        /// </summary>
-        public int GetNextEmployeeId()
-        {
-            try
-            {
-                return employees.Max(e => e.Id) + 1;
-            }
-            catch (InvalidOperationException)
-            {
-                return FIRST_EMP_ID;
-            }
-
-        }
-
 
         /// <summary>
         /// Method which return if employess is under boss control.

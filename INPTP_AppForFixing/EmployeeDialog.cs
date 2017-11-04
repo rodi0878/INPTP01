@@ -6,29 +6,30 @@ namespace INPTP_AppForFixing
     public partial class EmployeeDialog : Form
     {
         private MainForm main;
-        private bool employee = false;
+        private bool isEmployee;
         private Boss bossForEmployee;
-        private Employee emp;
-        private Action action;
+        private Employee employee;
+        private Operation operation;
 
-        public EmployeeDialog(MainForm main, bool employee, Action action)
+        public EmployeeDialog(MainForm main, bool isEmployee, Operation operation)
         {
             InitializeComponent();
             bossForEmployee = main.GetSelectedBoss();
-            emp = main.GetSelectedEmployee();
-            this.action = action;
-            Init(main, employee);
+            employee = main.GetSelectedEmployee();
+            this.operation = operation;
+            this.isEmployee = isEmployee;
+            Init(main);
         }
 
         private void btnOk_Click(object sender, EventArgs e)
         {
             if (CheckValidInputForm())
             {
-                if (employee)
+                if (isEmployee)
                 {
                     Employee newEmployee = new Employee(int.Parse(tBID.Text), tBFirstName.Text, tBLastName.Text, tBJob.Text, dateTimePickerBirthDate.Value, Double.Parse(tBSalary.Text));
 
-                    if (action == Action.ADD)
+                    if (operation == Operation.ADD)
                     {
                         bossForEmployee.InsertEmpl(newEmployee);
                     }
@@ -44,7 +45,7 @@ namespace INPTP_AppForFixing
                 {
                     Boss newBoss = new Boss(int.Parse(tBID.Text), tBFirstName.Text, tBLastName.Text, tBJob.Text, dateTimePickerBirthDate.Value, Double.Parse(tBSalary.Text), new Department(tBDpName.Text));
 
-                    if (action == Action.ADD)
+                    if (operation == Operation.ADD)
                     {
                         main.Bosses.Add(newBoss);
                     }
@@ -75,23 +76,22 @@ namespace INPTP_AppForFixing
             return false;
         }
 
-        private void Init(MainForm main, bool employee)
+        private void Init(MainForm main)
         {
             this.main = main;
-            this.employee = employee;
-            if (employee)
+            if (isEmployee)
             {
-                if (action == Action.ADD)
+                if (operation == Operation.ADD)
                 {
-                    tBID.Text = bossForEmployee.GetNextEmployeeId().ToString();
+                    tBID.Text = main.getNextEmployeeId().ToString();
                 }
                 else
                 {
-                    tBID.Text = emp.Id.ToString();
-                    tBFirstName.Text = emp.FirstName;
-                    tBLastName.Text = emp.LastName;
-                    tBJob.Text = emp.Job;
-                    tBSalary.Text = emp.MonthlySalaryCZK.ToString();
+                    tBID.Text = employee.Id.ToString();
+                    tBFirstName.Text = employee.FirstName;
+                    tBLastName.Text = employee.LastName;
+                    tBJob.Text = employee.Job;
+                    tBSalary.Text = employee.MonthlySalaryCZK.ToString();
                 }
 
                 lbDep.Visible = false;
@@ -100,9 +100,9 @@ namespace INPTP_AppForFixing
             }
             else
             {
-                if (action == Action.ADD)
+                if (operation == Operation.ADD)
                 {
-                    tBID.Text = main.getNextBossId().ToString();
+                    tBID.Text = main.getNextEmployeeId().ToString();
                 }
                 else
                 {
