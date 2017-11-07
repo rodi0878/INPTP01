@@ -27,6 +27,15 @@ namespace INPTP_AppForFixing
             }
         }
 
+        public Department() {
+
+        }
+
+        public Department(string name)
+        {
+            Name = name;
+        }
+
         /// <summary>
         /// Method ToString converts an object to its string representation.
         /// </summary>

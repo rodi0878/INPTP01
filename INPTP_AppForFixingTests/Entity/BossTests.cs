@@ -30,12 +30,26 @@ namespace INPTP_AppForFixing.Tests
             {
                 MonthlySalaryCZK = 1000
             };
-            boss.SetSalaryBonus(100);
+            boss.PerEmplSalaryBonus = 100;
             boss.InsertEmpl(new Employee());
 
             Assert.AreEqual(12000 + 1200, boss.CalcYearlySalaryCZK());
         }
 
+        [Test()]
+        public void BossWithTwoSubEmplYearlyIncomeBonusTest()
+        {
+            Boss boss = new Boss(new Department())
+            {
+                MonthlySalaryCZK = 1000
+            };
+            boss.PerEmplSalaryBonus = 100;
+            boss.InsertEmpl(new Employee());
+            boss.InsertEmpl(new Employee());
+
+            Assert.AreEqual((12000 * (1 - Boss.TaxRate)) + (2 * 1200 * (1 - Boss.TaxRate)),
+                boss.CalcYearlyIncome());
+        }
 
         [Test()]
         public void BossCanHaveSubemployeesTest()
@@ -88,6 +102,47 @@ namespace INPTP_AppForFixing.Tests
 
             Assert.AreEqual(0, boss.EmployeeCount);
             Assert.IsFalse(boss.HasEmployee(empl));
+        }
+
+        [Test()]
+        public void BossGetsAllEmployees()
+        {
+            Boss boss = new Boss(new Department());
+            HashSet<Employee> employees = new HashSet<Employee>();
+            Employee empl1 = new Employee();
+            Employee empl2 = new Employee();
+            Employee empl3 = new Employee();
+
+            boss.InsertEmpl(empl1);
+            boss.InsertEmpl(empl2);
+            boss.InsertEmpl(empl3);
+
+            employees.Add(empl1);
+            employees.Add(empl2);
+            employees.Add(empl3);
+
+            Assert.AreEqual(employees, boss.GetEmployees());
+        }
+
+        [Test()]
+        public void BossGetsAllEmployeesAfterKickingEmployee()
+        {
+            Boss boss = new Boss(new Department());
+            HashSet<Employee> employees = new HashSet<Employee>();
+            Employee empl1 = new Employee();
+            Employee empl2 = new Employee();
+            Employee empl3 = new Employee();
+
+            boss.InsertEmpl(empl1);
+            boss.InsertEmpl(empl2);
+            boss.InsertEmpl(empl3);
+
+            boss.PurgeEmpl(empl2);
+
+            employees.Add(empl1);
+            employees.Add(empl3);
+
+            Assert.AreEqual(employees, boss.GetEmployees());
         }
     }
 }

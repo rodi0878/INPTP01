@@ -16,6 +16,7 @@ namespace INPTP_AppForFixing
         private double monthlySalaryCZK;      
         private static double taxRate = 0.21;
 
+
         public int Id { get => id; set => id = value; }
         public string FirstName { get => firstName; set => firstName = value; }
         public string LastName { get => lastName; set => lastName = value; }
@@ -24,29 +25,33 @@ namespace INPTP_AppForFixing
         public double MonthlySalaryCZK { get => monthlySalaryCZK; set => monthlySalaryCZK = value; }
         public static double TaxRate { get => taxRate; }
 
+        public Employee() { }
+
+        public Employee(int id, string firstName, string lastName,string job, DateTime ourBirthDate, double monthlySalaryCZK) {
+            this.id = id;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.job = job;
+            this.ourBirthDate = ourBirthDate;
+            this.monthlySalaryCZK = monthlySalaryCZK;
+        }
+
         /// <summary>
         /// This method gets age of employee
         /// </summary>
         /// <returns>Age of employee</returns>
-
-        /// <summary>
-        /// Method to count age of the employee 
-        /// based on attribute ourBirthDate
-        /// </summary>
-        /// <returns>Age of the employee rounded to years</returns>
         public int GetAge()
         {
-            DateTime endDate = DateTime.Now;
-            TimeSpan timeSpan = endDate - OurBirthDate;
-            if (timeSpan.TotalDays > 365)
+            DateTime today = DateTime.Now;
+            int age = today.Year - OurBirthDate.Year;
+            if (OurBirthDate > today.AddYears(-age))
             {
-                return (int)Math.Round((timeSpan.TotalDays / 365), MidpointRounding.ToEven);
+                return --age;
             }
             else
             {
-                return 0;
+                return age;
             }
-                
         }
 
         /// <summary>
@@ -68,6 +73,10 @@ namespace INPTP_AppForFixing
         public virtual double CalcYearlyIncome()
         {
             return CalcYearlySalaryCZK() * (1 - TaxRate);
+        }
+
+        public override string ToString() {
+            return "ID:  " + Id + "; NAME: " + FirstName + " " + LastName + "; JOB:" + Job + "; SALARY: " + MonthlySalaryCZK; 
         }
     }
 }
