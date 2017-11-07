@@ -6,18 +6,18 @@ namespace INPTP_AppForFixing
     public partial class EmployeeDialog : Form
     {
         private MainForm main;
-        private bool isEmployee;
-        private Boss bossForEmployee;
-        private Employee employee;
+        private bool employee;
+        private Boss selectedBoss;
+        private Employee selectedEmployee;
         private Operation operation;
 
-        public EmployeeDialog(MainForm main, bool isEmployee, Operation operation)
+        public EmployeeDialog(MainForm main, bool employee, Operation operation)
         {
             InitializeComponent();
-            bossForEmployee = main.GetSelectedBoss();
-            employee = main.GetSelectedEmployee();
+            selectedBoss = main.GetSelectedBoss();
+            selectedEmployee = main.GetSelectedEmployee();
             this.operation = operation;
-            this.isEmployee = isEmployee;
+            this.employee = employee;
             Init(main);
         }
 
@@ -25,18 +25,18 @@ namespace INPTP_AppForFixing
         {
             if (CheckValidInputForm())
             {
-                if (isEmployee)
+                if (employee)
                 {
                     Employee newEmployee = new Employee(int.Parse(tBID.Text), tBFirstName.Text, tBLastName.Text, tBJob.Text, dateTimePickerBirthDate.Value, Double.Parse(tBSalary.Text));
 
                     if (operation == Operation.ADD)
                     {
-                        bossForEmployee.InsertEmpl(newEmployee);
+                        selectedBoss.InsertEmpl(newEmployee);
                     }
                     else
                     {
-                        bossForEmployee.PurgeEmpl(main.GetSelectedEmployee());
-                        bossForEmployee.InsertEmpl(newEmployee);
+                        selectedBoss.PurgeEmpl(main.GetSelectedEmployee());
+                        selectedBoss.InsertEmpl(newEmployee);
                     }
 
                     main.OnEmployeeChange();
@@ -79,7 +79,7 @@ namespace INPTP_AppForFixing
         private void Init(MainForm main)
         {
             this.main = main;
-            if (isEmployee)
+            if (employee)
             {
                 if (operation == Operation.ADD)
                 {
@@ -87,11 +87,11 @@ namespace INPTP_AppForFixing
                 }
                 else
                 {
-                    tBID.Text = employee.Id.ToString();
-                    tBFirstName.Text = employee.FirstName;
-                    tBLastName.Text = employee.LastName;
-                    tBJob.Text = employee.Job;
-                    tBSalary.Text = employee.MonthlySalaryCZK.ToString();
+                    tBID.Text = selectedEmployee.Id.ToString();
+                    tBFirstName.Text = selectedEmployee.FirstName;
+                    tBLastName.Text = selectedEmployee.LastName;
+                    tBJob.Text = selectedEmployee.Job;
+                    tBSalary.Text = selectedEmployee.MonthlySalaryCZK.ToString();
                 }
 
                 lbDep.Visible = false;
@@ -106,12 +106,12 @@ namespace INPTP_AppForFixing
                 }
                 else
                 {
-                    tBID.Text = bossForEmployee.Id.ToString();
-                    tBFirstName.Text = bossForEmployee.FirstName;
-                    tBLastName.Text = bossForEmployee.LastName;
-                    tBJob.Text = bossForEmployee.Job;
-                    tBSalary.Text = bossForEmployee.MonthlySalaryCZK.ToString();
-                    dateTimePickerBirthDate.Value = bossForEmployee.OurBirthDate;
+                    tBID.Text = selectedBoss.Id.ToString();
+                    tBFirstName.Text = selectedBoss.FirstName;
+                    tBLastName.Text = selectedBoss.LastName;
+                    tBJob.Text = selectedBoss.Job;
+                    tBSalary.Text = selectedBoss.MonthlySalaryCZK.ToString();
+                    dateTimePickerBirthDate.Value = selectedBoss.OurBirthDate;
                 }
             }
 

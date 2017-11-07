@@ -5,11 +5,6 @@ using System.Windows.Forms;
 
 namespace INPTP_AppForFixing
 {
-    public enum Operation
-    {
-        ADD, EDIT
-    }
-
     public partial class MainForm : Form
     {
         private HashSet<Boss> bosses;
@@ -69,7 +64,7 @@ namespace INPTP_AppForFixing
         {
             try
             {
-                return Math.Max(bosses.Max(b => b.Id), bosses.Max(b => b.GetEmployees().Any() ? b.GetEmployees().Max(e => e.Id) : int.MinValue)) + 1;
+                return bosses.Max(b => b.getNextEmployeeId());
             }
             catch (InvalidOperationException)
             {
@@ -127,7 +122,7 @@ namespace INPTP_AppForFixing
             return GetSelectedBoss() != null;
         }
 
-        private bool CheckSelectedEmp()
+        private bool CheckSelectedEmloyee()
         {
             return GetSelectedEmployee() != null;
         }
@@ -141,7 +136,7 @@ namespace INPTP_AppForFixing
         {
             Boss boss = GetSelectedBoss();
             Employee employee = GetSelectedEmployee();
-            if (CheckSelectedBoss() && CheckSelectedEmp())
+            if (CheckSelectedBoss() && CheckSelectedEmloyee())
             {
                 boss.PurgeEmpl(employee);
                 OnEmployeeChange();
@@ -154,7 +149,7 @@ namespace INPTP_AppForFixing
 
         private void btnEmplEdit_Click(object sender, EventArgs e)
         {
-            if (CheckSelectedBoss() && CheckSelectedEmp())
+            if (CheckSelectedBoss() && CheckSelectedEmloyee())
             {
                 openAddDialog(true, "Edit employee", Operation.EDIT);
             }

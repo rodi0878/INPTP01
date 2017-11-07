@@ -39,6 +39,11 @@ namespace INPTP_AppForFixing
             employees.Add(empl);
         }
 
+        public override int getNextEmployeeId()
+        {
+            return Math.Max(Id + 1, GetEmployees().Any() ? GetEmployees().Max(e => e.getNextEmployeeId()) : int.MinValue);
+        }
+
         /// <summary>
         /// Method on remove employee from boss control.
         /// </summary>
