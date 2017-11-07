@@ -44,14 +44,11 @@ namespace INPTP_AppForFixing
         {
             DateTime today = DateTime.Now;
             int age = today.Year - OurBirthDate.Year;
+
             if (OurBirthDate > today.AddYears(-age))
-            {
                 return --age;
-            }
-            else
-            {
-                return age;
-            }
+
+            return age;
         }
 
         /// <summary>
