@@ -103,5 +103,10 @@ namespace INPTP_AppForFixing
         {
             OnEmployeeChange();
         }
+
+        private void listBoxOfBosses_DoubleClick(object sender, EventArgs e)
+        {
+            btnEditBoss_Click(sender, e);
+        }
     }
 }
