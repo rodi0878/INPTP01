@@ -8,43 +8,46 @@ namespace INPTP_AppForFixing
 {
     public class Employee
     {
-        private int id;
-        private string firstName;
-        private string lastName;
-        private string job; 
-        private DateTime ourBirthDate;
-        private double monthlySalaryCZK;      
-        private static double taxRate = 0.21;
+        private DateTime _birthDate;
 
-
-        public int Id { get => id; set => id = value; }
-        public string FirstName { get => firstName; set => firstName = value; }
-        public string LastName { get => lastName; set => lastName = value; }
-        public string Job { get => job; set => job = value; }
-        public DateTime OurBirthDate { get => ourBirthDate; set => ourBirthDate = value; }
-        public double MonthlySalaryCZK { get => monthlySalaryCZK; set => monthlySalaryCZK = value; }
-        public static double TaxRate { get => taxRate; }
-
-        public Employee() { }
-
-        public Employee(int id, string firstName, string lastName,string job, DateTime ourBirthDate, double monthlySalaryCZK) {
-            this.id = id;
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.job = job;
-            this.ourBirthDate = ourBirthDate;
-            this.monthlySalaryCZK = monthlySalaryCZK;
+        public DateTime BirthDate
+        {
+            get
+            {
+                return _birthDate;
+            }
+            set
+            {
+                _birthDate = value;
+                Age = CalculateAge();
+            }
         }
 
-        /// <summary>
-        /// This method gets age of employee
-        /// </summary>
-        /// <returns>Age of employee</returns>
-        public int GetAge()
+        public int Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string JobTitle { get; set; }
+        public double MonthlySalaryCZK { get; set; }
+
+        public static double TaxRate => 0.21;
+
+        public int Age { get; private set; }
+
+        public Employee(int id, string firstName, string lastName, string jobTitle, DateTime birthDate, double monthlySalaryCZK)
+        {
+            Id = id;
+            FirstName = firstName;
+            LastName = lastName;
+            JobTitle = jobTitle;
+            BirthDate = birthDate;
+            MonthlySalaryCZK = monthlySalaryCZK;
+        }
+
+        private int CalculateAge()
         {
             DateTime today = DateTime.Now;
-            int age = today.Year - OurBirthDate.Year;
-            if (OurBirthDate > today.AddYears(-age))
+            int age = today.Year - BirthDate.Year;
+            if (BirthDate > today.AddYears(-age))
             {
                 return --age;
             }
@@ -63,7 +66,7 @@ namespace INPTP_AppForFixing
         {
             return MonthlySalaryCZK * 12;
         }
-            
+
         /// <summary>
         /// Method to count the net income of the employee
         /// based on attribute taxRate
@@ -72,11 +75,16 @@ namespace INPTP_AppForFixing
         /// <returns>Net income of the employee</returns>
         public virtual double CalcYearlyIncome()
         {
-            return CalcYearlySalaryCZK() * (1 - TaxRate);
+            return ApplyTaxRateToSalary(CalcYearlySalaryCZK());
         }
 
-        public override string ToString() {
-            return "ID:  " + Id + "; NAME: " + FirstName + " " + LastName + "; JOB:" + Job + "; SALARY: " + MonthlySalaryCZK; 
+        private double ApplyTaxRateToSalary(double salary)
+        {
+            return salary * (1 - TaxRate);
         }
+
+        public override string ToString() => $"ID:  {Id}; NAME: {FirstName} {LastName}; JOB:{JobTitle}; SALARY: {MonthlySalaryCZK}";
+
     }
 }
+
