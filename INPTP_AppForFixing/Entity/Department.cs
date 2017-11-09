@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace INPTP_AppForFixing
 {
+    [DataContract]
     public class Department
     {
         /// <summary>
         /// Property for get and set name of departement
         /// </summary>
+        [DataMember]
         public string Name { get; set; }
 
         /// <summary>

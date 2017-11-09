@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace INPTP_AppForFixing
 {
+    [DataContract]
     public class Boss : Employee
     {
         private const int MONTHS_OF_YEAR = 12;
+        [DataMember]
         private HashSet<Employee> employees;
+        [DataMember]
         private Department department;
         public double PerEmplSalaryBonus { get; set; }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.Serialization.Json;
 using System.Web.Script.Serialization;
 
 namespace INPTP_AppForFixing
@@ -16,7 +17,7 @@ namespace INPTP_AppForFixing
         /// </summary>
         public const string DEFAULT_EXPORT_FILE = "exported_boss.json";
 
-        private JavaScriptSerializer jsonSerializer = new JavaScriptSerializer();
+        private DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(Boss));
         private ExportUtils() {}
 
         ///  <returns> Instance of this singleton </returns>
@@ -40,9 +41,12 @@ namespace INPTP_AppForFixing
             if (boss == null) throw new ArgumentNullException("Given Boss object was null!");
             if (targetFile == null) throw new ArgumentNullException("Given target path was null!");
 
-            string serializedBoss = jsonSerializer.Serialize(boss);
+            
+            FileStream target = File.OpenWrite(targetFile);
 
-            File.AppendAllText(targetFile, serializedBoss + Environment.NewLine);
+            jsonSerializer.WriteObject(target, boss);
+
+            target.Close();
         }
 
     }
