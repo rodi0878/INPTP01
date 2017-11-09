@@ -73,7 +73,7 @@ namespace INPTP_AppForFixing
         }
 
         public override string ToString() {
-            return "ID:  " + Id + "; NAME: " + FirstName + " " + LastName + "; JOB:" + Job + "; SALARY: " + MonthlySalaryCZK; 
+            return $"ID: {Id}; NAME: {FirstName} {LastName}; Job: {Job}; SALARY: {MonthlySalaryCZK}";
         }
     }
 }
