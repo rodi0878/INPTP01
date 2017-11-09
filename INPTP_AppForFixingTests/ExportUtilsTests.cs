@@ -51,7 +51,7 @@ namespace INPTP_AppForFixingTests
             Boss deserializedBoss = deserializeBossFromTestFileAndDeleteIt();
             Employee deserializedEmployee = deserializedBoss.GetEmployees().First();
 
-            Assert.AreEqual(exportedEmployee.ToString(), deserializedBoss.ToString());
+            Assert.AreEqual(exportedEmployee.ToString(), deserializedEmployee.ToString());
         }
 
         private Boss deserializeBossFromTestFileAndDeleteIt()
