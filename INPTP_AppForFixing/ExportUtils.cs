@@ -8,7 +8,7 @@ namespace INPTP_AppForFixing
     /// <summary>
     /// Singleton containing methods for exporting data objets to JSON file.
     /// </summary>
-    class ExportUtils
+    public class ExportUtils
     {
         private static ExportUtils instance = new ExportUtils();
 
@@ -41,7 +41,6 @@ namespace INPTP_AppForFixing
             if (boss == null) throw new ArgumentNullException("Given Boss object was null!");
             if (targetFile == null) throw new ArgumentNullException("Given target path was null!");
 
-            
             FileStream target = File.OpenWrite(targetFile);
 
             jsonSerializer.WriteObject(target, boss);
