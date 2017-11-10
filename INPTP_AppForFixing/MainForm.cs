@@ -106,7 +106,10 @@ namespace INPTP_AppForFixing
 
         private void listBoxOfBosses_DoubleClick(object sender, EventArgs e)
         {
-            btnEditBoss_Click(sender, e);
+            if(listBoxOfBosses.SelectedItem!=null)
+            {
+                btnEditBoss_Click(sender, e);
+            }
         }
     }
 }
