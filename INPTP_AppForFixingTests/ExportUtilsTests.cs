@@ -54,6 +54,26 @@ namespace INPTP_AppForFixingTests
             Assert.AreEqual(exportedEmployee.ToString(), deserializedEmployee.ToString());
         }
 
+        [Test()]
+        public void NestedBossExportedCorrectlyTest()
+        {
+            Boss exportedBoss = createTestBoss();
+            Boss exportedSubBoss = createTestSubBoss();
+            Employee exportedEmployee = createTestEmployee();
+            exportedSubBoss.InsertEmpl(exportedEmployee);
+            exportedBoss.InsertEmpl(exportedSubBoss);
+
+            ExportUtils.Instance.SerializeBossToFile(exportedBoss, TEST_FILE);
+
+            Boss deserializedBoss = deserializeBossFromTestFileAndDeleteIt();
+            Boss deserializedSubBoss = (Boss)deserializedBoss.GetEmployees().First();
+            Employee deserializedEmployee = deserializedSubBoss.GetEmployees().First();
+
+            Assert.AreEqual(exportedSubBoss.ToString(), deserializedSubBoss.ToString());
+            Assert.AreEqual(exportedEmployee.ToString(), deserializedEmployee.ToString());
+        }
+
+
         private Boss deserializeBossFromTestFileAndDeleteIt()
         {
             FileStream source = File.OpenRead(TEST_FILE);
@@ -72,6 +92,19 @@ namespace INPTP_AppForFixingTests
             testBoss.FirstName = "Testy";
             testBoss.LastName = "Testovic";
             testBoss.Job = "Lead tester";
+            testBoss.MonthlySalaryCZK = 0;
+            testBoss.OurBirthDate = DateTime.Now;
+
+            return testBoss;
+        }
+
+        private Boss createTestSubBoss()
+        {
+            Department testDepartment = new Department("Testing Management");
+            Boss testBoss = new Boss(testDepartment);
+            testBoss.FirstName = "Testa";
+            testBoss.LastName = "Testovaci";
+            testBoss.Job = "Manager";
             testBoss.MonthlySalaryCZK = 0;
             testBoss.OurBirthDate = DateTime.Now;
 
