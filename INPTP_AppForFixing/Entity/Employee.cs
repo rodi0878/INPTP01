@@ -36,6 +36,10 @@ namespace INPTP_AppForFixing
             this.monthlySalaryCZK = monthlySalaryCZK;
         }
 
+        public virtual int getNextEmployeeId() {
+            return id + 1;
+        }
+
         /// <summary>
         /// This method gets age of employee
         /// </summary>
