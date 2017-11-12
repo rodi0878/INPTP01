@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace INPTP_AppForFixing
 {
@@ -41,6 +39,11 @@ namespace INPTP_AppForFixing
             employees.Add(empl);
         }
 
+        public override int getNextEmployeeId()
+        {
+            return Math.Max(Id + 1, GetEmployees().Any() ? GetEmployees().Max(e => e.getNextEmployeeId()) : int.MinValue);
+        }
+
         /// <summary>
         /// Method on remove employee from boss control.
         /// </summary>
@@ -49,7 +52,6 @@ namespace INPTP_AppForFixing
         {
             employees.Remove(empl);
         }
-
 
         /// <summary>
         /// Method which return if employess is under boss control.

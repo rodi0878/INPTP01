@@ -55,6 +55,7 @@
       <DependentUpon>EmployeeDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Entity\Boss.cs" />
+    <Compile Include="Entity\Operation.cs" />
     <Compile Include="Entity\Department.cs" />
     <Compile Include="Entity\Employee.cs" />
     <Compile Include="MainForm.cs">
