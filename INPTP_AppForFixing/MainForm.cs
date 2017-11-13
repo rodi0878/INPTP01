@@ -132,6 +132,15 @@ namespace INPTP_AppForFixing
             OnEmployeeChange();
         }
 
+
+        private void listBoxOfBosses_DoubleClick(object sender, EventArgs e)
+        {
+            if(listBoxOfBosses.SelectedItem!=null)
+            {
+                btnEditBoss_Click(sender, e);
+            }
+         }
+
         private void btnEmplDelete_Click(object sender, EventArgs e)
         {
             Boss boss = GetSelectedBoss();

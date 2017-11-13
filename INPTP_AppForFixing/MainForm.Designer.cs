@@ -57,6 +57,7 @@
             this.listBoxOfBosses.Size = new System.Drawing.Size(331, 329);
             this.listBoxOfBosses.TabIndex = 0;
             this.listBoxOfBosses.SelectedIndexChanged += new System.EventHandler(this.listBoxOfBosses_SelectedIndexChanged);
+            this.listBoxOfBosses.DoubleClick += new System.EventHandler(this.listBoxOfBosses_DoubleClick);
             // 
             // btnAddBoss
             // 
@@ -85,7 +86,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxEmpl.FormattingEnabled = true;
             this.listBoxEmpl.Location = new System.Drawing.Point(4, 17);
+
             this.listBoxEmpl.Margin = new System.Windows.Forms.Padding(2);
+
             this.listBoxEmpl.Name = "listBoxEmpl";
             this.listBoxEmpl.Size = new System.Drawing.Size(331, 329);
             this.listBoxEmpl.TabIndex = 4;
@@ -94,9 +97,11 @@
             // 
             this.groupBox1.Controls.Add(this.listBoxOfBosses);
             this.groupBox1.Location = new System.Drawing.Point(9, 10);
+
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
+          
             this.groupBox1.Size = new System.Drawing.Size(344, 371);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
@@ -108,9 +113,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.listBoxEmpl);
             this.groupBox2.Location = new System.Drawing.Point(357, 10);
+
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
+
             this.groupBox2.Size = new System.Drawing.Size(339, 371);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
@@ -122,9 +129,11 @@
             this.groupBox3.Controls.Add(this.btnAddBoss);
             this.groupBox3.Controls.Add(this.btnDelBoss);
             this.groupBox3.Location = new System.Drawing.Point(9, 386);
+
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
+
             this.groupBox3.Size = new System.Drawing.Size(344, 67);
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
@@ -146,9 +155,11 @@
             this.groupBox4.Controls.Add(this.btnEmplAdd);
             this.groupBox4.Controls.Add(this.btnEmplDelete);
             this.groupBox4.Location = new System.Drawing.Point(357, 386);
+
             this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
+
             this.groupBox4.Size = new System.Drawing.Size(339, 67);
             this.groupBox4.TabIndex = 8;
             this.groupBox4.TabStop = false;
@@ -193,7 +204,9 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+
             this.Margin = new System.Windows.Forms.Padding(2);
+
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Employees";
