@@ -90,7 +90,7 @@ namespace INPTP_AppForFixing
                     tBID.Text = selectedEmployee.Id.ToString();
                     tBFirstName.Text = selectedEmployee.FirstName;
                     tBLastName.Text = selectedEmployee.LastName;
-                    tBJob.Text = selectedEmployee.Job;
+                    tBJob.Text = selectedEmployee.JobTitle;
                     tBSalary.Text = selectedEmployee.MonthlySalaryCZK.ToString();
                 }
 
@@ -109,9 +109,9 @@ namespace INPTP_AppForFixing
                     tBID.Text = selectedBoss.Id.ToString();
                     tBFirstName.Text = selectedBoss.FirstName;
                     tBLastName.Text = selectedBoss.LastName;
-                    tBJob.Text = selectedBoss.Job;
+                    tBJob.Text = selectedBoss.JobTitle;
                     tBSalary.Text = selectedBoss.MonthlySalaryCZK.ToString();
-                    dateTimePickerBirthDate.Value = selectedBoss.OurBirthDate;
+                    dateTimePickerBirthDate.Value = selectedBoss.BirthDate;
                 }
             }
 
