@@ -16,10 +16,10 @@ namespace INPTP_AppForFixing.Tests
         {
             Employee emp = new Employee()
             {
-                OurBirthDate = DateTime.Now
+                BirthDate = DateTime.Now
             };
 
-            Assert.AreEqual(0, emp.GetAge());
+            Assert.AreEqual(0, emp.Age);
         }
 
         [Test()]
@@ -29,10 +29,10 @@ namespace INPTP_AppForFixing.Tests
 
             Employee emp = new Employee()
             {
-                OurBirthDate = birthDate
+                BirthDate = birthDate
             };
 
-            Assert.AreEqual(1, emp.GetAge());
+            Assert.AreEqual(1, emp.Age);
         }
 
         [Test()]
@@ -42,10 +42,10 @@ namespace INPTP_AppForFixing.Tests
 
             Employee emp = new Employee()
             {
-                OurBirthDate = birthDate
+                BirthDate = birthDate
             };
 
-            Assert.AreEqual(10, emp.GetAge());
+            Assert.AreEqual(10, emp.Age);
         }
 
         [Test()]

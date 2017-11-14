@@ -10,8 +10,18 @@ namespace INPTP_AppForFixing
         private HashSet<Employee> employees;
         private Department department;
         public double PerEmplSalaryBonus { get; set; }
-        
-       
+
+
+        /// <summary>
+        /// Constructor for Boss class.
+        /// </summary>
+        /// <param name="department">Department under boss control.</param>
+        public Boss(Department department)
+        {
+            employees = new HashSet<Employee>();
+            this.department = department;
+        }
+
         public Boss(int id, string firstName, string lastName, string job, DateTime ourBirthDate, double monthlySalaryCZK, Department dep) :
             base(id, firstName, lastName, job, ourBirthDate, monthlySalaryCZK)
         {

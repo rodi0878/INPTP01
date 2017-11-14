@@ -43,6 +43,8 @@ namespace INPTP_AppForFixing
             MonthlySalaryCZK = monthlySalaryCZK;
         }
 
+        public Employee() { }
+
         public virtual int getNextEmployeeId()
         {
             return Id + 1;
