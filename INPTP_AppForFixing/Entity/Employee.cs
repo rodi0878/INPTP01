@@ -45,7 +45,7 @@ namespace INPTP_AppForFixing
 
         public virtual int getNextEmployeeId()
         {
-            return id + 1;
+            return Id + 1;
         }
 
         private int CalculateAge()
