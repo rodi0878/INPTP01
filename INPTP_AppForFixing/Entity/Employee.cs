@@ -36,6 +36,10 @@ namespace INPTP_AppForFixing
             this.monthlySalaryCZK = monthlySalaryCZK;
         }
 
+        public virtual int getNextEmployeeId() {
+            return id + 1;
+        }
+
         /// <summary>
         /// This method gets age of employee
         /// </summary>
@@ -44,14 +48,11 @@ namespace INPTP_AppForFixing
         {
             DateTime today = DateTime.Now;
             int age = today.Year - OurBirthDate.Year;
+
             if (OurBirthDate > today.AddYears(-age))
-            {
                 return --age;
-            }
-            else
-            {
-                return age;
-            }
+
+            return age;
         }
 
         /// <summary>
@@ -76,7 +77,7 @@ namespace INPTP_AppForFixing
         }
 
         public override string ToString() {
-            return "ID:  " + Id + "; NAME: " + FirstName + " " + LastName + "; JOB:" + Job + "; SALARY: " + MonthlySalaryCZK; 
+            return $"ID: {Id}; NAME: {FirstName} {LastName}; Job: {Job}; SALARY: {MonthlySalaryCZK}";
         }
     }
 }
