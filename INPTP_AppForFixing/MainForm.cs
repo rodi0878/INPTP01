@@ -167,5 +167,24 @@ namespace INPTP_AppForFixing
                 showWarning("First you must select a boss and the employee which is about to be altered!");
             }
         }
+
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            if (FormWindowState.Minimized == this.WindowState)
+            {
+                notifyIcon.Visible = true;
+                notifyIcon.ShowBalloonTip(3000);
+                this.Hide();
+            }
+            else if(FormWindowState.Normal==this.WindowState){
+                notifyIcon.Visible = false;
+            }
+        }
+
+        private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.Show();
+            WindowState = FormWindowState.Normal;
+        }
     }
 }
