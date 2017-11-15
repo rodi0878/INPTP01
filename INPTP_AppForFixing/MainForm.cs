@@ -167,5 +167,16 @@ namespace INPTP_AppForFixing
                 showWarning("First you must select a boss and the employee which is about to be altered!");
             }
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("INPTP credit project, year 2017/2018. Project starting as a bad code example and should be cleaned by students. Owner rodi0878",
+            "Information");
+        }
     }
 }

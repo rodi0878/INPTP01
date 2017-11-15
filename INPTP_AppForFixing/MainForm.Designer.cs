@@ -40,6 +40,8 @@
             this.btnEmplEdit = new System.Windows.Forms.Button();
             this.btnEmplAdd = new System.Windows.Forms.Button();
             this.btnEmplDelete = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -86,22 +88,18 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxEmpl.FormattingEnabled = true;
             this.listBoxEmpl.Location = new System.Drawing.Point(4, 17);
-
             this.listBoxEmpl.Margin = new System.Windows.Forms.Padding(2);
-
             this.listBoxEmpl.Name = "listBoxEmpl";
-            this.listBoxEmpl.Size = new System.Drawing.Size(331, 329);
+            this.listBoxEmpl.Size = new System.Drawing.Size(401, 329);
             this.listBoxEmpl.TabIndex = 4;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.listBoxOfBosses);
             this.groupBox1.Location = new System.Drawing.Point(9, 10);
-
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-          
             this.groupBox1.Size = new System.Drawing.Size(344, 371);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
@@ -113,12 +111,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.listBoxEmpl);
             this.groupBox2.Location = new System.Drawing.Point(357, 10);
-
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
-
-            this.groupBox2.Size = new System.Drawing.Size(339, 371);
+            this.groupBox2.Size = new System.Drawing.Size(409, 371);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "List of Employes";
@@ -129,11 +125,9 @@
             this.groupBox3.Controls.Add(this.btnAddBoss);
             this.groupBox3.Controls.Add(this.btnDelBoss);
             this.groupBox3.Location = new System.Drawing.Point(9, 386);
-
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
-
             this.groupBox3.Size = new System.Drawing.Size(344, 67);
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
@@ -155,11 +149,9 @@
             this.groupBox4.Controls.Add(this.btnEmplAdd);
             this.groupBox4.Controls.Add(this.btnEmplDelete);
             this.groupBox4.Location = new System.Drawing.Point(357, 386);
-
             this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
-
             this.groupBox4.Size = new System.Drawing.Size(339, 67);
             this.groupBox4.TabIndex = 8;
             this.groupBox4.TabStop = false;
@@ -195,18 +187,39 @@
             this.btnEmplDelete.UseVisualStyleBackColor = true;
             this.btnEmplDelete.Click += new System.EventHandler(this.btnEmplDelete_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(704, 402);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(62, 45);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "?";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(716, 386);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "About";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(705, 463);
+            this.ClientSize = new System.Drawing.Size(775, 463);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-
+            this.HelpButton = true;
             this.Margin = new System.Windows.Forms.Padding(2);
-
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Employees";
@@ -215,6 +228,7 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -232,6 +246,8 @@
         private System.Windows.Forms.Button btnEmplEdit;
         private System.Windows.Forms.Button btnEmplAdd;
         private System.Windows.Forms.Button btnEmplDelete;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label1;
     }
 }
 
