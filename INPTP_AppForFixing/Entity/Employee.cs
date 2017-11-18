@@ -11,13 +11,20 @@ namespace INPTP_AppForFixing
         private int id;
         private string firstName;
         private string lastName;
-        private string job; 
+        private string job;
         private DateTime ourBirthDate;
-        private double monthlySalaryCZK;      
+        private double monthlySalaryCZK;
         private static double taxRate = 0.21;
+        private static int nextID = 0;
 
-
-        public int Id { get => id; set => id = value; }
+        public int Id
+        {
+            get => id; set
+            {
+                this.id = value;
+                Employee.nextID = value >= Employee.nextID ? this.id + 1 : Employee.nextID;
+            }
+        }
         public string FirstName { get => firstName; set => firstName = value; }
         public string LastName { get => lastName; set => lastName = value; }
         public string Job { get => job; set => job = value; }
@@ -27,7 +34,8 @@ namespace INPTP_AppForFixing
 
         public Employee() { }
 
-        public Employee(int id, string firstName, string lastName,string job, DateTime ourBirthDate, double monthlySalaryCZK) {
+        public Employee(int id, string firstName, string lastName, string job, DateTime ourBirthDate, double monthlySalaryCZK)
+        {
             this.id = id;
             this.firstName = firstName;
             this.lastName = lastName;
@@ -36,8 +44,15 @@ namespace INPTP_AppForFixing
             this.monthlySalaryCZK = monthlySalaryCZK;
         }
 
-        public virtual int getNextEmployeeId() {
-            return id + 1;
+        /// <summary>
+        /// Always contains the next available ID
+        /// </summary>
+        public static int NextID
+        {
+            get
+            {
+                return Employee.nextID++;
+            }
         }
 
         /// <summary>
@@ -64,7 +79,7 @@ namespace INPTP_AppForFixing
         {
             return MonthlySalaryCZK * 12;
         }
-            
+
         /// <summary>
         /// Method to count the net income of the employee
         /// based on attribute taxRate
@@ -76,7 +91,8 @@ namespace INPTP_AppForFixing
             return CalcYearlySalaryCZK() * (1 - TaxRate);
         }
 
-        public override string ToString() {
+        public override string ToString()
+        {
             return $"ID: {Id}; NAME: {FirstName} {LastName}; Job: {Job}; SALARY: {MonthlySalaryCZK}";
         }
     }

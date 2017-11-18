@@ -9,7 +9,7 @@ namespace INPTP_AppForFixing
     {
         private HashSet<Boss> bosses;
         public HashSet<Boss> Bosses { get => bosses; set => bosses = value; }
-        private const int FIRST_ID = 0;
+        static Random random = new Random();
 
         public MainForm()
         {
@@ -59,19 +59,10 @@ namespace INPTP_AppForFixing
 
         public Employee GetSelectedEmployee() => (Employee)listBoxEmpl.SelectedItem;
 
-
         public int getNextEmployeeId()
         {
-            try
-            {
-                return bosses.Max(b => b.getNextEmployeeId());
-            }
-            catch (InvalidOperationException)
-            {
-                return FIRST_ID;
-            }
+            return Employee.NextID;
         }
-
 
         private void btnDelBoss_Click(object sender, EventArgs e)
         {
@@ -135,11 +126,11 @@ namespace INPTP_AppForFixing
 
         private void listBoxOfBosses_DoubleClick(object sender, EventArgs e)
         {
-            if(listBoxOfBosses.SelectedItem!=null)
+            if (listBoxOfBosses.SelectedItem != null)
             {
                 btnEditBoss_Click(sender, e);
             }
-         }
+        }
 
         private void btnEmplDelete_Click(object sender, EventArgs e)
         {
@@ -165,6 +156,29 @@ namespace INPTP_AppForFixing
             else
             {
                 showWarning("First you must select a boss and the employee which is about to be altered!");
+            }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnGenerateSampleData_Click(object sender, EventArgs e)
+        {
+            int bossIndex = MainForm.random.Next(this.Bosses.Count + 1); // 1/(n+1) chance of creating a new boss
+            if (bossIndex == this.Bosses.Count) // New boss
+            {
+                this.Bosses.Add(SampleDataGenerator.RandomBoss);
+
+                this.OnBossesChange();
+            }
+            else // New employee
+            {
+                Boss boss = this.Bosses.Skip(bossIndex).First();
+                boss.InsertEmpl(SampleDataGenerator.RandomEmployee);
+
+                this.OnEmployeeChange();
             }
         }
     }
