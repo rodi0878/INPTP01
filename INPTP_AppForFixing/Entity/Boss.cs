@@ -46,11 +46,28 @@ namespace INPTP_AppForFixing
 
         /// <summary>
         /// Method on remove employee from boss control.
+        /// Checks if employe which we want to remove is our subordinate 
+        /// if not print a message on console
+        /// if we try to remove employee null it throws exception
         /// </summary>
         /// <param name="empl">Employee which is remove from boss control.</param>
         public void PurgeEmpl(Employee empl)
         {
-            employees.Remove(empl);
+            try
+            {
+                if (HasEmployee(empl))
+                {
+                    employees.Remove(empl);
+                }
+                else {
+                    Console.WriteLine(empl.LastName + "is not your subordinate");
+                }
+            }
+            catch (System.NullReferenceException e)
+            {
+                throw new System.NullReferenceException("Employe you want to remove is null.", e);
+            }
+
         }
 
         /// <summary>
