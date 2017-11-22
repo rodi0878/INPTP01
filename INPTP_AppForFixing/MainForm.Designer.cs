@@ -130,11 +130,7 @@
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
-<<<<<<< HEAD
-            this.groupBox3.Size = new System.Drawing.Size(344, 67);
-=======
             this.groupBox3.Size = new System.Drawing.Size(344, 108);
->>>>>>> upstream/master
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Boss control";
@@ -225,12 +221,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-<<<<<<< HEAD
-            this.ClientSize = new System.Drawing.Size(705, 474);
-            this.Controls.Add(this.btnGenerateSampleData);
-=======
             this.ClientSize = new System.Drawing.Size(705, 505);
->>>>>>> upstream/master
+            this.Controls.Add(this.btnGenerateSampleData);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -265,12 +257,9 @@
         private System.Windows.Forms.Button btnEmplEdit;
         private System.Windows.Forms.Button btnEmplAdd;
         private System.Windows.Forms.Button btnEmplDelete;
-<<<<<<< HEAD
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.Button btnGenerateSampleData;
-=======
         private System.Windows.Forms.Button btnExportBoss;
->>>>>>> upstream/master
     }
 }
 

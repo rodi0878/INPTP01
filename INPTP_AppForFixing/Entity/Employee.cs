@@ -16,11 +16,6 @@ namespace INPTP_AppForFixing
         private string firstName;
         [DataMember]
         private string lastName;
-<<<<<<< HEAD
-        private string job;
-        private DateTime ourBirthDate;
-        private double monthlySalaryCZK;
-=======
         [DataMember]
         private string job;
         [DataMember]
@@ -28,7 +23,6 @@ namespace INPTP_AppForFixing
         [DataMember]
         private double monthlySalaryCZK;
         
->>>>>>> upstream/master
         private static double taxRate = 0.21;
         private static int nextID = 0;
 
