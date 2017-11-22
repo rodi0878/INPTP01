@@ -167,5 +167,18 @@ namespace INPTP_AppForFixing
                 showWarning("First you must select a boss and the employee which is about to be altered!");
             }
         }
+
+        private void btnExportBoss_Click(object sender, EventArgs e)
+        {
+            if (CheckSelectedBoss())
+            {
+                Boss selectedBoss = listBoxOfBosses.SelectedItem as Boss;
+                ExportUtils.Instance.SerializeBossToFile(selectedBoss);
+            }
+            else
+            {
+                showWarning("Select boss for export first!");
+            }
+        }
     }
 }

@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace INPTP_AppForFixing
 {
+    [DataContract]
     public class Employee
     {
         private DateTime _birthDate;
 
+        [DataMember]
         public DateTime BirthDate
         {
             get
@@ -23,10 +26,19 @@ namespace INPTP_AppForFixing
             }
         }
 
+        [DataMember]
         public int Id { get; set; }
+
+        [DataMember]
         public string FirstName { get; set; }
+
+        [DataMember]
         public string LastName { get; set; }
+
+        [DataMember]
         public string JobTitle { get; set; }
+
+        [DataMember]
         public double MonthlySalaryCZK { get; set; }
 
         public static double TaxRate => 0.21;

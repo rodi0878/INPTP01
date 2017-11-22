@@ -35,6 +35,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnExportBoss = new System.Windows.Forms.Button();
             this.btnEditBoss = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnEmplEdit = new System.Windows.Forms.Button();
@@ -125,6 +126,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnExportBoss);
             this.groupBox3.Controls.Add(this.btnEditBoss);
             this.groupBox3.Controls.Add(this.btnAddBoss);
             this.groupBox3.Controls.Add(this.btnDelBoss);
@@ -133,11 +135,20 @@
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
-
-            this.groupBox3.Size = new System.Drawing.Size(344, 67);
+            this.groupBox3.Size = new System.Drawing.Size(344, 108);
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Boss control";
+            // 
+            // btnExportBoss
+            // 
+            this.btnExportBoss.Location = new System.Drawing.Point(126, 68);
+            this.btnExportBoss.Name = "btnExportBoss";
+            this.btnExportBoss.Size = new System.Drawing.Size(101, 28);
+            this.btnExportBoss.TabIndex = 5;
+            this.btnExportBoss.Text = "Export boss";
+            this.btnExportBoss.UseVisualStyleBackColor = true;
+            this.btnExportBoss.Click += new System.EventHandler(this.btnExportBoss_Click);
             // 
             // btnEditBoss
             // 
@@ -199,7 +210,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(705, 463);
+            this.ClientSize = new System.Drawing.Size(705, 505);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -232,6 +243,7 @@
         private System.Windows.Forms.Button btnEmplEdit;
         private System.Windows.Forms.Button btnEmplAdd;
         private System.Windows.Forms.Button btnEmplDelete;
+        private System.Windows.Forms.Button btnExportBoss;
     }
 }
 
