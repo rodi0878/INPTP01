@@ -53,21 +53,14 @@ namespace INPTP_AppForFixing
         /// <param name="empl">Employee which is remove from boss control.</param>
         public void PurgeEmpl(Employee empl)
         {
-            try
+            if (HasEmployee(empl))
             {
-                if (HasEmployee(empl))
-                {
-                    employees.Remove(empl);
-                }
-                else {
-                    Console.WriteLine(empl.LastName + "is not your subordinate");
-                }
+                employees.Remove(empl);
             }
-            catch (System.NullReferenceException e)
-            {
-                throw new System.NullReferenceException("Employe you want to remove is null.", e);
+            else {
+                Console.WriteLine(empl.LastName + "is not your subordinate");
             }
-
+            
         }
 
         /// <summary>
