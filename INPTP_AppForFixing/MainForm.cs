@@ -164,7 +164,15 @@ namespace INPTP_AppForFixing
             int bossIndex = MainForm.random.Next(this.Bosses.Count + 1); // 1/(n+1) chance of creating a new boss
             if (bossIndex == this.Bosses.Count) // New boss
             {
-                this.Bosses.Add(SampleDataGenerator.RandomBoss);
+                Boss boss = SampleDataGenerator.RandomBoss;
+
+                // Boss' boss, if not the first boss
+                if (this.Bosses.Count > 0)
+                {
+                    this.Bosses.Skip(MainForm.random.Next(this.Bosses.Count)).First().InsertEmpl(boss);
+                }
+
+                this.Bosses.Add(boss);
 
                 this.OnBossesChange();
             }
