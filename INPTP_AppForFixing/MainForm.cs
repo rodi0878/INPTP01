@@ -159,11 +159,6 @@ namespace INPTP_AppForFixing
             }
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnGenerateSampleData_Click(object sender, EventArgs e)
         {
             int bossIndex = MainForm.random.Next(this.Bosses.Count + 1); // 1/(n+1) chance of creating a new boss
