@@ -1,12 +1,15 @@
-﻿using System.Text.RegularExpressions;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
 
 namespace INPTP_AppForFixing
 {
+    [DataContract]
     public class Department
     {
         /// <summary>
         /// Property for get and set name of departement
         /// </summary>
+        [DataMember]
         public string Name { get; set; }
 
         /// <summary>

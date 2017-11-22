@@ -181,5 +181,18 @@ namespace INPTP_AppForFixing
                 this.OnEmployeeChange();
             }
         }
+
+        private void btnExportBoss_Click(object sender, EventArgs e)
+        {
+            if (CheckSelectedBoss())
+            {
+                Boss selectedBoss = listBoxOfBosses.SelectedItem as Boss;
+                ExportUtils.Instance.SerializeBossToFile(selectedBoss);
+            }
+            else
+            {
+                showWarning("Select boss for export first!");
+            }
+        }
     }
 }

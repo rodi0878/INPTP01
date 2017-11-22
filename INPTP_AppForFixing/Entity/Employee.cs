@@ -1,19 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace INPTP_AppForFixing
 {
+    [DataContract]
     public class Employee
     {
+        [DataMember]
         private int id;
+        [DataMember]
         private string firstName;
+        [DataMember]
         private string lastName;
+<<<<<<< HEAD
         private string job;
         private DateTime ourBirthDate;
         private double monthlySalaryCZK;
+=======
+        [DataMember]
+        private string job;
+        [DataMember]
+        private DateTime ourBirthDate;
+        [DataMember]
+        private double monthlySalaryCZK;
+        
+>>>>>>> upstream/master
         private static double taxRate = 0.21;
         private static int nextID = 0;
 
