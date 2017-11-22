@@ -167,5 +167,21 @@ namespace INPTP_AppForFixing
                 showWarning("First you must select a boss and the employee which is about to be altered!");
             }
         }
+        
+        private void btn_CtrlBDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode.ToString() == "B")
+            {
+                btnAddBoss_Click(sender, e);
+            }
+        }
+
+        private void btn_CtrlEDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode.ToString() == "E")
+            {
+                btnEmplAdd_Click(sender, e);
+            }
+        }
     }
 }
