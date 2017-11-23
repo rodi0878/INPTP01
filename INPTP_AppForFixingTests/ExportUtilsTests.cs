@@ -91,9 +91,9 @@ namespace INPTP_AppForFixingTests
             Boss testBoss = new Boss(testDepartment);
             testBoss.FirstName = "Testy";
             testBoss.LastName = "Testovic";
-            testBoss.Job = "Lead tester";
+            testBoss.JobTitle = "Lead tester";
             testBoss.MonthlySalaryCZK = 0;
-            testBoss.OurBirthDate = DateTime.Now;
+            testBoss.BirthDate = DateTime.Now;
 
             return testBoss;
         }
@@ -104,9 +104,9 @@ namespace INPTP_AppForFixingTests
             Boss testBoss = new Boss(testDepartment);
             testBoss.FirstName = "Testa";
             testBoss.LastName = "Testovaci";
-            testBoss.Job = "Manager";
+            testBoss.JobTitle = "Manager";
             testBoss.MonthlySalaryCZK = 0;
-            testBoss.OurBirthDate = DateTime.Now;
+            testBoss.BirthDate = DateTime.Now;
 
             return testBoss;
         }
@@ -116,9 +116,9 @@ namespace INPTP_AppForFixingTests
             Employee testEmployee = new Employee();
             testEmployee.FirstName = "Test";
             testEmployee.LastName = "Testonator";
-            testEmployee.Job = "Test monkey";
+            testEmployee.JobTitle = "Test monkey";
             testEmployee.MonthlySalaryCZK = 0;
-            testEmployee.OurBirthDate = DateTime.Now;
+            testEmployee.BirthDate = DateTime.Now;
 
             return testEmployee;
         }
