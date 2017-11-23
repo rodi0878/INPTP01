@@ -108,8 +108,8 @@ namespace INPTP_AppForFixingTests
 
             asserts.AssertFirstName(employee.FirstName);
             asserts.AssertLastName(employee.LastName);
-            asserts.AssertJob(employee.Job);
-            asserts.AssertBirthDate(employee.OurBirthDate);
+            asserts.AssertJob(employee.JobTitle);
+            asserts.AssertBirthDate(employee.BirthDate);
             asserts.AssertSalary(employee.MonthlySalaryCZK);
         }
 
@@ -120,8 +120,8 @@ namespace INPTP_AppForFixingTests
 
             asserts.AssertFirstName(boss.FirstName);
             asserts.AssertLastName(boss.LastName);
-            asserts.AssertJob(boss.Job);
-            asserts.AssertBirthDate(boss.OurBirthDate);
+            asserts.AssertJob(boss.JobTitle);
+            asserts.AssertBirthDate(boss.BirthDate);
             asserts.AssertSalary(boss.MonthlySalaryCZK);
         }
 

@@ -10,22 +10,25 @@ namespace INPTP_AppForFixing
     [DataContract]
     public class Employee
     {
-        [DataMember]
-        private int id;
-        [DataMember]
-        private string firstName;
-        [DataMember]
-        private string lastName;
-        [DataMember]
-        private string job;
-        [DataMember]
-        private DateTime ourBirthDate;
-        [DataMember]
-        private double monthlySalaryCZK;
-        
-        private static double taxRate = 0.21;
-        private static int nextID = 0;
+        private DateTime _birthDate;
 
+        [DataMember]
+        public DateTime BirthDate
+        {
+            get
+            {
+                return _birthDate;
+            }
+            set
+            {
+                _birthDate = value;
+                Age = CalculateAge();
+            }
+        }
+
+        private int id;
+
+        [DataMember]
         public int Id
         {
             get => id; set
@@ -34,24 +37,37 @@ namespace INPTP_AppForFixing
                 Employee.nextID = value >= Employee.nextID ? this.id + 1 : Employee.nextID;
             }
         }
-        public string FirstName { get => firstName; set => firstName = value; }
-        public string LastName { get => lastName; set => lastName = value; }
-        public string Job { get => job; set => job = value; }
-        public DateTime OurBirthDate { get => ourBirthDate; set => ourBirthDate = value; }
-        public double MonthlySalaryCZK { get => monthlySalaryCZK; set => monthlySalaryCZK = value; }
-        public static double TaxRate { get => taxRate; }
+
+        [DataMember]
+        public string FirstName { get; set; }
+
+        [DataMember]
+        public string LastName { get; set; }
+
+        [DataMember]
+        public string JobTitle { get; set; }
+
+        [DataMember]
+        public double MonthlySalaryCZK { get; set; }
+
+        public static double TaxRate => 0.21;
+
+        public int Age { get; private set; }
+
+        private static int nextID = 0;
+
+        public Employee(int id, string firstName, string lastName, string jobTitle, DateTime birthDate, double monthlySalaryCZK)
+        {
+            Id = id;
+            FirstName = firstName;
+            LastName = lastName;
+            JobTitle = jobTitle;
+            BirthDate = birthDate;
+            MonthlySalaryCZK = monthlySalaryCZK;
+        }
 
         public Employee() { }
 
-        public Employee(int id, string firstName, string lastName, string job, DateTime ourBirthDate, double monthlySalaryCZK)
-        {
-            this.id = id;
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.job = job;
-            this.ourBirthDate = ourBirthDate;
-            this.monthlySalaryCZK = monthlySalaryCZK;
-        }
 
         /// <summary>
         /// Always contains the next available ID
@@ -64,19 +80,18 @@ namespace INPTP_AppForFixing
             }
         }
 
-        /// <summary>
-        /// This method gets age of employee
-        /// </summary>
-        /// <returns>Age of employee</returns>
-        public int GetAge()
+        private int CalculateAge()
         {
             DateTime today = DateTime.Now;
-            int age = today.Year - OurBirthDate.Year;
-
-            if (OurBirthDate > today.AddYears(-age))
+            int age = today.Year - BirthDate.Year;
+            if (BirthDate > today.AddYears(-age))
+            {
                 return --age;
-
-            return age;
+            }
+            else
+            {
+                return age;
+            }
         }
 
         /// <summary>
@@ -97,12 +112,15 @@ namespace INPTP_AppForFixing
         /// <returns>Net income of the employee</returns>
         public virtual double CalcYearlyIncome()
         {
-            return CalcYearlySalaryCZK() * (1 - TaxRate);
+            return ApplyTaxRateToSalary(CalcYearlySalaryCZK());
         }
 
-        public override string ToString()
+        private double ApplyTaxRateToSalary(double salary)
         {
-            return $"ID: {Id}; NAME: {FirstName} {LastName}; Job: {Job}; SALARY: {MonthlySalaryCZK}";
+            return salary * (1 - TaxRate);
         }
+
+        public override string ToString() => $"ID:  {Id}; NAME: {FirstName} {LastName}; JOB:{JobTitle}; SALARY: {MonthlySalaryCZK}";
+
     }
 }
