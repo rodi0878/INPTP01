@@ -37,12 +37,14 @@ namespace INPTP_AppForFixing
 
         public void SetSalaryBonus(double salaryBonus)
         {
-            PerEmplSalaryBonus = salaryBonus;
+			if (salaryBonus > 0.0)  
+				PerEmplSalaryBonus = salaryBonus;
         }
 
         public void InsertEmpl(Employee empl)
         {
-            employees.Add(empl);
+			if (!employees.Contains(empl)) 
+				employees.Add(empl);
         }
 
         public override int getNextEmployeeId()
