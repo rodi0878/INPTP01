@@ -59,7 +59,7 @@
     <Compile Include="Entity\Operation.cs" />
     <Compile Include="Entity\Department.cs" />
     <Compile Include="Entity\Employee.cs" />
-    <Compile Include="ExportUtils.cs" />
+    <Compile Include="JsonUtils.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

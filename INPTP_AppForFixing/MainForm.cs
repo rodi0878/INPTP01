@@ -190,11 +190,32 @@ namespace INPTP_AppForFixing
             if (CheckSelectedBoss())
             {
                 Boss selectedBoss = listBoxOfBosses.SelectedItem as Boss;
-                ExportUtils.Instance.SerializeBossToFile(selectedBoss);
+                JsonUtils.Instance.SerializeBossToFile(selectedBoss);
             }
             else
             {
                 showWarning("Select boss for export first!");
+            }
+        }
+
+        private void btnImportBoss_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog selectFile = new OpenFileDialog();
+
+            selectFile.Filter = "JSON files (*.json)|*.json";
+            selectFile.RestoreDirectory = true;
+
+            if (selectFile.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    bosses.Add(JsonUtils.Instance.DeserializeBossFromFile(selectFile.FileName));
+                    OnBossesChange();
+                }
+                catch (Exception)
+                {
+                    showWarning("Couldn't read selected file. It can be damaged or it doesn't contain Boss at all.");
+                }
             }
         }
     }
