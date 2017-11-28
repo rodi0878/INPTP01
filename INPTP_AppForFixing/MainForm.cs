@@ -57,6 +57,18 @@ namespace INPTP_AppForFixing
 
         public Boss GetSelectedBoss() => (Boss)listBoxOfBosses.SelectedItem;
 
+        public Boss GetSelecteBossID(int ID)
+        {
+            foreach (Boss item in listBoxOfBosses.Items)
+            {
+                if (item.getId() == ID)
+                {
+                    return item;
+                }
+            }
+            return (Boss)listBoxOfBosses.SelectedItem;
+        }
+
         public Employee GetSelectedEmployee() => (Employee)listBoxEmpl.SelectedItem;
 
         public int getNextEmployeeId()
