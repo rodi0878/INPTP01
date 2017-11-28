@@ -62,6 +62,10 @@ namespace INPTP_AppForFixing
             return Id + 1;
         }
 
+        /// <summary>
+        /// Method to calculate age of employee
+        /// </summary>
+        /// <returns>Age of employee</returns>
         private int CalculateAge()
         {
             DateTime today = DateTime.Now;
@@ -97,6 +101,11 @@ namespace INPTP_AppForFixing
             return ApplyTaxRateToSalary(CalcYearlySalaryCZK());
         }
 
+        /// <summary>
+        /// Method to calculate salary after taxation
+        /// </summary>
+        /// <param name="salary">Salary of employee</param>
+        /// <returns>Salary after to taxation</returns>
         private double ApplyTaxRateToSalary(double salary)
         {
             return salary * (1 - TaxRate);
