@@ -42,8 +42,7 @@ namespace INPTP_AppForFixing
         }
 
         public void InsertEmpl(Employee empl)
-        {
-			if (!employees.Contains(empl)) 
+        { 
 				employees.Add(empl);
         }
 
