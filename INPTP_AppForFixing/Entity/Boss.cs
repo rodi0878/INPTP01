@@ -15,6 +15,7 @@ namespace INPTP_AppForFixing
         private HashSet<Employee> employees;
         [DataMember]
         private Department department;
+        private int IdBoss;
         public double PerEmplSalaryBonus { get; set; }
 
 
@@ -34,8 +35,12 @@ namespace INPTP_AppForFixing
         {
             department = dep;
             employees = new HashSet<Employee>();
+            IdBoss = id;
         }
-
+        public int getId()
+        {
+            return IdBoss;
+        }
         public void SetSalaryBonus(double salaryBonus)
         {
             PerEmplSalaryBonus = salaryBonus;
@@ -88,7 +93,7 @@ namespace INPTP_AppForFixing
         {
             get { return employees.Count; }
         }
-            
+
         /// <summary>
         /// Method which calculate year salary and subemployee bonus (include boss salary).
         /// </summary>
@@ -109,7 +114,7 @@ namespace INPTP_AppForFixing
 
         public override string ToString()
         {
-            return base.ToString() + "  ;DEPARTMENT - Name: " + department.Name + " ;CODE: " + department.Code; 
+            return base.ToString() + "  ;DEPARTMENT - Name: " + department.Name + " ;CODE: " + department.Code;
         }
     }
 }
