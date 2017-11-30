@@ -55,7 +55,7 @@
     <Compile Include="Entity\BossTests.cs" />
     <Compile Include="Entity\DepartmentTests.cs" />
     <Compile Include="Entity\EmployeeClassTests.cs" />
-    <Compile Include="ExportUtilsTests.cs" />
+    <Compile Include="JsonUtilsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleDataGeneratorTests.cs" />
   </ItemGroup>

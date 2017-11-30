@@ -8,9 +8,9 @@ namespace INPTP_AppForFixing
     /// <summary>
     /// Singleton containing methods for exporting data objets to JSON file.
     /// </summary>
-    public class ExportUtils
+    public class JsonUtils
     {
-        private static ExportUtils instance = new ExportUtils();
+        private static JsonUtils instance = new JsonUtils();
 
         /// <summary>
         /// Default target file for serializing methods such as SerializeBossToFile()
@@ -18,10 +18,10 @@ namespace INPTP_AppForFixing
         public const string DEFAULT_EXPORT_FILE = "exported_boss.json";
 
         private DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(Boss));
-        private ExportUtils() {}
+        private JsonUtils() {}
 
         ///  <returns> Instance of this singleton </returns>
-        public static ExportUtils Instance
+        public static JsonUtils Instance
         {
             get
             {
@@ -48,5 +48,22 @@ namespace INPTP_AppForFixing
             target.Close();
         }
 
+         /// <summary>
+         /// Deserialize Boss from given file.
+         /// Default targetFile is ExportUtils.DEFAULT_EXPORT_FILE.
+         /// </summary>
+         /// <param name="targetFile"> File, which will contain serialized data </param>
+         /// <returns> Boss including his employees</returns>
+         public Boss DeserializeBossFromFile(string targetFile = DEFAULT_EXPORT_FILE)
+         {
+            
+             if (targetFile == null) throw new ArgumentNullException("Given target path was null!");
+ 
+             FileStream source = File.OpenRead(targetFile);
+             Boss deserializedBoss = (Boss)jsonSerializer.ReadObject(source);
+             source.Close();
+ 
+             return deserializedBoss;
+         }
     }
 }

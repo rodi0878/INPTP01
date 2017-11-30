@@ -43,6 +43,7 @@
             this.btnEmplDelete = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.btnGenerateSampleData = new System.Windows.Forms.Button();
+            this.btnImportBoss = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -122,6 +123,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnImportBoss);
             this.groupBox3.Controls.Add(this.btnExportBoss);
             this.groupBox3.Controls.Add(this.btnEditBoss);
             this.groupBox3.Controls.Add(this.btnAddBoss);
@@ -217,6 +219,16 @@
             this.btnGenerateSampleData.UseVisualStyleBackColor = true;
             this.btnGenerateSampleData.Click += new System.EventHandler(this.btnGenerateSampleData_Click);
             // 
+            // btnImportBoss
+            // 
+            this.btnImportBoss.Location = new System.Drawing.Point(5, 68);
+            this.btnImportBoss.Name = "btnImportBoss";
+            this.btnImportBoss.Size = new System.Drawing.Size(101, 28);
+            this.btnImportBoss.TabIndex = 6;
+            this.btnImportBoss.Text = "Import boss";
+            this.btnImportBoss.UseVisualStyleBackColor = true;
+            this.btnImportBoss.Click += new System.EventHandler(this.btnImportBoss_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -259,6 +271,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.Button btnGenerateSampleData;
         private System.Windows.Forms.Button btnExportBoss;
+        private System.Windows.Forms.Button btnImportBoss;
     }
 }
 
