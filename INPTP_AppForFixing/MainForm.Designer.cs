@@ -41,6 +41,9 @@
             this.btnEmplEdit = new System.Windows.Forms.Button();
             this.btnEmplAdd = new System.Windows.Forms.Button();
             this.btnEmplDelete = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.btnGenerateSampleData = new System.Windows.Forms.Button();
+            this.btnImportBoss = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -87,9 +90,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxEmpl.FormattingEnabled = true;
             this.listBoxEmpl.Location = new System.Drawing.Point(4, 17);
-
             this.listBoxEmpl.Margin = new System.Windows.Forms.Padding(2);
-
             this.listBoxEmpl.Name = "listBoxEmpl";
             this.listBoxEmpl.Size = new System.Drawing.Size(331, 329);
             this.listBoxEmpl.TabIndex = 4;
@@ -97,12 +98,10 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.listBoxOfBosses);
-            this.groupBox1.Location = new System.Drawing.Point(9, 10);
-
+            this.groupBox1.Location = new System.Drawing.Point(7, 26);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-          
             this.groupBox1.Size = new System.Drawing.Size(344, 371);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
@@ -113,12 +112,10 @@
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.listBoxEmpl);
-            this.groupBox2.Location = new System.Drawing.Point(357, 10);
-
+            this.groupBox2.Location = new System.Drawing.Point(355, 26);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
-
             this.groupBox2.Size = new System.Drawing.Size(339, 371);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
@@ -126,12 +123,12 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnImportBoss);
             this.groupBox3.Controls.Add(this.btnExportBoss);
             this.groupBox3.Controls.Add(this.btnEditBoss);
             this.groupBox3.Controls.Add(this.btnAddBoss);
             this.groupBox3.Controls.Add(this.btnDelBoss);
-            this.groupBox3.Location = new System.Drawing.Point(9, 386);
-
+            this.groupBox3.Location = new System.Drawing.Point(7, 402);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
@@ -165,12 +162,10 @@
             this.groupBox4.Controls.Add(this.btnEmplEdit);
             this.groupBox4.Controls.Add(this.btnEmplAdd);
             this.groupBox4.Controls.Add(this.btnEmplDelete);
-            this.groupBox4.Location = new System.Drawing.Point(357, 386);
-
+            this.groupBox4.Location = new System.Drawing.Point(355, 402);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
-
             this.groupBox4.Size = new System.Drawing.Size(339, 67);
             this.groupBox4.TabIndex = 8;
             this.groupBox4.TabStop = false;
@@ -206,18 +201,47 @@
             this.btnEmplDelete.UseVisualStyleBackColor = true;
             this.btnEmplDelete.Click += new System.EventHandler(this.btnEmplDelete_Click);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(705, 24);
+            this.menuStrip1.TabIndex = 9;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // btnGenerateSampleData
+            // 
+            this.btnGenerateSampleData.Location = new System.Drawing.Point(0, 0);
+            this.btnGenerateSampleData.Name = "btnGenerateSampleData";
+            this.btnGenerateSampleData.Size = new System.Drawing.Size(186, 23);
+            this.btnGenerateSampleData.TabIndex = 10;
+            this.btnGenerateSampleData.Text = "Generate sample boss/employee";
+            this.btnGenerateSampleData.UseVisualStyleBackColor = true;
+            this.btnGenerateSampleData.Click += new System.EventHandler(this.btnGenerateSampleData_Click);
+            // 
+            // btnImportBoss
+            // 
+            this.btnImportBoss.Location = new System.Drawing.Point(5, 68);
+            this.btnImportBoss.Name = "btnImportBoss";
+            this.btnImportBoss.Size = new System.Drawing.Size(101, 28);
+            this.btnImportBoss.TabIndex = 6;
+            this.btnImportBoss.Text = "Import boss";
+            this.btnImportBoss.UseVisualStyleBackColor = true;
+            this.btnImportBoss.Click += new System.EventHandler(this.btnImportBoss_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(705, 505);
+            this.Controls.Add(this.btnGenerateSampleData);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(2);
-
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Employees";
@@ -226,6 +250,7 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -243,7 +268,10 @@
         private System.Windows.Forms.Button btnEmplEdit;
         private System.Windows.Forms.Button btnEmplAdd;
         private System.Windows.Forms.Button btnEmplDelete;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.Button btnGenerateSampleData;
         private System.Windows.Forms.Button btnExportBoss;
+        private System.Windows.Forms.Button btnImportBoss;
     }
 }
 

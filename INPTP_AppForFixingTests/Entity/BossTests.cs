@@ -144,5 +144,32 @@ namespace INPTP_AppForFixing.Tests
 
             Assert.AreEqual(employees, boss.GetEmployees());
         }
+
+        [Test]
+        public void BossConstructorTestCatchArgumentNullException()
+        {
+            Assert.That(() => new Boss(null), Throws.ArgumentNullException);
+        }
+
+        [Test]
+        public void EmployeeInsertToBossControlTestCatchArgumentNullException()
+        {
+            Boss boss = new Boss(new Department());
+            Assert.That(() => boss.InsertEmpl(null), Throws.ArgumentNullException);
+        }
+
+        [Test]
+        public void EmployeePurgeToBossControlTestCatchArgumentNullException()
+        {
+            Boss boss = new Boss(new Department());
+            Assert.That(() => boss.PurgeEmpl(null), Throws.ArgumentNullException);
+        }
+
+        [Test]
+        public void BossControlHasEmployeeTestCatchArgumentNullException()
+        {
+            Boss boss = new Boss(new Department());
+            Assert.That(() => boss.HasEmployee(null), Throws.ArgumentNullException);
+        }
     }
 }

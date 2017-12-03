@@ -26,8 +26,17 @@ namespace INPTP_AppForFixing
             }
         }
 
+        private int id;
+
         [DataMember]
-        public int Id { get; set; }
+        public int Id
+        {
+            get => id; set
+            {
+                this.id = value;
+                Employee.nextID = value >= Employee.nextID ? this.id + 1 : Employee.nextID;
+            }
+        }
 
         [DataMember]
         public string FirstName { get; set; }
@@ -45,6 +54,8 @@ namespace INPTP_AppForFixing
 
         public int Age { get; private set; }
 
+        private static int nextID = 0;
+
         public Employee(int id, string firstName, string lastName, string jobTitle, DateTime birthDate, double monthlySalaryCZK)
         {
             Id = id;
@@ -57,11 +68,22 @@ namespace INPTP_AppForFixing
 
         public Employee() { }
 
-        public virtual int getNextEmployeeId()
+
+        /// <summary>
+        /// Always contains the next available ID
+        /// </summary>
+        public static int NextID
         {
-            return Id + 1;
+            get
+            {
+                return Employee.nextID++;
+            }
         }
 
+        /// <summary>
+        /// Method to calculate age of employee
+        /// </summary>
+        /// <returns>Age of employee</returns>
         private int CalculateAge()
         {
             DateTime today = DateTime.Now;
@@ -97,6 +119,11 @@ namespace INPTP_AppForFixing
             return ApplyTaxRateToSalary(CalcYearlySalaryCZK());
         }
 
+        /// <summary>
+        /// Method to calculate salary after taxation
+        /// </summary>
+        /// <param name="salary">Salary of employee</param>
+        /// <returns>Salary after to taxation</returns>
         private double ApplyTaxRateToSalary(double salary)
         {
             return salary * (1 - TaxRate);

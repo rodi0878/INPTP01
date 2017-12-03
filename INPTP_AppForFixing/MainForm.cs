@@ -9,7 +9,7 @@ namespace INPTP_AppForFixing
     {
         private HashSet<Boss> bosses;
         public HashSet<Boss> Bosses { get => bosses; set => bosses = value; }
-        private const int FIRST_ID = 0;
+        static Random random = new Random();
 
         public MainForm()
         {
@@ -59,19 +59,10 @@ namespace INPTP_AppForFixing
 
         public Employee GetSelectedEmployee() => (Employee)listBoxEmpl.SelectedItem;
 
-
         public int getNextEmployeeId()
         {
-            try
-            {
-                return bosses.Max(b => b.getNextEmployeeId());
-            }
-            catch (InvalidOperationException)
-            {
-                return FIRST_ID;
-            }
+            return Employee.NextID;
         }
-
 
         private void btnDelBoss_Click(object sender, EventArgs e)
         {
@@ -135,11 +126,11 @@ namespace INPTP_AppForFixing
 
         private void listBoxOfBosses_DoubleClick(object sender, EventArgs e)
         {
-            if(listBoxOfBosses.SelectedItem!=null)
+            if (listBoxOfBosses.SelectedItem != null)
             {
                 btnEditBoss_Click(sender, e);
             }
-         }
+        }
 
         private void btnEmplDelete_Click(object sender, EventArgs e)
         {
@@ -168,16 +159,63 @@ namespace INPTP_AppForFixing
             }
         }
 
+        private void btnGenerateSampleData_Click(object sender, EventArgs e)
+        {
+            int bossIndex = MainForm.random.Next(this.Bosses.Count + 1); // 1/(n+1) chance of creating a new boss
+            if (bossIndex == this.Bosses.Count) // New boss
+            {
+                Boss boss = SampleDataGenerator.RandomBoss;
+
+                // Boss' boss, if not the first boss
+                if (this.Bosses.Count > 0)
+                {
+                    this.Bosses.Skip(MainForm.random.Next(this.Bosses.Count)).First().InsertEmpl(boss);
+                }
+
+                this.Bosses.Add(boss);
+
+                this.OnBossesChange();
+            }
+            else // New employee
+            {
+                Boss boss = this.Bosses.Skip(bossIndex).First();
+                boss.InsertEmpl(SampleDataGenerator.RandomEmployee);
+
+                this.OnEmployeeChange();
+            }
+        }
+
         private void btnExportBoss_Click(object sender, EventArgs e)
         {
             if (CheckSelectedBoss())
             {
                 Boss selectedBoss = listBoxOfBosses.SelectedItem as Boss;
-                ExportUtils.Instance.SerializeBossToFile(selectedBoss);
+                JsonUtils.Instance.SerializeBossToFile(selectedBoss);
             }
             else
             {
                 showWarning("Select boss for export first!");
+            }
+        }
+
+        private void btnImportBoss_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog selectFile = new OpenFileDialog();
+
+            selectFile.Filter = "JSON files (*.json)|*.json";
+            selectFile.RestoreDirectory = true;
+
+            if (selectFile.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    bosses.Add(JsonUtils.Instance.DeserializeBossFromFile(selectFile.FileName));
+                    OnBossesChange();
+                }
+                catch (Exception)
+                {
+                    showWarning("Couldn't read selected file. It can be damaged or it doesn't contain Boss at all.");
+                }
             }
         }
     }

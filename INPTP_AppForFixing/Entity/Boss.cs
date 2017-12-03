@@ -24,6 +24,7 @@ namespace INPTP_AppForFixing
         /// <param name="department">Department under boss control.</param>
         public Boss(Department department)
         {
+            if (department == null) throw new ArgumentNullException("Department is null");
             employees = new HashSet<Employee>();
             this.department = department;
         }
@@ -42,13 +43,9 @@ namespace INPTP_AppForFixing
         }
 
         public void InsertEmpl(Employee empl)
-        { 
-				employees.Add(empl);
-        }
-
-        public override int getNextEmployeeId()
-        {
-            return Math.Max(Id + 1, GetEmployees().Any() ? GetEmployees().Max(e => e.getNextEmployeeId()) : int.MinValue);
+		{
+            if (empl == null) throw new ArgumentNullException("Employee is null");
+            employees.Add(empl);
         }
 
         /// <summary>
@@ -57,6 +54,7 @@ namespace INPTP_AppForFixing
         /// <param name="empl">Employee which is remove from boss control.</param>
         public void PurgeEmpl(Employee empl)
         {
+            if (empl == null) throw new ArgumentNullException("Employee is null");
             employees.Remove(empl);
         }
 
@@ -68,6 +66,7 @@ namespace INPTP_AppForFixing
         /// <returns>Return true if employee is find. Else return false.  </returns>
         public bool HasEmployee(Employee empl)
         {
+            if (empl == null) throw new ArgumentNullException("Employee is null");
             return employees.Contains(empl);
         }
 

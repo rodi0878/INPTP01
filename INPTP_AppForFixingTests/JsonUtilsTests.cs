@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace INPTP_AppForFixingTests
 {
     [TestFixture()]
-    class ExportUtilsTests
+    class JsonUtilsTests
     {
         private const string TEST_FILE = "exportUtilsTest.json";
         private DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(Boss));
@@ -20,7 +20,7 @@ namespace INPTP_AppForFixingTests
         public void BossExportedCorrectlyTest()
         {
             Boss exportedBoss = createTestBoss();
-            ExportUtils.Instance.SerializeBossToFile(exportedBoss, TEST_FILE);
+            JsonUtils.Instance.SerializeBossToFile(exportedBoss, TEST_FILE);
 
             Boss deserializedBoss = deserializeBossFromTestFileAndDeleteIt();
 
@@ -33,7 +33,7 @@ namespace INPTP_AppForFixingTests
             Boss exportedBoss = createTestBoss();
             Employee exportedEmployee = createTestEmployee();
             exportedBoss.InsertEmpl(exportedEmployee);
-            ExportUtils.Instance.SerializeBossToFile(exportedBoss, TEST_FILE);
+            JsonUtils.Instance.SerializeBossToFile(exportedBoss, TEST_FILE);
 
             Boss deserializedBoss = deserializeBossFromTestFileAndDeleteIt();
 
@@ -46,7 +46,7 @@ namespace INPTP_AppForFixingTests
             Boss exportedBoss = createTestBoss();
             Employee exportedEmployee = createTestEmployee();
             exportedBoss.InsertEmpl(exportedEmployee);
-            ExportUtils.Instance.SerializeBossToFile(exportedBoss, TEST_FILE);
+            JsonUtils.Instance.SerializeBossToFile(exportedBoss, TEST_FILE);
 
             Boss deserializedBoss = deserializeBossFromTestFileAndDeleteIt();
             Employee deserializedEmployee = deserializedBoss.GetEmployees().First();
@@ -63,7 +63,7 @@ namespace INPTP_AppForFixingTests
             exportedSubBoss.InsertEmpl(exportedEmployee);
             exportedBoss.InsertEmpl(exportedSubBoss);
 
-            ExportUtils.Instance.SerializeBossToFile(exportedBoss, TEST_FILE);
+            JsonUtils.Instance.SerializeBossToFile(exportedBoss, TEST_FILE);
 
             Boss deserializedBoss = deserializeBossFromTestFileAndDeleteIt();
             Boss deserializedSubBoss = (Boss)deserializedBoss.GetEmployees().First();
@@ -76,9 +76,7 @@ namespace INPTP_AppForFixingTests
 
         private Boss deserializeBossFromTestFileAndDeleteIt()
         {
-            FileStream source = File.OpenRead(TEST_FILE);
-            Boss deserializedBoss = (Boss)jsonSerializer.ReadObject(source);
-            source.Close();
+            Boss deserializedBoss = JsonUtils.Instance.DeserializeBossFromFile(TEST_FILE);
 
             File.Delete(TEST_FILE);
 
