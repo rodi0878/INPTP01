@@ -61,7 +61,7 @@ namespace INPTP_AppForFixing
         {
             foreach (Boss item in listBoxOfBosses.Items)
             {
-                if (item.getId() == ID)
+                if (item.Id == ID)
                 {
                     return item;
                 }
@@ -81,7 +81,7 @@ namespace INPTP_AppForFixing
                     {
                         foreach (Boss item in listBoxOfBosses.Items)
                         {
-                            if (employees[i].getId() == item.getId())
+                            if (employees[i].Id == item.Id)
                             {
                                 if (ControlhHierarchySons(item, searched))
                                 {
@@ -104,9 +104,9 @@ namespace INPTP_AppForFixing
         {
             foreach (Boss item in listBoxOfBosses.Items)
             {
-                if (item.getId() == newEmployee.getId())
+                if (item.Id == newEmployee.Id)
                 {
-                    if (newEmployee.getId() != superiorBoss.getId())
+                    if (newEmployee.Id != superiorBoss.Id)
                     {
                         if (ControlhHierarchySons(item, superiorBoss))
                         {
