@@ -37,9 +37,15 @@ namespace INPTP_AppForFixing
                     {
                         selectedBoss.PurgeEmpl(main.GetSelectedEmployee());
                         Boss selectedBossNew = main.GetSelecteBossID(int.Parse(tBIdBoss.Text));
-                        selectedBossNew.InsertEmpl(newEmployee);
+                        if(main.ControlhHierarchy(main.GetSelectedEmployee(), selectedBossNew))
+                        {
+                            selectedBossNew.InsertEmpl(newEmployee);
+                        }
+                        else
+                        {
+                            selectedBoss.InsertEmpl(newEmployee);
+                        }                        
                     }
-
                     main.OnEmployeeChange();
                 }
                 else

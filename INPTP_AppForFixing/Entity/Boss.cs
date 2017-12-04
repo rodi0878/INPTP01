@@ -14,8 +14,7 @@ namespace INPTP_AppForFixing
         [DataMember]
         private HashSet<Employee> employees;
         [DataMember]
-        private Department department;
-        private int IdBoss;
+        private Department department;      
         public double PerEmplSalaryBonus { get; set; }
 
 
@@ -34,12 +33,8 @@ namespace INPTP_AppForFixing
         {
             department = dep;
             employees = new HashSet<Employee>();
-            IdBoss = id;
         }
-        public int getId()
-        {
-            return IdBoss;
-        }
+        
         public void SetSalaryBonus(double salaryBonus)
         {
             PerEmplSalaryBonus = salaryBonus;
