@@ -81,7 +81,7 @@ namespace INPTP_AppForFixing
         }
         public int getId()
         {
-            return id;
+            return Id;
         }
         private int CalculateAge()
         {
