@@ -79,6 +79,10 @@ namespace INPTP_AppForFixing
                 return Employee.nextID++;
             }
         }
+        /// <summary>
+        /// Method to calculate age of employee
+        /// </summary>
+        /// <returns>Age of employee</returns>
         private int CalculateAge()
         {
             DateTime today = DateTime.Now;
