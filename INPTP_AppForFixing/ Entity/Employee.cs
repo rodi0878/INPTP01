@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -79,6 +79,7 @@ namespace INPTP_AppForFixing
                 return Employee.nextID++;
             }
         }
+
         /// <summary>
         /// Method to calculate age of employee
         /// </summary>
@@ -118,6 +119,11 @@ namespace INPTP_AppForFixing
             return ApplyTaxRateToSalary(CalcYearlySalaryCZK());
         }
 
+        /// <summary>
+        /// Method to calculate salary after taxation
+        /// </summary>
+        /// <param name="salary">Salary of employee</param>
+        /// <returns>Salary after to taxation</returns>
         private double ApplyTaxRateToSalary(double salary)
         {
             return salary * (1 - TaxRate);
