@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 
 namespace INPTP_AppForFixing.Properties {
     
@@ -24,7 +25,12 @@ namespace INPTP_AppForFixing.Properties {
         }
         
         private void SettingsSavingEventHandler(object sender, System.ComponentModel.CancelEventArgs e) {
-            // Kód pro zpracování události SettingsSaving přidejte sem.
+            DialogResult result = MessageBox.Show("Save current values for aplication settings?", "Save settings?", MessageBoxButtons.YesNo);
+
+            if (DialogResult.No == result)
+            {
+                e.Cancel = true;
+            }
         }
     }
 }
