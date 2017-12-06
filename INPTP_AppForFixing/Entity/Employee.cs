@@ -124,7 +124,7 @@ namespace INPTP_AppForFixing
         /// </summary>
         /// <param name="salary">Salary of employee</param>
         /// <returns>Salary after to taxation</returns>
-        private double ApplyTaxRateToSalary(double salary)
+        protected virtual double ApplyTaxRateToSalary(double salary)
         {
             return salary * (1 - TaxRate);
         }

@@ -31,12 +31,12 @@ namespace INPTP_AppForFixing
 
                     if (operation == Operation.ADD)
                     {
-                        selectedBoss.InsertEmpl(newEmployee);
+                        selectedBoss.Add(newEmployee);
                     }
                     else
                     {
-                        selectedBoss.PurgeEmpl(main.GetSelectedEmployee());
-                        selectedBoss.InsertEmpl(newEmployee);
+                        selectedBoss.Remove(main.GetSelectedEmployee());
+                        selectedBoss.Add(newEmployee);
                     }
 
                     main.OnEmployeeChange();
