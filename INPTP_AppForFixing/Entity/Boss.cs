@@ -38,6 +38,7 @@ namespace INPTP_AppForFixing
 
         public void SetSalaryBonus(double salaryBonus)
         {
+            if (salaryBonus > 0.0)
             PerEmplSalaryBonus = salaryBonus;
         }
 
@@ -88,7 +89,7 @@ namespace INPTP_AppForFixing
         {
             get { return employees.Count; }
         }
-            
+
         /// <summary>
         /// Method which calculate year salary and subemployee bonus (include boss salary).
         /// </summary>
@@ -109,7 +110,7 @@ namespace INPTP_AppForFixing
 
         public override string ToString()
         {
-            return base.ToString() + "  ;DEPARTMENT - Name: " + department.Name + " ;CODE: " + department.Code; 
+            return base.ToString() + "  ;DEPARTMENT - Name: " + department.Name + " ;CODE: " + department.Code;
         }
     }
 }
