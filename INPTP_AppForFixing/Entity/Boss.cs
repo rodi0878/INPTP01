@@ -39,7 +39,11 @@ namespace INPTP_AppForFixing
         public double SalaryBonusPerEmployee
         {
             get => perEmployeeSalaryBonus;
-            set => perEmployeeSalaryBonus = value;
+            set
+            {
+                if (value >= 0.0)
+                    perEmployeeSalaryBonus = value;
+            }
         }
 
         public void Add(Employee employee)
@@ -82,7 +86,7 @@ namespace INPTP_AppForFixing
         /// </summary>
         /// <returns>Return count of employees.</returns>
         public int EmployeeCount => employees.Count;
-            
+
         /// <summary>
         /// Method which calculate year salary and subemployee bonus (include boss salary).
         /// </summary>
@@ -97,7 +101,7 @@ namespace INPTP_AppForFixing
         /// <returns>Return calculate yearly income after tax.</returns>
         public override double CalcYearlyIncome() => ApplyTaxRateToSalary(CalcYearlySalaryCZK());
 
-        protected override double ApplyTaxRateToSalary(double salary) => salary * (1 - Boss.TaxRate); 
+        protected override double ApplyTaxRateToSalary(double salary) => salary * (1 - Boss.TaxRate);
 
         public override string ToString() => base.ToString() + $";DEPARTMENT - Name: {department.Name} ;CODE: {department.Code}";
 
