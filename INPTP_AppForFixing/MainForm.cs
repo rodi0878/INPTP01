@@ -57,6 +57,72 @@ namespace INPTP_AppForFixing
 
         public Boss GetSelectedBoss() => (Boss)listBoxOfBosses.SelectedItem;
 
+        public Boss GetSelecteBossID(int ID)
+         {
+             foreach (Boss item in listBoxOfBosses.Items)
+            {
+                if (item.Id == ID)
+                {
+                   return item;
+                }
+            }
+            return (Boss) listBoxOfBosses.SelectedItem;
+        }
+
+        public bool ControlhHierarchySons(Boss investigatedBoss, Employee searched)
+        {
+            List<Employee> employees;
+            if (investigatedBoss.GetEmployees().Count > 0)
+            {
+                if (!investigatedBoss.HasEmployee(searched))
+                {
+                    employees = new List<Employee>(investigatedBoss.GetEmployees());
+                    for (int i = 0; i < employees.Count; i++)
+                    {
+                        foreach (Boss item in listBoxOfBosses.Items)
+                        {
+                            if (employees[i].Id == item.Id)
+                            {
+                                if (ControlhHierarchySons(item, searched))
+                                {
+                                    return true;
+                                }
+                                else
+                                {
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                }
+                return false;
+            }
+            return true;
+        }
+
+        public bool ControlhHierarchy(Employee newEmployee, Employee superiorBoss)
+        {
+            foreach (Boss item in listBoxOfBosses.Items)
+            {
+                if (item.Id == newEmployee.Id)
+                {
+                    if (newEmployee.Id != superiorBoss.Id)
+                    {
+                        if (ControlhHierarchySons(item, superiorBoss))
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            }
+            return true;
+        }
+
         public Employee GetSelectedEmployee() => (Employee)listBoxEmpl.SelectedItem;
 
         public int getNextEmployeeId()

@@ -35,8 +35,16 @@ namespace INPTP_AppForFixing
                     }
                     else
                     {
-                        selectedBoss.Remove(main.GetSelectedEmployee());
-                        selectedBoss.Add(newEmployee);
+                        selectedBoss.PurgeEmpl(main.GetSelectedEmployee());
+                        Boss selectedBossNew = main.GetSelecteBossID(int.Parse(tBIdBoss.Text));
+                        if (main.ControlhHierarchy(main.GetSelectedEmployee(), selectedBossNew))
+                        {
+                            selectedBossNew.InsertEmpl(newEmployee);
+                        }
+                        else
+                        {
+                            selectedBoss.InsertEmpl(newEmployee);
+                        }
                     }
 
                     main.OnEmployeeChange();
@@ -71,8 +79,7 @@ namespace INPTP_AppForFixing
             int id;
             double salary;
 
-            if (Int32.TryParse(tBID.Text, out id) && Double.TryParse(tBSalary.Text, out salary) && tBID.Text.Length > 0 &&
-                tBFirstName.Text.Length > 0 && tBJob.Text.Length > 0 && tBLastName.Text.Length > 0) return true;
+            if (tBFirstName.Text.Length > 0 && tBJob.Text.Length > 0 && tBLastName.Text.Length > 0 && Int32.TryParse(tBIdBoss.Text, out id)) return true;
             return false;
         }
 
@@ -84,6 +91,9 @@ namespace INPTP_AppForFixing
                 if (operation == Operation.ADD)
                 {
                     tBID.Text = main.getNextEmployeeId().ToString();
+                    tBIdBoss.Text = "0";
+                    label7.Visible = false;
+                    tBIdBoss.Visible = false;
                 }
                 else
                 {
@@ -92,6 +102,7 @@ namespace INPTP_AppForFixing
                     tBLastName.Text = selectedEmployee.LastName;
                     tBJob.Text = selectedEmployee.JobTitle;
                     tBSalary.Text = selectedEmployee.MonthlySalaryCZK.ToString();
+                    tBIdBoss.Text = selectedBoss.Id.ToString();
                 }
 
                 lbDep.Visible = false;
@@ -100,6 +111,7 @@ namespace INPTP_AppForFixing
             }
             else
             {
+                tBIdBoss.Text = "0";
                 if (operation == Operation.ADD)
                 {
                     tBID.Text = main.getNextEmployeeId().ToString();
@@ -113,6 +125,8 @@ namespace INPTP_AppForFixing
                     tBSalary.Text = selectedBoss.MonthlySalaryCZK.ToString();
                     dateTimePickerBirthDate.Value = selectedBoss.BirthDate;
                 }
+                label7.Visible = false;
+                tBIdBoss.Visible = false;
             }
 
         }
