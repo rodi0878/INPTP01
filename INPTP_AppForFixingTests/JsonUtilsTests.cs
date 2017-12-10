@@ -32,7 +32,7 @@ namespace INPTP_AppForFixingTests
         {
             Boss exportedBoss = createTestBoss();
             Employee exportedEmployee = createTestEmployee();
-            exportedBoss.InsertEmpl(exportedEmployee);
+            exportedBoss.Add(exportedEmployee);
             JsonUtils.Instance.SerializeBossToFile(exportedBoss, TEST_FILE);
 
             Boss deserializedBoss = deserializeBossFromTestFileAndDeleteIt();
@@ -45,7 +45,7 @@ namespace INPTP_AppForFixingTests
         {
             Boss exportedBoss = createTestBoss();
             Employee exportedEmployee = createTestEmployee();
-            exportedBoss.InsertEmpl(exportedEmployee);
+            exportedBoss.Add(exportedEmployee);
             JsonUtils.Instance.SerializeBossToFile(exportedBoss, TEST_FILE);
 
             Boss deserializedBoss = deserializeBossFromTestFileAndDeleteIt();
@@ -60,8 +60,8 @@ namespace INPTP_AppForFixingTests
             Boss exportedBoss = createTestBoss();
             Boss exportedSubBoss = createTestSubBoss();
             Employee exportedEmployee = createTestEmployee();
-            exportedSubBoss.InsertEmpl(exportedEmployee);
-            exportedBoss.InsertEmpl(exportedSubBoss);
+            exportedSubBoss.Add(exportedEmployee);
+            exportedBoss.Add(exportedSubBoss);
 
             JsonUtils.Instance.SerializeBossToFile(exportedBoss, TEST_FILE);
 

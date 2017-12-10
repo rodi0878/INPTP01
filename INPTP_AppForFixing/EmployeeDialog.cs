@@ -31,19 +31,19 @@ namespace INPTP_AppForFixing
 
                     if (operation == Operation.ADD)
                     {
-                        selectedBoss.InsertEmpl(newEmployee);
+                        selectedBoss.Add(newEmployee);
                     }
                     else
                     {
-                        selectedBoss.PurgeEmpl(main.GetSelectedEmployee());
+                        selectedBoss.Remove(main.GetSelectedEmployee());
                         Boss selectedBossNew = main.GetSelecteBossID(int.Parse(tBIdBoss.Text));
                         if (main.ControlhHierarchy(main.GetSelectedEmployee(), selectedBossNew))
                         {
-                            selectedBossNew.InsertEmpl(newEmployee);
+                            selectedBossNew.Add(newEmployee);
                         }
                         else
                         {
-                            selectedBoss.InsertEmpl(newEmployee);
+                            selectedBoss.Add(newEmployee);
                         }
                     }
 

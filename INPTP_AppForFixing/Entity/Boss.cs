@@ -11,11 +11,11 @@ namespace INPTP_AppForFixing
     public class Boss : Employee
     {
         private const int MONTHS_OF_YEAR = 12;
-        [DataMember]
-        private HashSet<Employee> employees;
+        private double perEmployeeSalaryBonus;
         [DataMember]
         private Department department;
-        public double PerEmplSalaryBonus { get; set; }
+        [DataMember]
+        private HashSet<Employee> employees;
 
 
         /// <summary>
@@ -25,49 +25,53 @@ namespace INPTP_AppForFixing
         public Boss(Department department)
         {
             if (department == null) throw new ArgumentNullException("Department is null");
-            employees = new HashSet<Employee>();
             this.department = department;
-        }
-
-        public Boss(int id, string firstName, string lastName, string job, DateTime ourBirthDate, double monthlySalaryCZK, Department dep) :
-            base(id, firstName, lastName, job, ourBirthDate, monthlySalaryCZK)
-        {
-            department = dep;
             employees = new HashSet<Employee>();
         }
 
-        public void SetSalaryBonus(double salaryBonus)
+        public Boss(int id, string firstName, string lastName, string job, DateTime birthDate, double monthlySalaryCZK, Department department) :
+            base(id, firstName, lastName, job, birthDate, monthlySalaryCZK)
         {
-            if (salaryBonus > 0.0)
-            PerEmplSalaryBonus = salaryBonus;
+            this.department = department;
+            employees = new HashSet<Employee>();
         }
 
-        public void InsertEmpl(Employee empl)
+        public double SalaryBonusPerEmployee
         {
-            if (empl == null) throw new ArgumentNullException("Employee is null");
-            employees.Add(empl);
+            get => perEmployeeSalaryBonus;
+            set
+            {
+                if (value >= 0.0)
+                    perEmployeeSalaryBonus = value;
+            }
+        }
+
+        public void Add(Employee employee)
+        {
+            if (employee == null) throw new ArgumentNullException("Employee is null");
+            employees.Add(employee);
         }
 
         /// <summary>
         /// Method on remove employee from boss control.
         /// </summary>
-        /// <param name="empl">Employee which is remove from boss control.</param>
-        public void PurgeEmpl(Employee empl)
+        /// <param name="employee">Employee which is remove from boss control.</param>
+        public void Remove(Employee employee)
         {
-            if (empl == null) throw new ArgumentNullException("Employee is null");
-            employees.Remove(empl);
+            if (employee == null) throw new ArgumentNullException("Employee is null");
+            employees.Remove(employee);
         }
 
 
         /// <summary>
         /// Method which return if employess is under boss control.
         /// </summary>
-        /// <param name="empl"></param>
+        /// <param name="employee"></param>
         /// <returns>Return true if employee is find. Else return false.  </returns>
-        public bool HasEmployee(Employee empl)
+        public bool HasEmployee(Employee employee)
         {
-            if (empl == null) throw new ArgumentNullException("Employee is null");
-            return employees.Contains(empl);
+            if (employee == null) throw new ArgumentNullException("Employee is null");
+            return employees.Contains(employee);
         }
 
 
@@ -75,42 +79,31 @@ namespace INPTP_AppForFixing
         /// Method which return all employees.
         /// </summary>
         /// <returns>Return all employees in HashSet.</returns>
-        public ISet<Employee> GetEmployees()
-        {
-            return new HashSet<Employee>(employees);
-        }
-
+        public ISet<Employee> GetEmployees() => new HashSet<Employee>(employees);
 
         /// <summary>
         /// Property for get count of employees.
         /// </summary>
         /// <returns>Return count of employees.</returns>
-        public int EmployeeCount
-        {
-            get { return employees.Count; }
-        }
+        public int EmployeeCount => employees.Count;
 
         /// <summary>
         /// Method which calculate year salary and subemployee bonus (include boss salary).
         /// </summary>
         /// <returns>Return value of year department salary.</returns>
-        public override double CalcYearlySalaryCZK()
-        {
-            return (base.CalcYearlySalaryCZK() + (EmployeeCount * PerEmplSalaryBonus * MONTHS_OF_YEAR));
-        }
+        public override double CalcYearlySalaryCZK() => base.CalcYearlySalaryCZK() + CalculateYearlyBonusForEmployees();
+
+        private double CalculateYearlyBonusForEmployees() => EmployeeCount * perEmployeeSalaryBonus * MONTHS_OF_YEAR;
 
         /// <summary>
         /// Method calculate yearly income of all employees (with VAT).
         /// </summary>
         /// <returns>Return calculate yearly income after tax.</returns>
-        public override double CalcYearlyIncome()
-        {
-            return MonthlySalaryCZK * MONTHS_OF_YEAR * (1 - Boss.TaxRate) + (MONTHS_OF_YEAR * (EmployeeCount * PerEmplSalaryBonus * (1 - Boss.TaxRate)));
-        }
+        public override double CalcYearlyIncome() => ApplyTaxRateToSalary(CalcYearlySalaryCZK());
 
-        public override string ToString()
-        {
-            return base.ToString() + "  ;DEPARTMENT - Name: " + department.Name + " ;CODE: " + department.Code;
-        }
+        protected override double ApplyTaxRateToSalary(double salary) => salary * (1 - Boss.TaxRate);
+
+        public override string ToString() => base.ToString() + $";DEPARTMENT - Name: {department.Name} ;CODE: {department.Code}";
+
     }
 }

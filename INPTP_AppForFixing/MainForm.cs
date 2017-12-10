@@ -204,7 +204,7 @@ namespace INPTP_AppForFixing
             Employee employee = GetSelectedEmployee();
             if (CheckSelectedBoss() && CheckSelectedEmloyee())
             {
-                boss.PurgeEmpl(employee);
+                boss.Remove(employee);
                 OnEmployeeChange();
             }
             else
@@ -235,7 +235,7 @@ namespace INPTP_AppForFixing
                 // Boss' boss, if not the first boss
                 if (this.Bosses.Count > 0)
                 {
-                    this.Bosses.Skip(MainForm.random.Next(this.Bosses.Count)).First().InsertEmpl(boss);
+                    this.Bosses.Skip(MainForm.random.Next(this.Bosses.Count)).First().Add(boss);
                 }
 
                 this.Bosses.Add(boss);
@@ -245,7 +245,7 @@ namespace INPTP_AppForFixing
             else // New employee
             {
                 Boss boss = this.Bosses.Skip(bossIndex).First();
-                boss.InsertEmpl(SampleDataGenerator.RandomEmployee);
+                boss.Add(SampleDataGenerator.RandomEmployee);
 
                 this.OnEmployeeChange();
             }
