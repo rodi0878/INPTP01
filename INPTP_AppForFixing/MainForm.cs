@@ -57,6 +57,7 @@ namespace INPTP_AppForFixing
 
         public Boss GetSelectedBoss() => (Boss)listBoxOfBosses.SelectedItem;
 
+
         public Boss GetSelecteBossID(int ID)
          {
              foreach (Boss item in listBoxOfBosses.Items)
@@ -283,6 +284,24 @@ namespace INPTP_AppForFixing
                     showWarning("Couldn't read selected file. It can be damaged or it doesn't contain Boss at all.");
                 }
             }
+        }
+
+        private void butt_change_boss_Click(object sender, EventArgs e)
+        {
+            if (CheckSelectedBoss() && CheckSelectedEmloyee())
+            {
+                openCahngeBossDialog();
+            }
+            else
+            {
+                showWarning("First you must select a boss and the employee which is about to be altered!");
+            }
+        }
+
+        private void openCahngeBossDialog()
+        {
+            ChangeBossDialog changeBossDialog = new ChangeBossDialog(this);
+            changeBossDialog.ShowDialog();
         }
     }
 }

@@ -35,6 +35,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnImportBoss = new System.Windows.Forms.Button();
             this.btnExportBoss = new System.Windows.Forms.Button();
             this.btnEditBoss = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -43,7 +44,7 @@
             this.btnEmplDelete = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.btnGenerateSampleData = new System.Windows.Forms.Button();
-            this.btnImportBoss = new System.Windows.Forms.Button();
+            this.butt_change_boss = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -137,6 +138,16 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Boss control";
             // 
+            // btnImportBoss
+            // 
+            this.btnImportBoss.Location = new System.Drawing.Point(5, 68);
+            this.btnImportBoss.Name = "btnImportBoss";
+            this.btnImportBoss.Size = new System.Drawing.Size(101, 28);
+            this.btnImportBoss.TabIndex = 6;
+            this.btnImportBoss.Text = "Import boss";
+            this.btnImportBoss.UseVisualStyleBackColor = true;
+            this.btnImportBoss.Click += new System.EventHandler(this.btnImportBoss_Click);
+            // 
             // btnExportBoss
             // 
             this.btnExportBoss.Location = new System.Drawing.Point(126, 68);
@@ -159,6 +170,7 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.butt_change_boss);
             this.groupBox4.Controls.Add(this.btnEmplEdit);
             this.groupBox4.Controls.Add(this.btnEmplAdd);
             this.groupBox4.Controls.Add(this.btnEmplDelete);
@@ -166,7 +178,7 @@
             this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox4.Size = new System.Drawing.Size(339, 67);
+            this.groupBox4.Size = new System.Drawing.Size(339, 108);
             this.groupBox4.TabIndex = 8;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Employee control";
@@ -219,15 +231,15 @@
             this.btnGenerateSampleData.UseVisualStyleBackColor = true;
             this.btnGenerateSampleData.Click += new System.EventHandler(this.btnGenerateSampleData_Click);
             // 
-            // btnImportBoss
+            // butt_change_boss
             // 
-            this.btnImportBoss.Location = new System.Drawing.Point(5, 68);
-            this.btnImportBoss.Name = "btnImportBoss";
-            this.btnImportBoss.Size = new System.Drawing.Size(101, 28);
-            this.btnImportBoss.TabIndex = 6;
-            this.btnImportBoss.Text = "Import boss";
-            this.btnImportBoss.UseVisualStyleBackColor = true;
-            this.btnImportBoss.Click += new System.EventHandler(this.btnImportBoss_Click);
+            this.butt_change_boss.Location = new System.Drawing.Point(5, 68);
+            this.butt_change_boss.Name = "butt_change_boss";
+            this.butt_change_boss.Size = new System.Drawing.Size(101, 28);
+            this.butt_change_boss.TabIndex = 5;
+            this.butt_change_boss.Text = "Change boss";
+            this.butt_change_boss.UseVisualStyleBackColor = true;
+            this.butt_change_boss.Click += new System.EventHandler(this.butt_change_boss_Click);
             // 
             // MainForm
             // 
@@ -272,6 +284,7 @@
         private System.Windows.Forms.Button btnGenerateSampleData;
         private System.Windows.Forms.Button btnExportBoss;
         private System.Windows.Forms.Button btnImportBoss;
+        private System.Windows.Forms.Button butt_change_boss;
     }
 }
 
