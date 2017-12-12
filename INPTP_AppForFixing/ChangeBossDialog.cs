@@ -24,9 +24,7 @@ namespace INPTP_AppForFixing
             selectedBoss = main.GetSelectedBoss();
             selectedEmployee = main.GetSelectedEmployee();
             newBoss = null;
-
             Init();
-
         }
 
         public void Init()
@@ -43,12 +41,12 @@ namespace INPTP_AppForFixing
             }
         }
 
-        private void buttSave_Click(object sender, EventArgs e)
+        private void ButtSave_Click(object sender, EventArgs e)
         {
             if (newBoss != null)
             {
-                selectedBoss.PurgeEmpl(selectedEmployee);
-                newBoss.InsertEmpl(selectedEmployee);
+                selectedBoss.Remove(selectedEmployee);
+                newBoss.Add(selectedEmployee);
                 main.OnEmployeeChange();
                 Close();
             }
@@ -59,7 +57,7 @@ namespace INPTP_AppForFixing
             }
         }
 
-        private void comboListBoss_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboListBoss_SelectedIndexChanged(object sender, EventArgs e)
         {
             newBoss = (Boss)comboListBoss.SelectedItem;
             textnewBossID.Text = newBoss.Id.ToString();

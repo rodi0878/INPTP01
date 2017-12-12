@@ -239,7 +239,7 @@
             this.butt_change_boss.TabIndex = 5;
             this.butt_change_boss.Text = "Change boss";
             this.butt_change_boss.UseVisualStyleBackColor = true;
-            this.butt_change_boss.Click += new System.EventHandler(this.butt_change_boss_Click);
+            this.butt_change_boss.Click += new System.EventHandler(this.Butt_change_boss_Click);
             // 
             // MainForm
             // 

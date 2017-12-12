@@ -206,7 +206,7 @@
             this.comboListBoss.Name = "comboListBoss";
             this.comboListBoss.Size = new System.Drawing.Size(229, 21);
             this.comboListBoss.TabIndex = 14;
-            this.comboListBoss.SelectedIndexChanged += new System.EventHandler(this.comboListBoss_SelectedIndexChanged);
+            this.comboListBoss.SelectedIndexChanged += new System.EventHandler(this.ComboListBoss_SelectedIndexChanged);
             // 
             // buttSave
             // 
@@ -216,7 +216,7 @@
             this.buttSave.TabIndex = 16;
             this.buttSave.Text = "Save";
             this.buttSave.UseVisualStyleBackColor = true;
-            this.buttSave.Click += new System.EventHandler(this.buttSave_Click);
+            this.buttSave.Click += new System.EventHandler(this.ButtSave_Click);
             // 
             // ChangeBossDialog
             // 

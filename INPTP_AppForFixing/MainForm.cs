@@ -57,7 +57,6 @@ namespace INPTP_AppForFixing
 
         public Boss GetSelectedBoss() => (Boss)listBoxOfBosses.SelectedItem;
 
-
         public Boss GetSelecteBossID(int ID)
          {
              foreach (Boss item in listBoxOfBosses.Items)
@@ -286,11 +285,11 @@ namespace INPTP_AppForFixing
             }
         }
 
-        private void butt_change_boss_Click(object sender, EventArgs e)
+        private void Butt_change_boss_Click(object sender, EventArgs e)
         {
             if (CheckSelectedBoss() && CheckSelectedEmloyee())
             {
-                openCahngeBossDialog();
+                OpenCahngeBossDialog();
             }
             else
             {
@@ -298,7 +297,7 @@ namespace INPTP_AppForFixing
             }
         }
 
-        private void openCahngeBossDialog()
+        private void OpenCahngeBossDialog()
         {
             ChangeBossDialog changeBossDialog = new ChangeBossDialog(this);
             changeBossDialog.ShowDialog();
