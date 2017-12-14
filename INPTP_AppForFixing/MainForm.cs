@@ -284,5 +284,23 @@ namespace INPTP_AppForFixing
                 }
             }
         }
+
+        private void Butt_change_boss_Click(object sender, EventArgs e)
+        {
+            if (CheckSelectedBoss() && CheckSelectedEmloyee())
+            {
+                OpenCahngeBossDialog();
+            }
+            else
+            {
+                showWarning("First you must select a boss and the employee which is about to be altered!");
+            }
+        }
+
+        private void OpenCahngeBossDialog()
+        {
+            ChangeBossDialog changeBossDialog = new ChangeBossDialog(this);
+            changeBossDialog.ShowDialog();
+        }
     }
 }
