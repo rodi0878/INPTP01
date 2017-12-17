@@ -1,37 +1,135 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace INPTP_AppForFixing
 {
+    [DataContract]
     public class Employee
     {
-        public int id;
-        public string firstName, lastName, job;
-        public DateTime ourBirthDate;
-        public double monthlySalaryCZK;       
-        public static double taxRate = 0.21;
+        private DateTime _birthDate;
 
-        public int GetAge()
+        [DataMember]
+        public DateTime BirthDate
         {
-            int x = 0;
-            DateTime endDate = DateTime.Now;
-            TimeSpan timeSpan = endDate - ourBirthDate;
-            if (timeSpan.TotalDays > 365)
-                x = (int)Math.Round((timeSpan.TotalDays / 365), MidpointRounding.ToEven);
-            return x;
+            get
+            {
+                return _birthDate;
+            }
+            set
+            {
+                _birthDate = value;
+                Age = CalculateAge();
+            }
         }
 
+        private int id;
+
+        [DataMember]
+        public int Id
+        {
+            get => id; set
+            {
+                this.id = value;
+                Employee.nextID = value >= Employee.nextID ? this.id + 1 : Employee.nextID;
+            }
+        }
+
+        [DataMember]
+        public string FirstName { get; set; }
+
+        [DataMember]
+        public string LastName { get; set; }
+
+        [DataMember]
+        public string JobTitle { get; set; }
+
+        [DataMember]
+        public double MonthlySalaryCZK { get; set; }
+
+        public static double TaxRate => 0.21;
+
+        public int Age { get; private set; }
+
+        private static int nextID = 0;
+
+        public Employee(int id, string firstName, string lastName, string jobTitle, DateTime birthDate, double monthlySalaryCZK)
+        {
+            Id = id;
+            FirstName = firstName;
+            LastName = lastName;
+            JobTitle = jobTitle;
+            BirthDate = birthDate;
+            MonthlySalaryCZK = monthlySalaryCZK;
+        }
+
+        public Employee() { }
+
+
+        /// <summary>
+        /// Always contains the next available ID
+        /// </summary>
+        public static int NextID
+        {
+            get
+            {
+                return Employee.nextID++;
+            }
+        }
+
+        /// <summary>
+        /// Method to calculate age of employee
+        /// </summary>
+        /// <returns>Age of employee</returns>
+        private int CalculateAge()
+        {
+            DateTime today = DateTime.Now;
+            int age = today.Year - BirthDate.Year;
+            if (BirthDate > today.AddYears(-age))
+            {
+                return --age;
+            }
+            else
+            {
+                return age;
+            }
+        }
+
+        /// <summary>
+        /// Method to count sum of 12 salaries (one per month) of the employee
+        /// based on attribute monthlySalaryCZK
+        /// </summary>
+        /// <returns>Sum of all the 12 salaries</returns>
         public virtual double CalcYearlySalaryCZK()
         {
-            return monthlySalaryCZK * 12;
+            return MonthlySalaryCZK * 12;
         }
-               
+
+        /// <summary>
+        /// Method to count the net income of the employee
+        /// based on attribute taxRate
+        /// calls method CalcYearlySalaryCZK
+        /// </summary>
+        /// <returns>Net income of the employee</returns>
         public virtual double CalcYearlyIncome()
         {
-            return CalcYearlySalaryCZK() * (1 - taxRate);
+            return ApplyTaxRateToSalary(CalcYearlySalaryCZK());
         }
+
+        /// <summary>
+        /// Method to calculate salary after taxation
+        /// </summary>
+        /// <param name="salary">Salary of employee</param>
+        /// <returns>Salary after to taxation</returns>
+        protected virtual double ApplyTaxRateToSalary(double salary)
+        {
+            return salary * (1 - TaxRate);
+        }
+
+        public override string ToString() => $"ID:  {Id}; NAME: {FirstName} {LastName}; JOB:{JobTitle}; SALARY: {MonthlySalaryCZK}";
+
     }
 }

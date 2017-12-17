@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Runtime.Serialization;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace INPTP_AppForFixing
 {
+    [DataContract]
     public class Department
     {
         /// <summary>
         /// Property for get and set name of departement
         /// </summary>
+        [DataMember]
         public string Name { get; set; }
 
         /// <summary>
@@ -25,6 +23,15 @@ namespace INPTP_AppForFixing
                 string dptCode = "DPT-" + Regex.Replace(Name, "[ :,.]", "-").ToUpper();
                 return Regex.Replace(dptCode, "[-]{2}", "-").ToUpper();
             }
+        }
+
+        public Department() {
+
+        }
+
+        public Department(string name)
+        {
+            Name = name;
         }
 
         /// <summary>
