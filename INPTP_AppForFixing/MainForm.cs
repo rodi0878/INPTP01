@@ -256,13 +256,13 @@ namespace INPTP_AppForFixing
             if (CheckSelectedBoss())
             {
                 // Displays a SaveFileDialog so the user can save the Boss
-                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-                saveFileDialog1.Filter = "JSON files (*.json)|*.json";
-                saveFileDialog1.Title = "Save an Boss as a JSON File";
-                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "JSON files (*.json)|*.json";
+                saveFileDialog.Title = "Save an Boss as a JSON File";
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     Boss selectedBoss = listBoxOfBosses.SelectedItem as Boss;
-                    JsonUtils.Instance.SerializeBossToFile(selectedBoss, saveFileDialog1.FileName);
+                    JsonUtils.Instance.SerializeBossToFile(selectedBoss, saveFileDialog.FileName);
                     MessageBox.Show("Boss successfully exported", "Export Ok");
                 }
             }
