@@ -255,8 +255,16 @@ namespace INPTP_AppForFixing
         {
             if (CheckSelectedBoss())
             {
-                Boss selectedBoss = listBoxOfBosses.SelectedItem as Boss;
-                JsonUtils.Instance.SerializeBossToFile(selectedBoss);
+                // Displays a SaveFileDialog so the user can save the Boss
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "JSON files (*.json)|*.json";
+                saveFileDialog.Title = "Save an Boss as a JSON File";
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    Boss selectedBoss = listBoxOfBosses.SelectedItem as Boss;
+                    JsonUtils.Instance.SerializeBossToFile(selectedBoss, saveFileDialog.FileName);
+                    MessageBox.Show("Boss successfully exported", "Export Ok");
+                }
             }
             else
             {
@@ -277,6 +285,7 @@ namespace INPTP_AppForFixing
                 {
                     bosses.Add(JsonUtils.Instance.DeserializeBossFromFile(selectFile.FileName));
                     OnBossesChange();
+                    MessageBox.Show("File successfully imported", "Import Ok");
                 }
                 catch (Exception)
                 {
