@@ -39,16 +39,23 @@
             this.btnExportBoss = new System.Windows.Forms.Button();
             this.btnEditBoss = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.butt_change_boss = new System.Windows.Forms.Button();
             this.btnEmplEdit = new System.Windows.Forms.Button();
             this.btnEmplAdd = new System.Windows.Forms.Button();
             this.btnEmplDelete = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.btnGenerateSampleData = new System.Windows.Forms.Button();
-            this.butt_change_boss = new System.Windows.Forms.Button();
+            this.groupBoxGenerator = new System.Windows.Forms.GroupBox();
+            this.rBtnBoth = new System.Windows.Forms.RadioButton();
+            this.rBtnEmployee = new System.Windows.Forms.RadioButton();
+            this.countLabel = new System.Windows.Forms.Label();
+            this.txtCount = new System.Windows.Forms.TextBox();
+            this.rBtnBoss = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBoxGenerator.SuspendLayout();
             this.SuspendLayout();
             // 
             // listBoxOfBosses
@@ -99,7 +106,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.listBoxOfBosses);
-            this.groupBox1.Location = new System.Drawing.Point(7, 26);
+            this.groupBox1.Location = new System.Drawing.Point(11, 11);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
@@ -113,7 +120,7 @@
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.listBoxEmpl);
-            this.groupBox2.Location = new System.Drawing.Point(355, 26);
+            this.groupBox2.Location = new System.Drawing.Point(359, 11);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
@@ -129,7 +136,7 @@
             this.groupBox3.Controls.Add(this.btnEditBoss);
             this.groupBox3.Controls.Add(this.btnAddBoss);
             this.groupBox3.Controls.Add(this.btnDelBoss);
-            this.groupBox3.Location = new System.Drawing.Point(7, 402);
+            this.groupBox3.Location = new System.Drawing.Point(11, 387);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
@@ -174,7 +181,7 @@
             this.groupBox4.Controls.Add(this.btnEmplEdit);
             this.groupBox4.Controls.Add(this.btnEmplAdd);
             this.groupBox4.Controls.Add(this.btnEmplDelete);
-            this.groupBox4.Location = new System.Drawing.Point(355, 402);
+            this.groupBox4.Location = new System.Drawing.Point(359, 387);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
@@ -182,6 +189,16 @@
             this.groupBox4.TabIndex = 8;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Employee control";
+            // 
+            // butt_change_boss
+            // 
+            this.butt_change_boss.Location = new System.Drawing.Point(5, 68);
+            this.butt_change_boss.Name = "butt_change_boss";
+            this.butt_change_boss.Size = new System.Drawing.Size(101, 28);
+            this.butt_change_boss.TabIndex = 5;
+            this.butt_change_boss.Text = "Change boss";
+            this.butt_change_boss.UseVisualStyleBackColor = true;
+            this.butt_change_boss.Click += new System.EventHandler(this.Butt_change_boss_Click);
             // 
             // btnEmplEdit
             // 
@@ -223,30 +240,86 @@
             // 
             // btnGenerateSampleData
             // 
-            this.btnGenerateSampleData.Location = new System.Drawing.Point(0, 0);
+            this.btnGenerateSampleData.Location = new System.Drawing.Point(25, 122);
             this.btnGenerateSampleData.Name = "btnGenerateSampleData";
-            this.btnGenerateSampleData.Size = new System.Drawing.Size(186, 23);
+            this.btnGenerateSampleData.Size = new System.Drawing.Size(101, 28);
             this.btnGenerateSampleData.TabIndex = 10;
-            this.btnGenerateSampleData.Text = "Generate sample boss/employee";
+            this.btnGenerateSampleData.Text = "Generate";
             this.btnGenerateSampleData.UseVisualStyleBackColor = true;
             this.btnGenerateSampleData.Click += new System.EventHandler(this.btnGenerateSampleData_Click);
             // 
-            // butt_change_boss
+            // groupBoxGenerator
             // 
-            this.butt_change_boss.Location = new System.Drawing.Point(5, 68);
-            this.butt_change_boss.Name = "butt_change_boss";
-            this.butt_change_boss.Size = new System.Drawing.Size(101, 28);
-            this.butt_change_boss.TabIndex = 5;
-            this.butt_change_boss.Text = "Change boss";
-            this.butt_change_boss.UseVisualStyleBackColor = true;
-            this.butt_change_boss.Click += new System.EventHandler(this.Butt_change_boss_Click);
+            this.groupBoxGenerator.Controls.Add(this.rBtnBoth);
+            this.groupBoxGenerator.Controls.Add(this.rBtnEmployee);
+            this.groupBoxGenerator.Controls.Add(this.countLabel);
+            this.groupBoxGenerator.Controls.Add(this.btnGenerateSampleData);
+            this.groupBoxGenerator.Controls.Add(this.txtCount);
+            this.groupBoxGenerator.Controls.Add(this.rBtnBoss);
+            this.groupBoxGenerator.Location = new System.Drawing.Point(11, 500);
+            this.groupBoxGenerator.Name = "groupBoxGenerator";
+            this.groupBoxGenerator.Size = new System.Drawing.Size(156, 158);
+            this.groupBoxGenerator.TabIndex = 11;
+            this.groupBoxGenerator.TabStop = false;
+            this.groupBoxGenerator.Text = "Boss / Employee generator";
+            // 
+            // rBtnBoth
+            // 
+            this.rBtnBoth.AutoSize = true;
+            this.rBtnBoth.Checked = true;
+            this.rBtnBoth.Location = new System.Drawing.Point(6, 66);
+            this.rBtnBoth.Name = "rBtnBoth";
+            this.rBtnBoth.Size = new System.Drawing.Size(118, 17);
+            this.rBtnBoth.TabIndex = 11;
+            this.rBtnBoth.TabStop = true;
+            this.rBtnBoth.Text = "Boss and Employee";
+            this.rBtnBoth.UseVisualStyleBackColor = true;
+            // 
+            // rBtnEmployee
+            // 
+            this.rBtnEmployee.AutoSize = true;
+            this.rBtnEmployee.Location = new System.Drawing.Point(6, 43);
+            this.rBtnEmployee.Name = "rBtnEmployee";
+            this.rBtnEmployee.Size = new System.Drawing.Size(71, 17);
+            this.rBtnEmployee.TabIndex = 1;
+            this.rBtnEmployee.Text = "Employee";
+            this.rBtnEmployee.UseVisualStyleBackColor = true;
+            // 
+            // countLabel
+            // 
+            this.countLabel.AutoSize = true;
+            this.countLabel.Location = new System.Drawing.Point(6, 92);
+            this.countLabel.Name = "countLabel";
+            this.countLabel.Size = new System.Drawing.Size(38, 13);
+            this.countLabel.TabIndex = 3;
+            this.countLabel.Text = "Count:";
+            // 
+            // txtCount
+            // 
+            this.txtCount.Location = new System.Drawing.Point(50, 89);
+            this.txtCount.MaxLength = 3;
+            this.txtCount.Name = "txtCount";
+            this.txtCount.Size = new System.Drawing.Size(56, 20);
+            this.txtCount.TabIndex = 2;
+            this.txtCount.Text = "0";
+            this.txtCount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCount_KeyPress);
+            // 
+            // rBtnBoss
+            // 
+            this.rBtnBoss.AutoSize = true;
+            this.rBtnBoss.Location = new System.Drawing.Point(6, 20);
+            this.rBtnBoss.Name = "rBtnBoss";
+            this.rBtnBoss.Size = new System.Drawing.Size(48, 17);
+            this.rBtnBoss.TabIndex = 0;
+            this.rBtnBoss.Text = "Boss";
+            this.rBtnBoss.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(705, 505);
-            this.Controls.Add(this.btnGenerateSampleData);
+            this.ClientSize = new System.Drawing.Size(705, 668);
+            this.Controls.Add(this.groupBoxGenerator);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -261,6 +334,8 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
+            this.groupBoxGenerator.ResumeLayout(false);
+            this.groupBoxGenerator.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -285,6 +360,12 @@
         private System.Windows.Forms.Button btnExportBoss;
         private System.Windows.Forms.Button btnImportBoss;
         private System.Windows.Forms.Button butt_change_boss;
+        private System.Windows.Forms.GroupBox groupBoxGenerator;
+        private System.Windows.Forms.Label countLabel;
+        private System.Windows.Forms.TextBox txtCount;
+        private System.Windows.Forms.RadioButton rBtnEmployee;
+        private System.Windows.Forms.RadioButton rBtnBoss;
+        private System.Windows.Forms.RadioButton rBtnBoth;
     }
 }
 
