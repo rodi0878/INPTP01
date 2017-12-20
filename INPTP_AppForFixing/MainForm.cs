@@ -58,15 +58,15 @@ namespace INPTP_AppForFixing
         public Boss GetSelectedBoss() => (Boss)listBoxOfBosses.SelectedItem;
 
         public Boss GetSelecteBossID(int ID)
-         {
-             foreach (Boss item in listBoxOfBosses.Items)
+        {
+            foreach (Boss item in listBoxOfBosses.Items)
             {
                 if (item.Id == ID)
                 {
-                   return item;
+                    return item;
                 }
             }
-            return (Boss) listBoxOfBosses.SelectedItem;
+            return (Boss)listBoxOfBosses.SelectedItem;
         }
 
         public bool ControlhHierarchySons(Boss investigatedBoss, Employee searched)
@@ -227,26 +227,52 @@ namespace INPTP_AppForFixing
 
         private void btnGenerateSampleData_Click(object sender, EventArgs e)
         {
-            int bossIndex = MainForm.random.Next(this.Bosses.Count + 1); // 1/(n+1) chance of creating a new boss
-            if (bossIndex == this.Bosses.Count) // New boss
+            Int32.TryParse(txtCount.Text, out int count);
+            for (int i = 0; i < count; i++)
             {
-                Boss boss = SampleDataGenerator.RandomBoss;
-
-                // Boss' boss, if not the first boss
-                if (this.Bosses.Count > 0)
+                try
                 {
-                    this.Bosses.Skip(MainForm.random.Next(this.Bosses.Count)).First().Add(boss);
+                    GenerateSampleData();
                 }
+                catch (Exception ex)
+                {
+                    showWarning(ex.Message);
+                    break;
+                }
+            }
+        }
 
-                this.Bosses.Add(boss);
-
+        private void GenerateSampleData()
+        {
+            if (rBtnBoth.Checked)
+            {
+                int bossIndex = MainForm.random.Next(this.Bosses.Count + 1); // 1/(n+1) chance of creating a new boss
+                if (bossIndex == this.Bosses.Count) // New boss
+                {
+                    Boss boss = SampleDataGenerator.RandomBoss;
+                    // Boss' boss, if not the first boss
+                    if (this.Bosses.Count > 0)
+                        this.Bosses.Skip(MainForm.random.Next(this.Bosses.Count)).First().Add(boss);
+                    this.Bosses.Add(boss);
+                    this.OnBossesChange();
+                }
+                else // New employee
+                {
+                    Boss boss = this.Bosses.Skip(bossIndex).First();
+                    boss.Add(SampleDataGenerator.RandomEmployee);
+                    this.OnEmployeeChange();
+                }
+            }
+            else if (rBtnBoss.Checked)
+            {
+                this.Bosses.Add(SampleDataGenerator.RandomBoss);
                 this.OnBossesChange();
             }
-            else // New employee
+            else if (rBtnEmployee.Checked)
             {
-                Boss boss = this.Bosses.Skip(bossIndex).First();
-                boss.Add(SampleDataGenerator.RandomEmployee);
-
+                if (GetSelectedBoss() == null)
+                    throw new Exception("Select boss first for new employees");
+                GetSelectedBoss().Add(SampleDataGenerator.RandomEmployee);
                 this.OnEmployeeChange();
             }
         }
@@ -310,6 +336,22 @@ namespace INPTP_AppForFixing
         {
             ChangeBossDialog changeBossDialog = new ChangeBossDialog(this);
             changeBossDialog.ShowDialog();
+        }
+
+        private void txtCount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void radipButtonChange(object sender, EventArgs e)
+        {
+            if (sender is RadioButton)
+            {
+                ((RadioButton)sender).Checked = !((RadioButton)sender).Checked;
+            }
         }
     }
 }
