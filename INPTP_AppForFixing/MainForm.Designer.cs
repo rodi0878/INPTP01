@@ -39,12 +39,14 @@
             this.btnExportBoss = new System.Windows.Forms.Button();
             this.btnEditBoss = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.butt_change_boss = new System.Windows.Forms.Button();
             this.btnEmplEdit = new System.Windows.Forms.Button();
             this.btnEmplAdd = new System.Windows.Forms.Button();
             this.btnEmplDelete = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.btnGenerateSampleData = new System.Windows.Forms.Button();
-            this.butt_change_boss = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -93,7 +95,7 @@
             this.listBoxEmpl.Location = new System.Drawing.Point(4, 17);
             this.listBoxEmpl.Margin = new System.Windows.Forms.Padding(2);
             this.listBoxEmpl.Name = "listBoxEmpl";
-            this.listBoxEmpl.Size = new System.Drawing.Size(331, 329);
+            this.listBoxEmpl.Size = new System.Drawing.Size(346, 329);
             this.listBoxEmpl.TabIndex = 4;
             // 
             // groupBox1
@@ -117,7 +119,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox2.Size = new System.Drawing.Size(339, 371);
+            this.groupBox2.Size = new System.Drawing.Size(354, 371);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "List of Employes";
@@ -170,6 +172,8 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.button1);
+            this.groupBox4.Controls.Add(this.button2);
             this.groupBox4.Controls.Add(this.butt_change_boss);
             this.groupBox4.Controls.Add(this.btnEmplEdit);
             this.groupBox4.Controls.Add(this.btnEmplAdd);
@@ -178,10 +182,20 @@
             this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox4.Size = new System.Drawing.Size(339, 108);
+            this.groupBox4.Size = new System.Drawing.Size(354, 108);
             this.groupBox4.TabIndex = 8;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Employee control";
+            // 
+            // butt_change_boss
+            // 
+            this.butt_change_boss.Location = new System.Drawing.Point(5, 68);
+            this.butt_change_boss.Name = "butt_change_boss";
+            this.butt_change_boss.Size = new System.Drawing.Size(101, 28);
+            this.butt_change_boss.TabIndex = 5;
+            this.butt_change_boss.Text = "Change boss";
+            this.butt_change_boss.UseVisualStyleBackColor = true;
+            this.butt_change_boss.Click += new System.EventHandler(this.Butt_change_boss_Click);
             // 
             // btnEmplEdit
             // 
@@ -207,7 +221,7 @@
             // 
             this.btnEmplDelete.Location = new System.Drawing.Point(242, 34);
             this.btnEmplDelete.Name = "btnEmplDelete";
-            this.btnEmplDelete.Size = new System.Drawing.Size(93, 28);
+            this.btnEmplDelete.Size = new System.Drawing.Size(101, 28);
             this.btnEmplDelete.TabIndex = 3;
             this.btnEmplDelete.Text = "Delete empl";
             this.btnEmplDelete.UseVisualStyleBackColor = true;
@@ -217,7 +231,7 @@
             // 
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(705, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(720, 24);
             this.menuStrip1.TabIndex = 9;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -231,21 +245,31 @@
             this.btnGenerateSampleData.UseVisualStyleBackColor = true;
             this.btnGenerateSampleData.Click += new System.EventHandler(this.btnGenerateSampleData_Click);
             // 
-            // butt_change_boss
+            // button1
             // 
-            this.butt_change_boss.Location = new System.Drawing.Point(5, 68);
-            this.butt_change_boss.Name = "butt_change_boss";
-            this.butt_change_boss.Size = new System.Drawing.Size(101, 28);
-            this.butt_change_boss.TabIndex = 5;
-            this.butt_change_boss.Text = "Change boss";
-            this.butt_change_boss.UseVisualStyleBackColor = true;
-            this.butt_change_boss.Click += new System.EventHandler(this.Butt_change_boss_Click);
+            this.button1.Location = new System.Drawing.Point(126, 68);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(101, 28);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Import employee";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnImportEmployee_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(242, 68);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(101, 28);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Export employee";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.btnExportEmployee_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(705, 505);
+            this.ClientSize = new System.Drawing.Size(720, 505);
             this.Controls.Add(this.btnGenerateSampleData);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -285,6 +309,8 @@
         private System.Windows.Forms.Button btnExportBoss;
         private System.Windows.Forms.Button btnImportBoss;
         private System.Windows.Forms.Button butt_change_boss;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 
