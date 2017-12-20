@@ -47,6 +47,7 @@
             this.btnGenerateSampleData = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.butt_change_boss = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -264,6 +265,15 @@
             this.button2.Text = "Export employee";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.btnExportEmployee_Click);
+            // butt_change_boss
+            // 
+            this.butt_change_boss.Location = new System.Drawing.Point(5, 68);
+            this.butt_change_boss.Name = "butt_change_boss";
+            this.butt_change_boss.Size = new System.Drawing.Size(101, 28);
+            this.butt_change_boss.TabIndex = 5;
+            this.butt_change_boss.Text = "Change boss";
+            this.butt_change_boss.UseVisualStyleBackColor = true;
+            this.butt_change_boss.Click += new System.EventHandler(this.Butt_change_boss_Click);
             // 
             // MainForm
             // 

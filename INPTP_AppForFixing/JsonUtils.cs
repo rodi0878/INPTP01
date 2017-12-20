@@ -20,6 +20,7 @@ namespace INPTP_AppForFixing
 
         private DataContractJsonSerializer jsonSerializerBoss = new DataContractJsonSerializer(typeof(Boss));
         private DataContractJsonSerializer jsonSerializerEmployee = new DataContractJsonSerializer(typeof(Employee));
+
         private JsonUtils() {}
 
         ///  <returns> Instance of this singleton </returns>
@@ -34,11 +35,13 @@ namespace INPTP_AppForFixing
         /// <summary>
         /// Serializes given Boss object as JSON and saves it to targetFile. 
         /// If file already exists, new content will be appended.
+
         /// Default targetFile is JsonUtils.DEFAULT_BOSS_FILE.
         /// </summary>
         /// <param name="boss"> Boss object to serialize </param>
         /// <param name="targetFile"> File, which will contain serialized data </param>
         public void SerializeBossToFile(Boss boss, string targetFile = DEFAULT_BOSS_FILE)
+
         {
             if (boss == null) throw new ArgumentNullException("Given Boss object was null!");
             if (targetFile == null) throw new ArgumentNullException("Given target path was null!");
@@ -63,6 +66,7 @@ namespace INPTP_AppForFixing
  
              FileStream source = File.OpenRead(targetFile);
              Boss deserializedBoss = (Boss)jsonSerializerBoss.ReadObject(source);
+          
              source.Close();
  
              return deserializedBoss;
