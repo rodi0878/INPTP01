@@ -311,5 +311,53 @@ namespace INPTP_AppForFixing
             ChangeBossDialog changeBossDialog = new ChangeBossDialog(this);
             changeBossDialog.ShowDialog();
         }
+
+        private void btnExportEmployee_Click(object sender, EventArgs e)
+        {
+            if (CheckSelectedBoss())
+            {
+                if (CheckSelectedEmloyee())
+                {
+                    Employee selectedEmployee = listBoxEmpl.SelectedItem as Employee;
+                    JsonUtils.Instance.SerializeEmployeeToFile(selectedEmployee);
+                }else
+                {
+                    showWarning("Select employee for export first!");
+                }
+            }
+            else
+            {
+                showWarning("Select boss for export first!");
+            }
+        }
+
+        private void btnImportEmployee_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog selectFile = new OpenFileDialog();
+
+            selectFile.Filter = "JSON files (*.json)|*.json";
+            selectFile.RestoreDirectory = true;
+
+            if (selectFile.ShowDialog() == DialogResult.OK)
+            {
+                if(GetSelectedBoss() != null)
+                {
+                    try
+                    {
+                        GetSelectedBoss().Add(JsonUtils.Instance.DeserializeEmployeeFromFile(selectFile.FileName));
+                        OnEmployeeChange();
+                        MessageBox.Show("File successfully imported", "Import Ok");
+                    }
+                    catch (Exception)
+                    {                
+                        showWarning("Couldn't read selected file. It can be damaged or it doesn't contain Employee at all.");
+                    }
+                } else
+                {
+                    showWarning("Select boss first for exported employee!");
+                }
+
+            }
+        }
     }
 }
